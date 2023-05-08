@@ -1,0 +1,245 @@
+body {
+    background-color: black;
+}
+
+/* .container {
+			position: relative;
+			width: 800px;
+			height: 600px;
+		} */
+
+.maze {
+    /*
+    background-image: url('path/to/spritesheet.png');
+    background-position: -xpx -ypx;
+    width: object-width;
+    height: object-height;
+    */
+    background-image: url("spritesheet/spritesheet.png");
+
+    background-position: 0px 0px; /* starting point, position of the desired sprite in the sprite sheet */
+    /* background-position: 0px -248px; */ /* or this which extracts the portion of image to be displayed */
+        /*
+        References: https://www.tutorialrepublic.com/css-tutorial/css-sprites.php 
+        
+        The background-position property in CSS is used to specify the starting position of a background image within an element. It takes two values: the first value represents the horizontal position, and the second value represents the vertical position.
+        In the case of the sprite sheet you provided, the first grid with the points is located at the top-left corner of the sprite sheet. This means that the starting position of the background image should be (0px, 0px), which is the top-left corner of the element containing the background image.
+        Therefore, when you use the background-position: 0px 0px; property, you are telling the browser to position the top-left corner of the background image at the top-left corner of the element. This will ensure that the first sprite in the first row and first column of the grid is displayed in the element.
+        Note that the background-position property can take other values as well, such as negative values to shift the background image left or up, or percentage values to position the background image relative to the size of the element. However, in this case, since the first grid with the points is located at the top-left corner of the sprite sheet, (0px, 0px) is the appropriate value to use.
+        */
+    width: 225px; /* width of the sprite */
+    height: 248px; /* height of the sprite */
+    
+        /*
+        The dimensions of the spritesheet image can be determined 
+        by looking at the coordinates of the bottom-right pixel in the image. 
+        If the bottom-right pixel of the image has a coordinate of (224, 247), 
+        then the width of the image is 224+1 pixels 
+        and the height of the image is 247+1 pixels.
+        The explanation for adding + 1,
+        the height and width of an image should be counted starting from 1, not 0.
+        */
+    /*
+    spritesheet2.png:
+    
+    background-position: -199px 0px;
+    width: 164px;
+    height: 218px; 
+    */
+    position: relative;
+    top: 45px;
+	left: 35px;
+    /* 
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); */
+}
+
+.letter1{
+    background-position: -10px -51px; 
+    background-image: url("spritesheet/spritesheet2.png");
+    
+    width: 7px; /* width of the sprite */
+    height: 10px; /* height of the sprite */
+
+    position: absolute;
+	left: 50px;
+    top: 19px;
+}
+
+.letterU{
+    background-position: -41px -68px; 
+	left: 57px;
+}
+
+.letterP{
+    background-position: -1px -68px; 
+	left: 66px;
+}
+
+.letterU,.letterP{
+    background-image: url("spritesheet/spritesheet2.png");
+    
+    width: 7px; /* width of the sprite */
+    height: 10px; /* height of the sprite */
+
+    position: absolute;
+    top: 20px;
+}
+
+
+.letterH{
+    background-position: -64px -60px; 
+	left: 113px;
+}
+
+.letterI{
+    background-position: -73px -60px; 
+	left: 123px;
+}
+
+.letterG{
+    background-position: -56px -60px; 
+	left: 132px;
+}
+
+
+.letterH, .letterI, .letterG{
+
+    background-image: url("spritesheet/spritesheet2.png");
+
+    width: 8px; /* width of the sprite */
+    height: 8px; /* height of the sprite */
+
+    position: absolute;
+    top: 20px;
+}
+
+.letterS{
+    background-position: -25px -68px; 
+	left: 160px;
+}
+
+.letterC{
+    background-position: -25px -60px; 
+	left: 169px;
+}
+
+.letterO{
+    background-position: -121px -60px; 
+	left: 178px;
+}
+
+.letterR{
+    background-position: -17px -68px; 
+	left: 187px;
+}
+
+.letterE{
+    background-position: -41px -60px; 
+	left: 196px;
+}
+
+.letterS,.letterC,.letterO,.letterR,.letterE{
+    background-image: url("spritesheet/spritesheet2.png");
+    
+    width: 8px; /* width of the sprite */
+    height: 8px; /* height of the sprite */
+
+    position: absolute;
+    top: 20px;
+}
+
+
+
+.startPacMan{
+    background-image: url("spritesheet/spritesheet.png");
+    
+    background-position: -489px -0px; 
+    width: 14px; /* width of the sprite */
+    height: 14px; /* height of the sprite */
+
+    position: absolute;
+    top: 233.5px;
+	left: 148px;
+}
+
+.redGhost{
+    background-position: -489px -65px; 
+    
+    top: 139px;
+	left: 149px;
+}
+
+.blueGhost{
+    background-position: -521px -97px; 
+    
+    top: 162.5px;
+	left: 133px;
+}
+
+.pinkGhost{
+    background-position: -553px -81px; 
+   
+    top: 162.5px;
+	left: 148px;
+}
+
+.yellowGhost{
+    background-position: -521px -113px; 
+    
+    top: 162.5px;
+	left: 163px;
+}
+
+
+.redGhost, .blueGhost, .pinkGhost, .yellowGhost{
+    background-image: url("spritesheet/spritesheet.png");
+    
+    width: 14px; /* width of the sprite */
+    height: 14px; /* height of the sprite */
+
+    position: absolute;
+}
+
+
+.life1{
+    background-image: url("spritesheet/spritesheet.png");
+    
+    width: 14px; /* width of the sprite */
+    height: 14px; /* height of the sprite */
+
+    background-position: -474px -17px; 
+    
+    position: absolute;
+    top: 310px;
+	left: 70px;
+}
+
+.life2{
+    background-image: url("spritesheet/spritesheet.png");
+    
+    width: 14px; /* width of the sprite */
+    height: 14px; /* height of the sprite */
+
+    background-position: -474px -17px; 
+    
+    position: absolute;
+    top: 310px;
+	left: 90px;
+}
+
+.cherry{
+    background-image: url("spritesheet/spritesheet.png");
+    
+    width: 11px; /* width of the sprite */
+    height: 11px; /* height of the sprite */
+
+    background-position: -490px -50px; 
+    
+    position: absolute;
+    top: 310px;
+	left: 230px;
+}
+
