@@ -6,26 +6,27 @@
         <meta name="keywords" content="HTML, CSS, JavaScript">
         <title>PacMan - Ivon's Project</title>
         <!-- A favicon image is displayed to the left of the page title in the browser tab. -->
-        <link rel="icon" type="image/x-icon" href="./assets/favicon.ico?v=1"">
+        <link rel="icon" type="image/x-icon" href="./assets/logo-Pacman.png?v=1">
 
         <!--This example links to a style sheet located in the same folder as the current page:-->
         <link rel="stylesheet" href="./stylesheets/style.css"> 
- 
         <!-- 
             <script type="text/javascript" src="code.js"> </script>
         -->
-       
     </head>
     <body>
         
-        <div class="maze"></div>
-
-        <div class="startPacMan"></div> 
+        <div class="maze"> 
+            <div class="label-ready"> </div>
+            <div class="label-gameover"> </div>
+        </div>
         
+        <div class="startPacMan"></div> 
+
         <div class="life1"></div>
         <div class="life2"></div>
+        <div class="life3"></div>
         <div class="cherry"></div>
-        
 
         <div class="redGhost"></div>
         <div class="blueGhost"></div>
@@ -46,6 +47,17 @@
         <div class="letterR"></div>
         <div class="letterE"></div>
         
+
+        <div id="pos1" class="hidden-power-pallet"></div>
+            <div id="pos1-1" class="power-pallets"></div> 
+        <div id="pos2" class="hidden-power-pallet"></div>
+            <div id="pos2-1" class="power-pallets"></div> 
+        <div id="pos3" class="hidden-power-pallet"></div>
+            <div id="pos3-1" class="power-pallets"></div> 
+        <div id="pos4" class="hidden-power-pallet"></div>
+            <div id="pos4-1" class="power-pallets"></div> 
+
+		
 
     </body>
 </html>
