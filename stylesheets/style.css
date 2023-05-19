@@ -1,11 +1,38 @@
 :root{
     --black:#000;
     --white: #ffffff;
-    --pallets: #ffb7ae;
+    --pellets: #ffb7ae;
 }
   
+ /* https://www.geeksforgeeks.org/how-to-include-a-font-ttf-using-css/ */
+@font-face {
+    font-family: myFirstFont;
+    src: url(../assets/emulogic/emulogic.ttf);
+}
+
 body{
-    background-color: var(--black);
+    background-color:var(--black);
+}
+
+h2{
+    font-family: myFirstFont;
+    font-size: 10px;
+    color: white;
+
+    top: 26px;
+}
+
+h2.one-up{
+
+    position: absolute;
+    left: 46px;
+    /* display: none; */
+}
+
+h2.high-score{
+    position: absolute;
+    left: 142px;
+    /* display: none; */
 }
 
 .maze {
@@ -16,14 +43,52 @@ body{
         width: object-width;
         height: object-height;
     */
-    background-image: url("../assets/images/spritesheet0.png");  /*url("../assets/images/spritesheet.png");*/
+    background-image: url("../assets/images/spritesheet.png");  /*url("../assets/images/spritesheet0.png");*/
     /*
-    To avoid the background image from repeating itself, set the background-repeat property to no-repeat.
+        To avoid the background image from repeating itself, set the background-repeat property to no-repeat.
     */
-    /* background-repeat: no-repeat; */
+    background-repeat: no-repeat;
+
+    /*
+        Length values are pretty simple: the first value is the horizontal position, 
+        second value is the vertical position. 
+        
+        So, for example, 100px 5px will move the image 
+        100 pixels to the right and 5 pixels down.
+
+        background-position: top right;
+    */
+    /*
+        In the case of background-position: -1px 0;, 
+        the negative value -1px shifts the background image 1 pixel to the left along the X-axis. 
+        This means that the background image starts 1 pixel to the left of the element's left edge.
+
+        By using background-position: -1px 0;, we are effectively excluding
+        the first column of the background image,
+        as it starts 1 pixel to the left of the element's box.
+
+        Whereas, background-position: 0 0; starts the background image from the leftmost position, 
+        including the first column.
+
+        The width of the element remains the same at 224px. 
+        The -1px adjustment is purely related to 
+        the positioning of the background image within the element, a
+        nd it doesn't affect the overall width of the element or the image itself.
+
+        So, once again,
+        by setting background-position: -1px 0;, 
+        the image will be shifted to the left by 1 pixel, 
+        excluding the first column and starting the maze extraction from column 1.
+    */
+    background-position: -1px 0px; 
     
-    background-position: 0px 0px; /* starting point, position of the desired sprite in the sprite sheet */
-    /* background-position: 0px -248px; */ /* or this which extracts the portion of image to be displayed */
+    /*  background-position: -1px -248px; */ /* starting point, position of the desired sprite in the sprite sheet */
+    /* 
+        for the maze of image: spritesheet0.png 
+        background-position: 0px -248px;
+        background-position: 0px 0px;  or this which extracts the portion of image to be displayed 
+    */
+
         /*
         References: https://www.tutorialrepublic.com/css-tutorial/css-sprites.php 
         
@@ -32,8 +97,9 @@ body{
         Therefore, when you use the background-position: 0px 0px; property, you are telling the browser to position the top-left corner of the background image at the top-left corner of the element. This will ensure that the first sprite in the first row and first column of the grid is displayed in the element.
         Note that the background-position property can take other values as well, such as negative values to shift the background image left or up, or percentage values to position the background image relative to the size of the element. However, in this case, since the first grid with the points is located at the top-left corner of the sprite sheet, (0px, 0px) is the appropriate value to use.
         */
-    width: 226px; /* width of the sprite */
-    height: 248px; /* height of the sprite */
+  
+    width: 224px; /* the actual width of the maze only  */
+    height: 248px; /* the actual height of the maze only */
         /*
         The dimensions of the spritesheet image can be determined 
         by looking at the coordinates of the bottom-right pixel in the image. 
@@ -53,64 +119,74 @@ body{
     animation-iteration-count: infinite; */
 }
 
+ /* version 2 */ 
+div.grid {
+    display: grid;
+    grid-template-columns: repeat(28, 1fr);/* 224 / 8 = 28  squares width */
+    grid-template-rows: repeat(31, 1fr);/* 248 / 8 = 31 squares height */
+    grid-gap: 0;
 
-.hidden-power-pallet{
-	width: 10px;
-	height: 10px;
-    position: absolute;
-    background-color: black;
+    /* var. 2.1 */
+    /* 
+    border: solid red;
+    border-width: 0 1px 1px 0; 
+    */
+
     /* visibility: hidden; */
+    /* display: none; */
 }
 
-#pos1{
-    top: 76px;/*top: 45 + 31*/
-    left: 50px; /*left:35 + 15*/
-}
-
-#pos2{
-    top: 76px;
-    left: 250px;
-}
-
-#pos3{
-    top: 236px;
+.grid-cells  {
+    /* var. 1 */
+        width: 7px;
+        height: 7px;
+        border: solid red;
+        border-width: 0px 0px 1px 1px;
+        /*same as the shorthand line above that is about the border-width: */
+        /* 
+        border-left: 1px solid red;
+        border-bottom: 1px solid red; 
+        */
     
-    left: 50px;
-}
-
-#pos4{
-    top: 236px;
-    left: 250px;
-}
-
-.power-pallets{	
-    background-image: url("../assets/images/spritesheet.png");
-    background-position: -232px -239px; 
-    width: 9px; 
-    height: 9px; 
+        
+    /* var. 2.2 */
+        /* https://stackoverflow.com/questions/10023799/how-to-collapse-the-borders-of-a-set-of-div-tags-using-css */
+        /* For all borders: border-left, border-bottom, border-right,  border-top */
+        /* width: 7px;
+        height: 7px;
+        border: solid red; 
+        border-width: 1px 0 0 1px; */
     
-    position: absolute;
-    animation: blink 0.5s infinite;
+    /* var. 3 */
+    /* For all borders: border-left, border-bottom, border-right,  border-top */
+        /*
+            margin overlapping: https://edu.gcfglobal.org/en/basic-css/margins-in-css/1/
+        */
+        /* 
+        width: 7px;
+        height: 7px;
+        border: 1px solid red;
+        margin-left: -1px; 
+        margin-bottom: -1px;  
+        */
+    
+        /*
+         OR
+        */
+  
+         /* width: 7px;
+         height: 7px;
+         border: 1px solid red;
+         margin: 0px 0px -1px -1px; */
+ 
 }
 
-#pos1-1{
-    top: 76px;
-    left: 50px;
+div.grid-cells:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.347);
 }
-
-#pos2-1{
-    top: 76px;
-    left: 250px;
-}
-
-#pos3-1{
-    top: 236px;
-    left: 50px;
-}
-
-#pos4-1{
-    top: 236px;
-    left: 250px;
+  
+div.grid-cells:nth-child(even) {
+    background-color: transparent;
 }
 
 .startPacMan{
@@ -133,37 +209,10 @@ body{
                     or we calculate the outside pixels of the figure,
                     in our case, 14-0 = 14px
                 */
-    position: absolute;
-    top: 233.5px;
-	left: 148px;
-}
-
-.redGhost{
-    background-position: -261px -64px; 
-    
-    top: 137px;
-	left: 149px;
-}
-
-.blueGhost{
-    background-position: -293px -96px; 
-    
-    top: 162.5px;
-	left: 133px;
-}
-
-.pinkGhost{
-    background-position: -325px -80px; 
    
-    top: 162.5px;
-	left: 148px;
-}
-
-.yellowGhost{
-    background-position: -293px -112px; 
-    
-    top: 162.5px;
-	left: 163px;
+    top: 181px;
+	left: 105px;
+    position: absolute;
 }
 
 .redGhost, .blueGhost, .pinkGhost, .yellowGhost{
@@ -173,6 +222,46 @@ body{
     height: 15px; 
 
     position: absolute;
+}
+
+.redGhost{
+    background-position: -261px -64px; 
+    
+    top: 137px;
+	left: 147px;
+}
+
+.blueGhost{
+    background-position: -293px -96px; 
+    
+    top: 162.5px;
+	left: 131px;
+}
+
+.pinkGhost{
+    background-position: -325px -80px; 
+   
+    top: 162.5px;
+	left: 147px;
+}
+
+.yellowGhost{
+    background-position: -293px -112px; 
+
+    top: 162.5px;
+	left: 163px;
+}
+
+.life1, .life2, .life3{
+    background-image: url("../assets/images/spritesheet.png");
+    
+    width: 14px; 
+    height: 14px; 
+
+    background-position: -246px -16px; 
+    
+    position: absolute;
+    top: 306px;
 }
 
 .life1{
@@ -187,19 +276,7 @@ body{
 
 .life3{
 	left: 52px;
-    visibility: hidden;
-}
-
-.life1, .life2, .life3{
-    background-image: url("../assets/images/spritesheet.png");
-    
-    width: 14px; 
-    height: 14px; 
-
-    background-position: -246px -16px; 
-    
-    position: absolute;
-    top: 310px;
+    /* visibility: hidden; */
 }
 
 .cherry{
@@ -214,8 +291,6 @@ body{
     top: 310px;
 	left: 235px;
 }
-
-
 
 /* at-rules: https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule */
 @keyframes blink {
@@ -239,7 +314,6 @@ body{
 }
 
 .label-gameover{
-  
     background-image: url("../assets/images/labels.png");
     background-position: -11px -190px; 
     width: 80px; 
@@ -259,21 +333,11 @@ body{
     background-image: url("../assets/images/letters.png");
 
     width: 7px; 
-    height: 10px; 
+    height: 9px; 
 
     position: absolute;
-	left: 50px;
+	left: 48px;
     top: 19px;
-}
-
-.letterU{
-    background-position: -41px -68px; 
-	left: 57px;
-}
-
-.letterP{
-    background-position: -1px -68px; 
-	left: 66px;
 }
 
 .letterU, .letterP{
@@ -286,21 +350,15 @@ body{
     top: 20px;
 }
 
-.letterH{
-    background-position: -64px -60px; 
-	left: 113px;
+.letterU{
+    background-position: -41px -68px; 
+	left: 56px;
 }
 
-.letterI{
-    background-position: -73px -60px; 
-	left: 123px;
+.letterP{
+    background-position: -1px -68px; 
+	left: 66px;
 }
-
-.letterG{
-    background-position: -56px -60px; 
-	left: 132px;
-}
-
 
 .letterH, .letterI, .letterG{
 
@@ -313,30 +371,21 @@ body{
     top: 20px;
 }
 
-.letterS{
-    background-position: -25px -68px; 
-	left: 160px;
+.letterH{
+    background-position: -64px -60px; 
+	left: 143px;
 }
 
-.letterC{
-    background-position: -25px -60px; 
-	left: 169px;
+.letterI{
+    background-position: -73px -60px; 
+	left: 153px;
 }
 
-.letterO{
-    background-position: -121px -60px; 
-	left: 178px;
+.letterG{
+    background-position: -56px -60px; 
+	left: 162px;
 }
 
-.letterR{
-    background-position: -17px -68px; 
-	left: 187px;
-}
-
-.letterE{
-    background-position: -41px -60px; 
-	left: 196px;
-}
 
 .letterS,.letterC,.letterO,.letterR,.letterE{
     background-image: url("../assets/images/letters.png");
@@ -348,3 +397,27 @@ body{
     top: 20px;
 }
 
+.letterS{
+    background-position: -25px -68px; 
+	left: 190px;
+}
+
+.letterC{
+    background-position: -25px -60px; 
+	left: 199px;
+}
+
+.letterO{
+    background-position: -121px -60px; 
+	left: 208px;
+}
+
+.letterR{
+    background-position: -17px -68px; 
+	left: 217px;
+}
+
+.letterE{
+    background-position: -41px -60px; 
+	left: 226px;
+} 
