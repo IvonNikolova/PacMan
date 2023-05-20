@@ -1,3 +1,95 @@
+// Add 28*31 i.e. 868 cells divs to the main container i.e. the labyrinth or the so-called maze
+const ROWS = 31;  /* 248 maze height / 8 side-size = 31 height cells as rows */
+const COLS = 28; /* 224 maze width / 8 side-size = 28 width cells as columns*/
+/*
+  The .querySelector(".grid"); is a method of the document object 
+  that uses a CSS selector to select the first element 
+  that matches the specified selector. 
+  
+  It returns a single element that matches the selector, 
+  in this case, the element with the class "grid".
+  This method is flexible and allows us to use any CSS selector, 
+  including class selectors (.), ID selectors (#), or element selectors.
+
+  On the other hand, 
+    .getElementsByClassName() 
+  is a method of the document object 
+  that returns A COLLECTION of ALL ELEMENTS in the document 
+  with the specified class name 
+  (the name of the class without dot operator). 
+    .getElementsByClassName() 
+  returns an HTMLCollection, 
+  which is similar to an array of elements. 
+  To access individual elements, we have to use array indexing!
+    The [0] at the end accesses the first element 
+  in the collection returned by .getElementsByClassName(), 
+  assuming there is at least one element with the "grid" class.
+*/
+// const main_container = document.querySelector(".grid");
+const main_container = document.getElementsByClassName("grid")[0];
+for (let row = 0; row < ROWS; row++) 
+{
+  for (let col = 0; col < COLS; col++) 
+  {
+/*
+    The line: 
+        const cell = document.createElement("div"); 
+    is used to create a new <div> element in JavaScript 
+    and assign it to the variable 'cell' with the const keyword.
+
+    In JavaScript, the:
+        document.createElement("div"); 
+    method creates a new HTML element with the specified tag name. 
+    In this case, it creates a <div> element.
+
+    By using: 
+        document.createElement("div");,
+    we are dynamically creating a new <div> element in memory. 
+    This allows us to programmatically generate 
+    and manipulate elements on the fly 
+    without directly adding them to the HTML markup.
+*/
+    const cell = document.createElement("div");
+/* 
+    By adding the "grid-cells" to the classList of the <div> element, 
+    each cell element will inherit the style 
+    that corresponds to "grid-cells".
+
+    Using classList.add() allows us to easily add or toggle classes 
+    on elements, 
+    which can be useful for applying styles, 
+    manipulating elements dynamically, 
+    or targeting specific elements for event handling 
+    or other operations.
+*/
+    cell.classList.add("grid-cells");
+/* 
+    The line:
+        main_container.appendChild(cell); 
+    is used to append the newly created <div> element (cell) 
+    as a child to another HTML element - main_container.
+
+    In the given code, 
+        main_container, 
+    refers to an existing HTML element 
+    to which you want to append the (cell) element. 
+
+    The appendChild() method is a built-in JavaScript method 
+    that allows us to add a child element to a parent element.
+
+    By using:
+        main_container.appendChild(cell);,
+    we are appending the 'cell' element as a child 
+    to the main_container element. 
+
+    This means that the 'cell' element will become a nested element 
+    within the container element -  main_container, 
+    in the HTML structure.  
+*/
+    main_container.appendChild(cell);
+  }
+}
+
 // The values of the objects within the grid  maze 
 const WALL_VALUE = 0;
 const PELLET_VALUE = 1;
