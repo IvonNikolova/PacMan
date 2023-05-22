@@ -169,8 +169,57 @@ const  maze_objects = [
 // NOTE: Each box i.e. cell will be of width 8px
 // NOTE: Each box i.e. cell will be of height 8px
 
+// Loop through the maze cells and place the object in a certain locations
+for (let i = 0; i < maze_objects.length; i++) 
+{
+  for (let j = 0; j < maze_objects[i].length; j++) 
+  {
+    if(maze_objects[i][j] == 1) 
+    {
+    // Create a new element of type "img" 
+      var pellet_img = document.createElement("img");
+      
+    // Provide the image source of the pellet 
+      //https://stackoverflow.com/questions/43072372/javascript-gallery-adding-images-with-for-loop
+      pellet_img.setAttribute("src", "./assets/images/pellet" + ".png");
+      
+    // The coordinates
+      //top (position) - vertical lines
+      pellet_img.style.top = i * 8 + "px"; // multiply by 8 to match the grid size
+       //left (position) - horizontal lines
+       pellet_img.style.left = j * 8 + "px";
 
+    // Set style to each object
+      pellet_img.style.position = "absolute";
+      
+    // The pellet element is added to the maze container element
+      document.querySelector(".maze").appendChild(pellet_img);
+    }
+    else if(maze_objects[i][j] == 2) 
+    {
+    // Create a new element of type "img" 
+      var power_pellet_img = document.createElement("img");
 
+    // Provide the image source of the power pellet 
+      //https://stackoverflow.com/questions/43072372/javascript-gallery-adding-images-with-for-loop
+      power_pellet_img.setAttribute("src", "./assets/images/gazer" + ".png");
+      
+    // The coordinates
+      //top (position) - vertical lines
+      power_pellet_img.style.top = i * 8 + "px"; // multiply by 8 to match the grid size
+      //left (position) - horizontal lines
+      power_pellet_img.style.left = j * 8 + "px";
+
+    // Set style to each object
+      power_pellet_img.style.position = "absolute";
+      power_pellet_img.style.animation = 'blink 0.5s infinite';
+
+    // The power pellet element is added to the maze container element
+      document.querySelector(".maze").appendChild(power_pellet_img);   
+    }
+    
+  }
+}
 
 
 
