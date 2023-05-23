@@ -1,41 +1,66 @@
 :root{
     --black:#000;
     --white: #ffffff;
-    --pellets: #ffb7ae;
+    --game-container: pink;
 }
   
  /* https://www.geeksforgeeks.org/how-to-include-a-font-ttf-using-css/ */
 @font-face {
-    font-family: myFirstFont;
+    font-family: pacmanFont;
     src: url(../assets/emulogic/emulogic.ttf);
 }
 
-body{
+html,body{
     background-color:var(--black);
+    height: 100%;
+    margin: 0; 
 }
 
 h2{
-    font-family: myFirstFont;
+    font-family: pacmanFont;
     font-size: 10px;
     color: white;
-
-    top: 26px;
 }
 
-h2.one-up{
 
+
+.game-container{
+   
+    /* background-color: rgb(121, 24, 24); */
+   
+    width:100%;
+    height:100%;
+
+    margin: 0;
+    padding: 0;
+
+    position:relative;
+
+    display: grid;
+    place-items: center; 
+    
+}
+
+.game-container > h2.one-up{
+    top:60px;
+    left:170px;
+  
     position: absolute;
-    left: 46px;
-    /* display: none; */
+    margin: 0;
+    padding: 0;
+
+    z-index: 3;
 }
 
 h2.high-score{
+    top:-25px;
+    left:135px;
     position: absolute;
-    left: 142px;
-    /* display: none; */
+    margin: 0;
+    padding: 0;
 }
 
-.maze {
+.maze{
     /* 
     The template:
         background-image: url('path/to/spritesheet.png');
@@ -88,18 +113,18 @@ h2.high-score{
         background-position: 0px -248px;
         background-position: 0px 0px;  or this which extracts the portion of image to be displayed 
     */
-
-        /*
+    /*
         References: https://www.tutorialrepublic.com/css-tutorial/css-sprites.php 
         
         The background-position property in CSS is used to specify the starting position of a background image within an element. It takes two values: the first value represents the horizontal position, and the second value represents the vertical position.
         In the case of the sprite sheet you provided, the first grid with the points is located at the top-left corner of the sprite sheet. This means that the starting position of the background image should be (0px, 0px), which is the top-left corner of the element containing the background image.
         Therefore, when you use the background-position: 0px 0px; property, you are telling the browser to position the top-left corner of the background image at the top-left corner of the element. This will ensure that the first sprite in the first row and first column of the grid is displayed in the element.
         Note that the background-position property can take other values as well, such as negative values to shift the background image left or up, or percentage values to position the background image relative to the size of the element. However, in this case, since the first grid with the points is located at the top-left corner of the sprite sheet, (0px, 0px) is the appropriate value to use.
-        */
+    */
   
-    width: 224px; /* the actual width of the maze only  */
-    height: 248px; /* the actual height of the maze only */
+    /* Box Model Settings: width, height, padding, margin */
+        width: 224px;
+        height: 248px;    
         /*
         The dimensions of the spritesheet image can be determined 
         by looking at the coordinates of the bottom-right pixel in the image. 
@@ -109,18 +134,276 @@ h2.high-score{
         The explanation for adding + 1,
         the height and width of an image should be counted starting from 1, not 0.
         */
+        margin: 0;
+        padding: 0;
         
-    position: relative;
-    top: 45px;
-    left: 35px;
-
-    /* animation-duration: 1s;
+        
+        position: absolute;
+        /* "zoom in" the elements within this container */
+        transform-origin: center;
+        transform: scale(2.0);/* Adjust the scale value as needed */
+        
+        
+        /* 
+    animation-duration: 1s;
     animation-name: blink;
-    animation-iteration-count: infinite; */
+    animation-iteration-count: infinite; 
+    */
 }
 
+
+
+.startPacMan{
+    background-image: url("../assets/images/spritesheet.png");
+    
+    background-position: -261px 0px; 
+    width: 14px; /* coord. (x,y), we look at x! 
+                    start-left pos. within the figure: (489,7) i.e. 489, 
+                    end-right pos. within the figure: 501 
+                    which is: 501,500,499,498,497,496,495,494,493,492,491,490,489 = 13pos. + 1 or 14 px width
+                    
+                    or we calculate the outside pixels of the figure,
+                    in our case, 502-488 = 14px
+                */
+    height: 14px; /* coord. (x,y), we look at y! 
+                    start-top pos. within the figure: (495,1) i.e. 1
+                    end-down pos. within the figure: 13 
+                    which is:13,12,11,10,9,8,7,6,5,4,3,2,1 = 13pos. + 1 or 14 px width
+                    
+                    or we calculate the outside pixels of the figure,
+                    in our case, 14-0 = 14px
+                */
+    top: 181px;
+	left: 105px;
+    position: absolute;
+}
+
+.redGhost, .blueGhost, .pinkGhost, .yellowGhost{
+    background-image: url("../assets/images/spritesheet.png");
+    
+    width: 15px; 
+    height: 15px; 
+
+    /* z-index: 2; */
+
+    position: absolute;
+}
+
+.redGhost{
+    background-position: -261px -64px; 
+    
+    top: 85px; /*137-85*/
+	left: 105px; /*2*/
+}
+
+.blueGhost{
+    background-position: -293px -96px; 
+    
+    top: 112.5px;
+	left: 89px;
+}
+
+.pinkGhost{
+    background-position: -325px -80px; 
+   
+    top: 112.5px;
+	left: 104px;
+}
+
+.yellowGhost{
+    background-position: -293px -112px; 
+
+    top: 112.5px;
+	left: 119px;
+}
+
+.life1, .life2, .life3{
+    background-image: url("../assets/images/spritesheet.png");
+    
+    width: 14px; 
+    height: 14px; 
+
+    background-position: -246px -16px; 
+    margin: 0;
+    padding: 0;
+    top: 252px;
+    
+    position: absolute;
+}
+
+.life1{
+	left: 6px;
+}
+
+.life2{
+	left: 20px;
+}
+
+.life3{
+	left: 34px;
+    visibility: visible;
+    /* visibility: hidden; */
+}
+
+.cherry{
+    background-image: url("../assets/images/spritesheet.png");
+    
+    width: 14px; 
+    height: 13px; 
+
+    background-position: -278px -49px; 
+    
+    position: absolute;
+    top: 252px;
+	left: 200px;
+}
+
+/* at-rules: https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule */
+@keyframes blink {
+    50% {
+        opacity: 0;
+      }
+}
+
+.label-ready{
+  
+    background-image: url("../assets/images/labels.png");
+    background-position: -201px 0px; 
+    width: 47px; 
+    height: 8px; 
+
+    position: absolute;
+	left: 90px;
+    top: 136px;
+
+    animation: blink 1s infinite;
+}
+
+.label-gameover{
+    background-image: url("../assets/images/labels.png");
+    background-position: -11px -190px; 
+    width: 80px; 
+    height: 8px; 
+
+    position: absolute;
+	left: 70px;
+    top: 130px;
+
+    animation: blink 1s infinite;
+    visibility: hidden;
+}
+
+
+.letter1{
+    background-position: -9px -52px; 
+    background-image: url("../assets/images/letters.png");
+
+    width: 8px; 
+    height: 9px; 
+
+    position: absolute;
+    top: -29px; /* Adjust the positioning as needed */
+    left: 5px; /* Adjust the positioning as needed */
+    margin: 0;
+    padding: 0;
+
+    transform: scale(1.20);
+}
+
+.letterU, .letterP{
+    background-image: url("../assets/images/letters.png");
+    
+    width: 9px; 
+    height: 9px; 
+
+    position: absolute;
+    top: -29px; 
+
+    transform: scale(1.20);
+}
+
+.letterU{
+    background-position: -40px -68px; 
+	left: 15px;
+}
+
+.letterP{
+    background-position: -0px -68px; 
+	left: 26px;
+}
+
+.letterH, .letterI, .letterG{
+
+    background-image: url("../assets/images/letters.png");
+
+    width: 8px; 
+    height: 8px; 
+
+    position: absolute;
+    top: -29px; 
+
+    transform: scale(1.20);
+}
+
+.letterH{
+    background-position: -64px -60px; 
+	left: 129px;
+}
+
+.letterI{
+    background-position: -73px -60px; 
+	left: 139px;
+}
+
+.letterG{
+    background-position: -56px -60px; 
+	left: 148px;
+}
+
+
+.letterS,.letterC,.letterO,.letterR,.letterE{
+    background-image: url("../assets/images/letters.png");
+    
+    width: 7px; 
+    height: 8px; 
+
+    position: absolute;
+    top: -29px; 
+
+    transform: scale(1.20);
+}
+
+.letterS{
+    background-position: -25px -68px; 
+	left: 174px;
+}
+
+.letterC{
+    background-position: -25px -60px; 
+	left: 183px;
+}
+
+.letterO{
+    background-position: -121px -60px; 
+	left: 192px;
+}
+
+.letterR{
+    background-position: -17px -68px; 
+	left: 201px;
+}
+
+.letterE{
+    background-position: -41px -60px; 
+	left: 210px;
+} 
+
+
+
+
+
  /* version 2 */ 
-div.grid {
+ div.grid {
     display: grid;
     grid-template-columns: repeat(28, 1fr);/* 224 / 8 = 28  squares width */
     grid-template-rows: repeat(31, 1fr);/* 248 / 8 = 31 squares height */
@@ -188,236 +471,3 @@ div.grid-cells:nth-child(odd) {
 div.grid-cells:nth-child(even) {
     background-color: transparent;
 }
-
-.startPacMan{
-    background-image: url("../assets/images/spritesheet.png");
-    
-    background-position: -261px 0px; 
-    width: 14px; /* coord. (x,y), we look at x! 
-                    start-left pos. within the figure: (489,7) i.e. 489, 
-                    end-right pos. within the figure: 501 
-                    which is: 501,500,499,498,497,496,495,494,493,492,491,490,489 = 13pos. + 1 or 14 px width
-                    
-                    or we calculate the outside pixels of the figure,
-                    in our case, 502-488 = 14px
-                */
-    height: 14px; /* coord. (x,y), we look at y! 
-                    start-top pos. within the figure: (495,1) i.e. 1
-                    end-down pos. within the figure: 13 
-                    which is:13,12,11,10,9,8,7,6,5,4,3,2,1 = 13pos. + 1 or 14 px width
-                    
-                    or we calculate the outside pixels of the figure,
-                    in our case, 14-0 = 14px
-                */
-   
-    top: 181px;
-	left: 105px;
-    position: absolute;
-}
-
-.redGhost, .blueGhost, .pinkGhost, .yellowGhost{
-    background-image: url("../assets/images/spritesheet.png");
-    
-    width: 15px; 
-    height: 15px; 
-
-    position: absolute;
-}
-
-.redGhost{
-    background-position: -261px -64px; 
-    
-    top: 137px;
-	left: 147px;
-}
-
-.blueGhost{
-    background-position: -293px -96px; 
-    
-    top: 162.5px;
-	left: 131px;
-}
-
-.pinkGhost{
-    background-position: -325px -80px; 
-   
-    top: 162.5px;
-	left: 147px;
-}
-
-.yellowGhost{
-    background-position: -293px -112px; 
-
-    top: 162.5px;
-	left: 163px;
-}
-
-.life1, .life2, .life3{
-    background-image: url("../assets/images/spritesheet.png");
-    
-    width: 14px; 
-    height: 14px; 
-
-    background-position: -246px -16px; 
-    
-    position: absolute;
-    top: 306px;
-}
-
-.life1{
-	left: 68px;
-    visibility: visible;
-}
-
-.life2{
-	left: 84px;
-    visibility: visible;
-}
-
-.life3{
-	left: 52px;
-    /* visibility: hidden; */
-}
-
-.cherry{
-    background-image: url("../assets/images/spritesheet.png");
-    
-    width: 14px; 
-    height: 13px; 
-
-    background-position: -278px -49px; 
-    
-    position: absolute;
-    top: 310px;
-	left: 235px;
-}
-
-/* at-rules: https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule */
-@keyframes blink {
-    50% {
-        opacity: 0;
-      }
-}
-
-.label-ready{
-  
-    background-image: url("../assets/images/labels.png");
-    background-position: -201px 0px; 
-    width: 47px; 
-    height: 8px; 
-
-    position: absolute;
-	left: 90px;
-    top: 136px;
-
-    animation: blink 1s infinite;
-}
-
-.label-gameover{
-    background-image: url("../assets/images/labels.png");
-    background-position: -11px -190px; 
-    width: 80px; 
-    height: 8px; 
-
-    position: absolute;
-	left: 70px;
-    top: 130px;
-
-    animation: blink 1s infinite;
-    visibility: hidden;
-}
-
-
-.letter1{
-    background-position: -10px -51px; 
-    background-image: url("../assets/images/letters.png");
-
-    width: 7px; 
-    height: 9px; 
-
-    position: absolute;
-	left: 48px;
-    top: 19px;
-}
-
-.letterU, .letterP{
-    background-image: url("../assets/images/letters.png");
-    
-    width: 7px; 
-    height: 8px; 
-
-    position: absolute;
-    top: 20px;
-}
-
-.letterU{
-    background-position: -41px -68px; 
-	left: 56px;
-}
-
-.letterP{
-    background-position: -1px -68px; 
-	left: 66px;
-}
-
-.letterH, .letterI, .letterG{
-
-    background-image: url("../assets/images/letters.png");
-
-    width: 8px; 
-    height: 8px; 
-
-    position: absolute;
-    top: 20px;
-}
-
-.letterH{
-    background-position: -64px -60px; 
-	left: 143px;
-}
-
-.letterI{
-    background-position: -73px -60px; 
-	left: 153px;
-}
-
-.letterG{
-    background-position: -56px -60px; 
-	left: 162px;
-}
-
-
-.letterS,.letterC,.letterO,.letterR,.letterE{
-    background-image: url("../assets/images/letters.png");
-    
-    width: 7px; 
-    height: 8px; 
-
-    position: absolute;
-    top: 20px;
-}
-
-.letterS{
-    background-position: -25px -68px; 
-	left: 190px;
-}
-
-.letterC{
-    background-position: -25px -60px; 
-	left: 199px;
-}
-
-.letterO{
-    background-position: -121px -60px; 
-	left: 208px;
-}
-
-.letterR{
-    background-position: -17px -68px; 
-	left: 217px;
-}
-
-.letterE{
-    background-position: -41px -60px; 
-	left: 226px;
-} 

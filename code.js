@@ -1,3 +1,4 @@
+ /* --19.05.2023 -- */  
 // Add 28*31 i.e. 868 cells divs to the main container i.e. the labyrinth or the so-called maze
 const ROWS = 31;  /* 248 maze height / 8 side-size = 31 height cells as rows */
 const COLS = 28; /* 224 maze width / 8 side-size = 28 width cells as columns*/
@@ -166,6 +167,7 @@ const  maze_objects = [
   ];
 
   
+ /* --23.05.2023 -- */ 
 // NOTE: Each box i.e. cell will be of width 8px
 // NOTE: Each box i.e. cell will be of height 8px
 
@@ -190,6 +192,7 @@ for (let i = 0; i < maze_objects.length; i++)
        pellet_img.style.left = j * 8 + "px";
 
     // Set style to each object
+    // https://www.w3schools.com/js/js_htmldom_css.asp
       pellet_img.style.position = "absolute";
       
     // The pellet element is added to the maze container element
@@ -211,16 +214,16 @@ for (let i = 0; i < maze_objects.length; i++)
       power_pellet_img.style.left = j * 8 + "px";
 
     // Set style to each object
+    // https://www.w3schools.com/js/js_htmldom_css.asp
       power_pellet_img.style.position = "absolute";
-      power_pellet_img.style.animation = 'blink 0.5s infinite';
+      power_pellet_img.style.animation = "blink 0.5s infinite";
 
     // The power pellet element is added to the maze container element
       document.querySelector(".maze").appendChild(power_pellet_img);   
     }
-    
   }
 }
 
 
-
+ /* --23.05.2023 -- */ 
 
