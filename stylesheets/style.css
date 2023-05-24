@@ -11,54 +11,35 @@
 }
 
 html,body{
-    background-color:var(--black);
-    height: 100%;
-    margin: 0; 
+    /* background-color: red;  */
+    background-color: black; 
+    margin:0; 
 }
 
-h2{
-    font-family: pacmanFont;
-    font-size: 10px;
-    color: white;
-}
+.main-container{
+    /* background-color: rgb(26, 6, 160); */
+    background-color: var(--black);
 
-
-
-.game-container{
-   
-    /* background-color: rgb(121, 24, 24); */
-   
-    width:100%;
     height:100%;
+    width:100%;
 
-    margin: 0;
+    margin:0;
     padding: 0;
-
-    position:relative;
-
+    position:absolute;
     display: grid;
     place-items: center; 
+}
+
+.main-container .game-container{
+    background-color: var(--black);
     
+     /* later, we center the maze using these two following parameters: */
+    width:624px;/* 200 |224| 200 */
+    height:100%;
+    position:absolute;
+    overflow: auto;
 }
 
-.game-container > h2.one-up{
-    top:60px;
-    left:170px;
-  
-    position: absolute;
-    margin: 0;
-    padding: 0;
-
-    z-index: 3;
-}
-
-h2.high-score{
-    top:-25px;
-    left:135px;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-}
 
 .maze{
     /* 
@@ -134,23 +115,85 @@ h2.high-score{
         The explanation for adding + 1,
         the height and width of an image should be counted starting from 1, not 0.
         */
-        margin: 0;
-        padding: 0;
-        
-        
-        position: absolute;
+        margin-top: 50px;
+        position: absolute; /* which is not relative to parent, instead it is positioned at the top left corner  */
+    
         /* "zoom in" the elements within this container */
         transform-origin: center;
-        transform: scale(2.0);/* Adjust the scale value as needed */
-        
-        
+        transform: scale(2);/* Adjust the scale value as needed */
         /* 
+            Having the width of the game-container - width:624px;,
+            and the original width of the maze - width:224px; 
+            (not the scaled size of the maze which is twice of the original)
+            we have 200px at left, we center the maze 224px, and we have 200pixels at right.
+        */
+        top: 200px;
+        left: 200px;
+    /* 
     animation-duration: 1s;
     animation-name: blink;
     animation-iteration-count: infinite; 
     */
 }
 
+
+h2{
+    font-family: pacmanFont;
+    font-size: 15px;
+    color: white;
+}
+
+.game-container > h2.one-up{
+    top:70px;
+    left:100px;
+    margin:0;
+    position: absolute;
+}
+
+.game-container > h2.high-score{
+    top:70px;
+    left:325px;
+    margin: 0;
+    position: absolute;
+}
+
+.letter1{
+    background-position: -9px -52px; 
+    background-image: url("../assets/images/letters.png");
+
+    width: 8px; 
+    height: 9px; 
+
+    position: absolute;
+    top: 54px;  /* Adjust the positioning as needed */
+    left: 98px; /* Adjust the positioning as needed */
+    margin: 0;
+    padding: 0;
+
+    transform: scale(1.85);
+}
+
+.letterU, .letterP{
+    background-image: url("../assets/images/letters.png");
+    
+    width: 9px; 
+    height: 9px; 
+
+    position: absolute;
+    top: 54px; 
+
+    transform: scale(1.85);
+}
+
+.letterU{
+    background-position: -40px -68px; 
+	left: 111px;
+}
+
+.letterP{
+    background-position: -0px -68px; 
+	left: 126px;
+}
 
 
 .startPacMan{
@@ -183,9 +226,7 @@ h2.high-score{
     
     width: 15px; 
     height: 15px; 
-
     /* z-index: 2; */
-
     position: absolute;
 }
 
@@ -293,45 +334,6 @@ h2.high-score{
     visibility: hidden;
 }
 
-
-.letter1{
-    background-position: -9px -52px; 
-    background-image: url("../assets/images/letters.png");
-
-    width: 8px; 
-    height: 9px; 
-
-    position: absolute;
-    top: -29px; /* Adjust the positioning as needed */
-    left: 5px; /* Adjust the positioning as needed */
-    margin: 0;
-    padding: 0;
-
-    transform: scale(1.20);
-}
-
-.letterU, .letterP{
-    background-image: url("../assets/images/letters.png");
-    
-    width: 9px; 
-    height: 9px; 
-
-    position: absolute;
-    top: -29px; 
-
-    transform: scale(1.20);
-}
-
-.letterU{
-    background-position: -40px -68px; 
-	left: 15px;
-}
-
-.letterP{
-    background-position: -0px -68px; 
-	left: 26px;
-}
-
 .letterH, .letterI, .letterG{
 
     background-image: url("../assets/images/letters.png");
@@ -340,24 +342,24 @@ h2.high-score{
     height: 8px; 
 
     position: absolute;
-    top: -29px; 
+    top: 54px; 
 
-    transform: scale(1.20);
+    transform: scale(1.85);
 }
 
 .letterH{
     background-position: -64px -60px; 
-	left: 129px;
+	left: 320px;
 }
 
 .letterI{
     background-position: -73px -60px; 
-	left: 139px;
+	left: 335px;
 }
 
 .letterG{
     background-position: -56px -60px; 
-	left: 148px;
+	left: 348px;
 }
 
 
@@ -368,34 +370,34 @@ h2.high-score{
     height: 8px; 
 
     position: absolute;
-    top: -29px; 
+    top: 54px; 
 
-    transform: scale(1.20);
+   transform: scale(1.85);
 }
 
 .letterS{
     background-position: -25px -68px; 
-	left: 174px;
+	left: 390px;
 }
 
 .letterC{
     background-position: -25px -60px; 
-	left: 183px;
+	left: 405px;
 }
 
 .letterO{
     background-position: -121px -60px; 
-	left: 192px;
+	left: 421px;
 }
 
 .letterR{
     background-position: -17px -68px; 
-	left: 201px;
+    left: 437px;
 }
 
 .letterE{
     background-position: -41px -60px; 
-	left: 210px;
+	left: 453px;
 } 
 
 
