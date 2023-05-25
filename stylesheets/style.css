@@ -11,33 +11,45 @@
 }
 
 html,body{
-    /* background-color: red;  */
     background-color: black; 
+    background-color: rgb(183, 22, 22); 
+    height:100%;
+    width:100%;
     margin:0; 
+    padding:0;
 }
 
+
 .main-container{
-    /* background-color: rgb(26, 6, 160); */
     background-color: var(--black);
+    background-color: rgb(9, 144, 9); 
 
     height:100%;
     width:100%;
 
-    margin:0;
+    margin: auto;
     padding: 0;
-    position:absolute;
-    display: grid;
-    place-items: center; 
+
+    position: relative;
+
+    /* display: grid;
+    place-items: center;  */
+    
 }
 
-.main-container .game-container{
+.game-container{
     background-color: var(--black);
-    
+    background-color: rgb(26, 6, 160);
+
      /* later, we center the maze using these two following parameters: */
     width:624px;/* 200 |224| 200 */
     height:100%;
     position:absolute;
     overflow: auto;
+ 
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 
@@ -115,12 +127,12 @@ html,body{
         The explanation for adding + 1,
         the height and width of an image should be counted starting from 1, not 0.
         */
-        margin-top: 50px;
+        margin-top: 55px;
         position: absolute; /* which is not relative to parent, instead it is positioned at the top left corner  */
     
         /* "zoom in" the elements within this container */
         transform-origin: center;
-        transform: scale(2);/* Adjust the scale value as needed */
+        transform: scale(2.25);/* Adjust the scale value as needed */
         /* 
             Having the width of the game-container - width:624px;,
             and the original width of the maze - width:224px; 
@@ -139,7 +151,7 @@ html,body{
 
 h2{
     font-family: pacmanFont;
-    font-size: 15px;
+    font-size: 17px;
     color: white;
 }
 
