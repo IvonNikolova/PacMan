@@ -1,7 +1,6 @@
 :root{
     --black:#000;
     --white: #ffffff;
-    --game-container: pink;
 }
   
  /* https://www.geeksforgeeks.org/how-to-include-a-font-ttf-using-css/ */
@@ -10,46 +9,26 @@
     src: url(../assets/emulogic/emulogic.ttf);
 }
 
+
 html,body{
-    background-color: black; 
-    background-color: rgb(183, 22, 22); 
-    height:100%;
-    width:100%;
-    margin:0; 
-    padding:0;
+    /* background-color: black;  */
 }
 
 
-.main-container{
-    background-color: var(--black);
-    background-color: rgb(9, 144, 9); 
-
-    height:100%;
-    width:100%;
-
-    margin: auto;
-    padding: 0;
-
-    position: relative;
-
-    /* display: grid;
-    place-items: center;  */
-    
-}
 
 .game-container{
     background-color: var(--black);
-    background-color: rgb(26, 6, 160);
+    /* background-color: rgb(9, 144, 9);  */
 
-     /* later, we center the maze using these two following parameters: */
-    width:624px;/* 200 |224| 200 */
-    height:100%;
-    position:absolute;
-    overflow: auto;
+    /* later, we center the maze with %: */
+    max-width:624px;/* 200 |224| 200 */
+    height: 748px;
+    margin: 0 auto;
+
+    border: 10px solid red;
  
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    overflow: auto;  
 }
 
 
@@ -127,27 +106,21 @@ html,body{
         The explanation for adding + 1,
         the height and width of an image should be counted starting from 1, not 0.
         */
-        margin-top: 55px;
-        position: absolute; /* which is not relative to parent, instead it is positioned at the top left corner  */
+        position: absolute; 
+        /* which is not relative to parent, instead it is positioned at the top left corner  */
     
         /* "zoom in" the elements within this container */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%)  scale(2.0);  /* Adjust the scale value as needed */
         transform-origin: center;
-        transform: scale(2.25);/* Adjust the scale value as needed */
         /* 
             Having the width of the game-container - width:624px;,
             and the original width of the maze - width:224px; 
             (not the scaled size of the maze which is twice of the original)
             we have 200px at left, we center the maze 224px, and we have 200pixels at right.
         */
-        top: 200px;
-        left: 200px;
-    /* 
-    animation-duration: 1s;
-    animation-name: blink;
-    animation-iteration-count: infinite; 
-    */
 }
-
 
 h2{
     font-family: pacmanFont;
@@ -346,7 +319,7 @@ h2{
     visibility: hidden;
 }
 
-.letterH, .letterI, .letterG{
+.letterH, .letterI, .letterG, .letterH2{
 
     background-image: url("../assets/images/letters.png");
 
@@ -372,6 +345,11 @@ h2{
 .letterG{
     background-position: -56px -60px; 
 	left: 348px;
+}
+
+.letterH2{
+    background-position: -64px -60px; 
+    left: 364px;
 }
 
 

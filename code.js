@@ -224,5 +224,3 @@ for (let i = 0; i < maze_objects.length; i++)
   }
 }
 
-
- /* --24.05.2023 -- */ 
