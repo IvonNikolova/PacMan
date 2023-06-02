@@ -1,0 +1,102 @@
+/* Overriding depending on the window size */
+@media (max-width: 647px) {
+    .maze{
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(2);
+        margin-top: 10px;
+        
+    }
+    .letter1,.letterU,.letterP, .letterH, .letterI, .letterG,.letterH2, .letterS,.letterC,.letterO,.letterR,.letterE{
+        top: 84px; 
+    }
+ 
+    .letter1{
+        left: 38px; 
+    }
+
+    .letterU{
+        left: 51px;
+    }
+
+    .letterP{
+        left: 66px;
+    }
+
+    .game-container > h2.one-up{
+        top:110px;
+        left:55px;
+    }
+    
+    .game-container > h2.high-score{
+        top:110px;
+        left:290px;
+    }
+
+
+    .letterH{
+        background-position: -64px -60px; 
+        left: 240px;
+    }
+    
+    .letterI{
+        background-position: -73px -60px; 
+        left: 255px;
+    }
+    
+    .letterG{
+        background-position: -56px -60px; 
+        left: 268px;
+    }
+
+    .letterH2{
+        background-position: -64px -60px; 
+        left: 284px;
+    }
+    
+    .letterS{
+
+        left: 320px;
+    }
+    
+    .letterC{
+       
+        left: 335px;
+    }
+    
+    .letterO{
+
+        left: 351px;
+    }
+    
+    .letterR{
+
+        left: 367px;
+    }
+    
+    .letterE{
+
+        left: 383px;
+    } 
+        
+    
+
+    
+}
+@media (max-width: 300px) {
+    .maze{
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.5);
+        
+    }
+    .letter1,.letterU,.letterP, .letterH, .letterI, .letterG,.letterS,.letterC,.letterO,.letterR,.letterE{
+        transform: scale(1.25);
+        top: 54px; 
+    }
+    h2{
+        font-size: 10px;
+    }
+
+    
+}
