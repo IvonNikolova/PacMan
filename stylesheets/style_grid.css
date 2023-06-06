@@ -1,0 +1,104 @@
+
+ /* version 2 */ 
+ div.grid {
+   
+    position: absolute;
+    /* top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; */
+
+    display: grid;
+    grid-template-columns: repeat(28, 1fr);/* 224 / 8 = 28  squares width */
+    grid-template-rows: repeat(31, 1fr);/* 248 / 8 = 31 squares height */
+    grid-gap: 0;
+    
+    /* var. 2.1 */
+    /* 
+    border: solid red;
+    border-width: 0 1px 1px 0; 
+    */
+
+    /* visibility: hidden; */
+    /* display: none; */
+}
+
+.grid-cells  {
+    /* var. 1 */
+        width: 7px;
+        height: 7px;
+        border: solid red;
+        border-width: 0px 0px 1px 1px;  
+        /*  border-width: 1px 1px 0px 0px;  */
+        /*  border-width: 0px 0px 1px 1px;  */
+         /* border-width: 1px 0px 0px 1px; */
+        /* border-width: 0px 1px 1px 0px; */
+
+        /*same as the shorthand line above that is about the border-width: */
+        /* 
+        border-left: 1px solid red;
+        border-bottom: 1px solid red; 
+        */
+    
+        
+    /* var. 2.2 */
+        /* https://stackoverflow.com/questions/10023799/how-to-collapse-the-borders-of-a-set-of-div-tags-using-css */
+        /* For all borders: border-left, border-bottom, border-right,  border-top */
+        /* width: 7px;
+        height: 7px;
+        border: solid red; 
+        border-width: 1px 0 0 1px; */
+    
+    /* var. 3 */
+    /* For all borders: border-left, border-bottom, border-right,  border-top */
+        /*
+            margin overlapping: https://edu.gcfglobal.org/en/basic-css/margins-in-css/1/
+        */
+        /* 
+        width: 7px;
+        height: 7px;
+        border: 1px solid red;
+        margin-left: -1px; 
+        margin-bottom: -1px;  
+        */
+    
+        /*
+         OR
+        */
+  
+         /* width: 7px;
+         height: 7px;
+         border: 1px solid red;
+         margin: 0px 0px -1px -1px; */
+ 
+}
+
+
+/* Version 1, Style of the grid  */
+div.grid-cells:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.347);
+}
+  
+div.grid-cells:nth-child(even) {
+    background-color: transparent;
+}
+
+/* The above style has priority over the below grid style, 
+   test both by commeting the above one. */
+
+/* Version 2, Style of the grid  */
+.boundary {
+    background-color: rgb(153, 22, 22);
+  }
+  
+.allowed {
+    background-color: rgb(39, 174, 39);
+}
+
+.ghost_nest{
+    background-color: rgb(113, 109, 109);
+}
+
+.tunnel{
+    background-color: rgb(255, 255, 255);
+}

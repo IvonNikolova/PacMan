@@ -1,0 +1,198 @@
+.start_rightPacMan,.start_leftPacMan,.left1_PacMan,.left2_PacMan,.right1_PacMan,.right2_PacMan,
+.up1_PacMan,.up2_PacMan,.down1_PacMan,.down2_PacMan,
+.dead1_PacMan,.dead2_PacMan,.dead3_PacMan,.dead4_PacMan,
+.dead5_PacMan,.dead6_PacMan,.dead7_PacMan,.dead8_PacMan,
+.dead9_PacMan,.dead10_PacMan,.dead11_PacMan{
+    background-image: url("../assets/images/spritesheet.png");
+}
+
+.pacman_0{
+    background-image: url("../assets/images/pacman/0.png");
+    height: 15px;
+    width: 15px;
+    z-index: 2;
+}
+
+.pacman_1{
+    background-image: url("../assets/images/pacman/1.png");
+    height: 15px;
+    width: 15px;
+    z-index: 2;
+}
+
+
+.start_rightPacMan{
+    background-position: -260px 1px; 
+    width: 16px; /* coord. (x,y), we look at x! 
+                    start-left pos. within the figure: (489,7) i.e. 489, 
+                    end-right pos. within the figure: 501 
+                    which is: 501,500,499,498,497,496,495,494,493,492,491,490,489 = 13pos. + 1 or 14 px width
+                    
+                    or we calculate the outside pixels of the figure,
+                    in our case, 502-488 = 14px + 1px
+                */
+    height: 16px; /* coord. (x,y), we look at y! 
+                    start-top pos. within the figure: (495,1) i.e. 1
+                    end-down pos. within the figure: 13 
+                    which is:13,12,11,10,9,8,7,6,5,4,3,2,1 = 13pos. + 1 or 14 px width
+                    
+                    or we calculate the outside pixels of the figure,
+                    in our case, 14-0 = 14px + 1px
+                */
+}
+/* 1+12+1x1+13*/
+.right1_PacMan{
+    background-position: -245px 0px; 
+
+    width: 14px;
+    height: 14px; 
+}
+/* okay for NOW - no changes */
+.right2_PacMan{
+    background-position: -228px 0px;
+    
+    width: 12px;
+    height: 16px; 
+}
+
+.start_leftPacMan{
+    background-position: -260px -16px; 
+    width: 16px; /* coord. (x,y), we look at x! 
+                    start-left pos. within the figure: (489,7) i.e. 489, 
+                    end-right pos. within the figure: 501 
+                    which is: 501,500,499,498,497,496,495,494,493,492,491,490,489 = 13pos. + 1 or 14 px width
+                    
+                    or we calculate the outside pixels of the figure,
+                    in our case, 502-488 = 14px + 1px
+                */
+    height: 16px; /* coord. (x,y), we look at y! 
+                    start-top pos. within the figure: (495,1) i.e. 1
+                    end-down pos. within the figure: 13 
+                    which is:13,12,11,10,9,8,7,6,5,4,3,2,1 = 13pos. + 1 or 14 px width
+                    
+                    or we calculate the outside pixels of the figure,
+                    in our case, 14-0 = 14px + 1px
+                */
+}
+
+/* 12+1x13+1*/
+.left1_PacMan{
+    background-position: -246px -16px; 
+
+    width: 14px;
+    height: 14px;
+}
+/* okay for NOW - no changes */
+.left2_PacMan{
+    background-position: -232px -16px; 
+
+    width: 12px;
+    height: 16px;
+}
+/* 13x12 */
+.up1_PacMan{
+    background-position: -246px -34px; 
+
+    width: 13px;
+    height: 12px; 
+}
+/* 13x9 */
+.up2_PacMan{
+    background-position: -230px -37px; 
+
+    width: 13px;
+    height: 9px; 
+}
+/* 13x12 */
+.down1_PacMan{
+   background-position: -246px -49px; 
+
+    width: 13px;
+    height: 12px; 
+}
+/* 13x9 */
+.down2_PacMan{
+    background-position: -230px -49px; 
+
+    width: 13px;
+    height: 9px; 
+}
+
+.dead1_PacMan{
+    background-position: -277px -2px; 
+
+    width: 15px;
+    height: 15px; 
+}
+
+.dead2_PacMan{
+    background-position: -292px -3px; 
+
+    width: 17px;
+    height: 15px; 
+}
+
+.dead3_PacMan{
+    background-position: -308px -5px; 
+
+    width: 17px;
+    height: 15px; 
+}
+
+.dead4_PacMan{
+    background-position: -324px -6px; 
+
+    width: 17px;
+    height: 15px; 
+}
+
+.dead5_PacMan{
+    background-position: -340px -7px; 
+
+    width: 17px;
+    height: 15px; 
+}
+
+.dead6_PacMan{
+    background-position: -356px -7px; 
+
+    width: 17px;
+    height: 15px; 
+}
+
+.dead7_PacMan{
+    background-position: -373px -7px; 
+
+    width: 15px;
+    height: 15px; 
+}
+
+.dead8_PacMan{
+    background-position: -391px -7px; 
+
+    width: 11px;
+    height: 15px; 
+}
+
+.dead9_PacMan{
+    background-position: -409px -7px; 
+
+    width: 7px;
+    height: 15px; 
+}
+
+.dead10_PacMan{
+    background-position: -426px -7px; 
+
+    width: 3px;
+    height: 15px; 
+}
+
+.dead11_PacMan{
+    background-position: -438px -5px; 
+
+    width: 13px;
+    height: 15px; 
+}
+
+

@@ -10,18 +10,49 @@
 
         <!--This example links to a style sheet located in the same folder as the current page:-->
         <link rel="stylesheet" href="./stylesheets/style.css"> 
-        <link rel="stylesheet" href="./stylesheets/style_mediaq.css"> 
+        <link rel="stylesheet" href="./stylesheets/style_grid.css"> 
+        <link rel="stylesheet" href="./stylesheets/style_pacman.css"> 
+        <link rel="stylesheet" href="./stylesheets/style_ghosts.css"> 
+        <link rel="stylesheet" href="./stylesheets/style_lives.css"> 
+        <link rel="stylesheet" href="./stylesheets/style_scores.css"> 
         
     </head>
+    <style>
+        .pacman {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: yellow;
+        }
+      
+        .pacman-up {
+          clip-path: polygon(0 0, 100% 0, 50% 100%);
+        }
+      
+        .pacman-down {
+          clip-path: polygon(0 100%, 100% 100%, 50% 0);
+        }
+      
+        .pacman-left {
+          clip-path: polygon(0 0, 0 100%, 100% 50%);
+        }
+      
+        .pacman-right {
+          clip-path: polygon(100% 0, 100% 100%, 0 50%);
+        }
+      </style>
+      
     <body>
     
-
+        <!-- <div class="pellet"></div> -->
+        
     <div class="game-container"> <!-- the main container having the whole game content -->
         <!-- the container having the labels and the maze-->
-        <h2 class="one-up">00000000</h2>
+        <h2 class="one-up" style="z-index: 10;">00000000</h2>
         <div class="letter1"></div>
         <div class="letterU"></div>
         <div class="letterP"></div> 
+       
         <h2 class="high-score">00000000</h2> 
         <div class="letterH"></div>
         <div class="letterI"></div>
@@ -34,23 +65,48 @@
         <div class="letterR"></div>
         <div class="letterE"></div> 
 
-        <div class="maze">  <!-- the maze container -->
-         <!-- JS way will be activated and will add 28*31 i.e. 868 cells -->
+        <div class="maze">  
             <div class="grid"></div>
-            <div class="startPacMan"></div> 
-            <!-- <div class="label-ready"> </div> -->
-            <!-- <div class="label-gameover"> </div> -->
-            <div class="redGhost"></div>
-            <div class="blueGhost"></div>
-            <div class="pinkGhost"></div>
-            <div class="yellowGhost"></div>
-       
+
+            <!-- <div class="pellet"></div> -->
+            <!-- <div class="power_pellet"></div> -->
+            <!-- <div class="startPacMan"></div>  -->
+           
+            <!-- <div class="ghost left1_redGhost"></div>
+            <div class="ghost left1_blueGhost"></div>
+            <div class="ghost left1_pinkGhost"></div>
+            <div class="ghost left1_orangeGhost"></div> -->
+            <!-- <div class="down1_PacMan"></div> -->
+
+                
+            <!-- 
+                <img class="start_rightPacMan">
+                <img class="right1_PacMan">
+                <img class="right2_PacMan">
+                <img class="start_leftPacMan">
+                <img class="left1_PacMan">
+                <img class="left2_PacMan"> 
+
+                <img class="dead1_PacMan "> 
+                <img class="dead2_PacMan">
+                <img class="dead3_PacMan">
+                <img class="dead4_PacMan">
+                <img class="dead5_PacMan">
+                <img class="dead6_PacMan">
+                <img class="dead7_PacMan">
+                <img class="dead8_PacMan">
+                <img class="dead9_PacMan">
+                <img class="dead10_PacMan">
+                <img class="dead11_PacMan">
+               
+               -->
+            
 
             <div class="life1"></div>
             <div class="life2"></div>
             <div class="life3"></div>
             <div class="cherry"></div>
-        </div>
+        </div> 
     </div>
 
         
@@ -58,6 +114,7 @@
 
         
         <script type="text/javascript" src="code.js"> </script>
+        
     </body>
 </html>
 
