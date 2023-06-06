@@ -9,25 +9,23 @@
     src: url(../assets/emulogic/emulogic.ttf);
 }
 
-
 html,body{
-    /* background-color: black;  */
+    background-color: black; 
+    margin: 0;
 }
-
-
 
 .game-container{
     background-color: var(--black);
     /* background-color: rgb(9, 144, 9);  */
 
     /* later, we center the maze with %: */
-    max-width:624px;/* 200 |224| 200 */
+    width: 624px;/* 200 |224| 200 */
     height: 748px;
     margin: 0 auto;
 
-    border: 10px solid red;
+    border: 10px solid yellow;
  
-    position: relative;
+    position: relative;/* because of later implementation of the score labels and points */
     overflow: auto;  
 }
 
@@ -106,7 +104,7 @@ html,body{
         The explanation for adding + 1,
         the height and width of an image should be counted starting from 1, not 0.
         */
-        position: absolute; 
+        position: relative; 
         /* which is not relative to parent, instead it is positioned at the top left corner  */
     
         /* "zoom in" the elements within this container */
@@ -122,344 +120,39 @@ html,body{
         */
 }
 
-h2{
-    font-family: pacmanFont;
-    font-size: 17px;
-    color: white;
-}
-
-.game-container > h2.one-up{
-    top:70px;
-    left:100px;
-    margin:0;
+/* From the spritesheet */
+.pellet{
     position: absolute;
+    background-image: url("../assets/images/spritesheet.png"); 
+    background-position: -225px -240px; 
+    background-repeat: no-repeat;
+    /* we will extract and some black pixels with the pellets in order to center visually the pellets*/
+    width: 8px;
+    height: 8px;
+    /* if we display the red grid */
+    z-index: -1; 
 }
 
-.game-container > h2.high-score{
-    top:70px;
-    left:325px;
-    margin: 0;
+.power_pellet{
     position: absolute;
+    background-image: url("../assets/images/spritesheet.png"); 
+    background-position: -233px -240px; 
+    background-repeat: no-repeat;
+    width: 8px;
+    height: 8px;
 }
 
-.letter1{
-    background-position: -9px -52px; 
-    background-image: url("../assets/images/letters.png");
-
-    width: 8px; 
-    height: 9px; 
-
-    position: absolute;
-    top: 54px;  /* Adjust the positioning as needed */
-    left: 98px; /* Adjust the positioning as needed */
-    margin: 0;
-    padding: 0;
-
-    transform: scale(1.85);
+/* From individual images */
+.dot-pellet{
+    background-image: url("../assets/images/pellet.png"); 
+    width: 8px;
+    height: 8px;
+    z-index: 1; 
 }
 
-.letterU, .letterP{
-    background-image: url("../assets/images/letters.png");
-    
-    width: 9px; 
-    height: 9px; 
-
-    position: absolute;
-    top: 54px; 
-
-    transform: scale(1.85);
-}
-
-.letterU{
-    background-position: -40px -68px; 
-	left: 111px;
-}
-
-.letterP{
-    background-position: -0px -68px; 
-	left: 126px;
-}
-
-
-.startPacMan{
-    background-image: url("../assets/images/spritesheet.png");
-    
-    background-position: -261px 0px; 
-    width: 14px; /* coord. (x,y), we look at x! 
-                    start-left pos. within the figure: (489,7) i.e. 489, 
-                    end-right pos. within the figure: 501 
-                    which is: 501,500,499,498,497,496,495,494,493,492,491,490,489 = 13pos. + 1 or 14 px width
-                    
-                    or we calculate the outside pixels of the figure,
-                    in our case, 502-488 = 14px
-                */
-    height: 14px; /* coord. (x,y), we look at y! 
-                    start-top pos. within the figure: (495,1) i.e. 1
-                    end-down pos. within the figure: 13 
-                    which is:13,12,11,10,9,8,7,6,5,4,3,2,1 = 13pos. + 1 or 14 px width
-                    
-                    or we calculate the outside pixels of the figure,
-                    in our case, 14-0 = 14px
-                */
-    top: 181px;
-	left: 105px;
-    position: absolute;
-}
-
-.redGhost, .blueGhost, .pinkGhost, .yellowGhost{
-    background-image: url("../assets/images/spritesheet.png");
-    
-    width: 15px; 
-    height: 15px; 
-    /* z-index: 2; */
-    position: absolute;
-}
-
-.redGhost{
-    background-position: -261px -64px; 
-    
-    top: 85px; /*137-85*/
-	left: 105px; /*2*/
-}
-
-.blueGhost{
-    background-position: -293px -96px; 
-    
-    top: 112.5px;
-	left: 89px;
-}
-
-.pinkGhost{
-    background-position: -325px -80px; 
-   
-    top: 112.5px;
-	left: 104px;
-}
-
-.yellowGhost{
-    background-position: -293px -112px; 
-
-    top: 112.5px;
-	left: 119px;
-}
-
-.life1, .life2, .life3{
-    background-image: url("../assets/images/spritesheet.png");
-    
-    width: 14px; 
-    height: 14px; 
-
-    background-position: -246px -16px; 
-    margin: 0;
-    padding: 0;
-    top: 252px;
-    
-    position: absolute;
-}
-
-.life1{
-	left: 6px;
-}
-
-.life2{
-	left: 20px;
-}
-
-.life3{
-	left: 34px;
-    visibility: visible;
-    /* visibility: hidden; */
-}
-
-.cherry{
-    background-image: url("../assets/images/spritesheet.png");
-    
-    width: 14px; 
-    height: 13px; 
-
-    background-position: -278px -49px; 
-    
-    position: absolute;
-    top: 252px;
-	left: 200px;
-}
-
-/* at-rules: https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule */
-@keyframes blink {
-    50% {
-        opacity: 0;
-      }
-}
-
-.label-ready{
-  
-    background-image: url("../assets/images/labels.png");
-    background-position: -201px 0px; 
-    width: 47px; 
-    height: 8px; 
-
-    position: absolute;
-	left: 90px;
-    top: 136px;
-
-    animation: blink 1s infinite;
-}
-
-.label-gameover{
-    background-image: url("../assets/images/labels.png");
-    background-position: -11px -190px; 
-    width: 80px; 
-    height: 8px; 
-
-    position: absolute;
-	left: 70px;
-    top: 130px;
-
-    animation: blink 1s infinite;
-    visibility: hidden;
-}
-
-.letterH, .letterI, .letterG, .letterH2{
-
-    background-image: url("../assets/images/letters.png");
-
-    width: 8px; 
-    height: 8px; 
-
-    position: absolute;
-    top: 54px; 
-
-    transform: scale(1.85);
-}
-
-.letterH{
-    background-position: -64px -60px; 
-	left: 320px;
-}
-
-.letterI{
-    background-position: -73px -60px; 
-	left: 335px;
-}
-
-.letterG{
-    background-position: -56px -60px; 
-	left: 348px;
-}
-
-.letterH2{
-    background-position: -64px -60px; 
-    left: 364px;
-}
-
-
-.letterS,.letterC,.letterO,.letterR,.letterE{
-    background-image: url("../assets/images/letters.png");
-    
-    width: 7px; 
-    height: 8px; 
-
-    position: absolute;
-    top: 54px; 
-
-   transform: scale(1.85);
-}
-
-.letterS{
-    background-position: -25px -68px; 
-	left: 390px;
-}
-
-.letterC{
-    background-position: -25px -60px; 
-	left: 405px;
-}
-
-.letterO{
-    background-position: -121px -60px; 
-	left: 421px;
-}
-
-.letterR{
-    background-position: -17px -68px; 
-    left: 437px;
-}
-
-.letterE{
-    background-position: -41px -60px; 
-	left: 453px;
-} 
-
-
-
-
-
- /* version 2 */ 
- div.grid {
-    display: grid;
-    grid-template-columns: repeat(28, 1fr);/* 224 / 8 = 28  squares width */
-    grid-template-rows: repeat(31, 1fr);/* 248 / 8 = 31 squares height */
-    grid-gap: 0;
-
-    /* var. 2.1 */
-    /* 
-    border: solid red;
-    border-width: 0 1px 1px 0; 
-    */
-
-    visibility: hidden;
-    /* display: none; */
-}
-
-.grid-cells  {
-    /* var. 1 */
-        width: 7px;
-        height: 7px;
-        border: solid red;
-        border-width: 0px 0px 1px 1px;
-        /*same as the shorthand line above that is about the border-width: */
-        /* 
-        border-left: 1px solid red;
-        border-bottom: 1px solid red; 
-        */
-    
-        
-    /* var. 2.2 */
-        /* https://stackoverflow.com/questions/10023799/how-to-collapse-the-borders-of-a-set-of-div-tags-using-css */
-        /* For all borders: border-left, border-bottom, border-right,  border-top */
-        /* width: 7px;
-        height: 7px;
-        border: solid red; 
-        border-width: 1px 0 0 1px; */
-    
-    /* var. 3 */
-    /* For all borders: border-left, border-bottom, border-right,  border-top */
-        /*
-            margin overlapping: https://edu.gcfglobal.org/en/basic-css/margins-in-css/1/
-        */
-        /* 
-        width: 7px;
-        height: 7px;
-        border: 1px solid red;
-        margin-left: -1px; 
-        margin-bottom: -1px;  
-        */
-    
-        /*
-         OR
-        */
-  
-         /* width: 7px;
-         height: 7px;
-         border: 1px solid red;
-         margin: 0px 0px -1px -1px; */
- 
-}
-
-div.grid-cells:nth-child(odd) {
-    background-color: rgba(255, 255, 255, 0.347);
-}
-  
-div.grid-cells:nth-child(even) {
-    background-color: transparent;
+.gazer-pellet{
+    background-image: url("../assets/images/gazer.png"); 
+    width: 8px;
+    height: 8px;
+    z-index: 1; 
 }

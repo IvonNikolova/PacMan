@@ -1,0 +1,164 @@
+h2{
+    font-family: pacmanFont;
+    font-size: 17px;
+    color: white;
+}
+
+.game-container > h2.one-up{
+    top:70px;
+    left:100px;
+    margin:0;
+    position: absolute;
+}
+
+.game-container > h2.high-score{
+    top:70px;
+    left:325px;
+    margin: 0;
+    position: absolute;
+}
+
+.letter1{
+    background-position: -9px -52px; 
+    background-image: url("../assets/images/letters.png");
+
+    width: 8px; 
+    height: 9px; 
+
+    position: absolute;
+    top: 54px;  /* Adjust the positioning as needed */
+    left: 98px; /* Adjust the positioning as needed */
+    margin: 0;
+    padding: 0;
+
+    transform: scale(1.85);
+}
+
+.letterU, .letterP{
+    background-image: url("../assets/images/letters.png");
+    
+    width: 9px; 
+    height: 9px; 
+
+    position: absolute;
+    top: 54px; 
+
+    transform: scale(1.85);
+}
+
+.letterU{
+    background-position: -40px -68px; 
+	left: 111px;
+}
+
+.letterP{
+    background-position: -0px -68px; 
+	left: 126px;
+}
+
+/* at-rules: https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule */
+@keyframes blink {
+    50% {
+        opacity: 0;
+      }
+}
+
+.label-ready{
+  
+    background-image: url("../assets/images/labels.png");
+    background-position: -201px 0px; 
+    width: 47px; 
+    height: 8px; 
+
+    position: absolute;
+	left: 90px;
+    top: 136px;
+
+    animation: blink 1s infinite;
+}
+
+.label-gameover{
+    background-image: url("../assets/images/labels.png");
+    background-position: -11px -190px; 
+    width: 80px; 
+    height: 8px; 
+
+    position: absolute;
+	left: 70px;
+    top: 130px;
+
+    animation: blink 1s infinite;
+    visibility: hidden;
+}
+
+.letterH, .letterI, .letterG, .letterH2{
+
+    background-image: url("../assets/images/letters.png");
+
+    width: 8px; 
+    height: 8px; 
+
+    position: absolute;
+    top: 54px; 
+
+    transform: scale(1.85);
+}
+
+.letterH{
+    background-position: -64px -60px; 
+	left: 320px;
+}
+
+.letterI{
+    background-position: -73px -60px; 
+	left: 335px;
+}
+
+.letterG{
+    background-position: -56px -60px; 
+	left: 348px;
+}
+
+.letterH2{
+    background-position: -64px -60px; 
+    left: 364px;
+}
+
+.letterS,.letterC,.letterO,.letterR,.letterE{
+    background-image: url("../assets/images/letters.png");
+    
+    width: 7px; 
+    height: 8px; 
+
+    position: absolute;
+    top: 54px; 
+
+   transform: scale(1.85);
+}
+
+.letterS{
+    background-position: -25px -68px; 
+	left: 390px;
+}
+
+.letterC{
+    background-position: -25px -60px; 
+	left: 405px;
+}
+
+
+.letterO{
+    background-position: -121px -60px; 
+	left: 421px;
+}
+
+.letterR{
+    background-position: -17px -68px; 
+    left: 437px;
+}
+
+.letterE{
+    background-position: -41px -60px; 
+	left: 453px;
+} 
+
