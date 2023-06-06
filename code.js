@@ -278,6 +278,7 @@ for (let i = 0; i < GPS_arr.length; i++)
 
  /* --4-5.06.2023 -- */ 
 var container = document.querySelector(".grid");
+// Starting coordinates
 var indx_x = 13.1*8; /* starting position of x */
 var indx_y = 22.5*8;/* starting position of y */
 
@@ -300,10 +301,12 @@ function movePacMan(event) {
   which is the whole yellow circle 
   which we see mainly at the very start of the game.
   */
-  pacmanEmoji.className = "pacman_1";
+  // pacmanEmoji.className = "pacman_1";
+  pacmanEmoji.className = "pacman_0";
   
   if (k === "ArrowLeft") 
   {
+    pacmanEmoji.className = "pacman_1";
     pacmanEmoji.style.transform = "scaleX(-1)";
   // or another method 
     // pacmanEmoji = document.createElement("div");
@@ -315,25 +318,28 @@ function movePacMan(event) {
   } 
   else if(k === "ArrowUp") 
   {
+    pacmanEmoji.className = "pacman_1";
     pacmanEmoji.style.transform = "rotate(270deg)"; 
     indx_y -= stepSize; // Move up
   } 
   else if(k === "ArrowRight") 
   {
+    pacmanEmoji.className = "pacman_1";
     pacmanEmoji.style.transform = "scaleY(-1)";
     indx_x += stepSize; // Move right
   } 
   else if(k === "ArrowDown") 
   {
+    pacmanEmoji.className = "pacman_1";
     pacmanEmoji.style.transform = "rotate(90deg)";
     indx_y += stepSize; // Move down
   }
-  else
-  {
-    pacmanEmoji.className = "pacman_0"; 
-    indx_x = 13.1*8;
-    indx_y = 22.5*8;
-  }
+  // else
+  // {
+  //   pacmanEmoji.className = "pacman_0"; 
+  //   indx_x = 13.1*8;
+  //   indx_y = 22.5*8;
+  // }
 
   /* 
   The pacmanEmoji element is prevented from going outside the bounds of its container 
