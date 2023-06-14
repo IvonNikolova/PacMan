@@ -6,20 +6,39 @@
     background-image: url("../assets/images/spritesheet.png");
 }
 
+.pacman_1{
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: yellow;
+    z-index: 3;
+}
+
 .pacman_0{
     background-image: url("../assets/images/pacman/0.png");
     height: 15px;
     width: 15px;
+  
     z-index: 2;
+    
+    /* transform: scale(0.5); */
+    /* transform: scale(0.2);
+    transform-origin: center; */
 }
 
-.pacman_1{
+.pacman{
     background-image: url("../assets/images/pacman/1.png");
     height: 15px;
     width: 15px;
+    /* background-size: 8px ; */
+    /* position: absolute; */
     z-index: 2;
 }
 
+.scaled-pacman {
+    /* transform: scale(0.5); */
+    /* transform-origin: center center; */
+  }
 
 .start_rightPacMan{
     background-position: -260px 1px; 
