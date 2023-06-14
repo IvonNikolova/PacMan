@@ -92,13 +92,20 @@ div.grid-cells:nth-child(even) {
   }
   
 .allowed {
-    background-color: rgb(39, 174, 39);
+    background-color: rgba(29, 216, 29, 0.435);
+    background-color: transparent;
+}
+
+.starting-point{
+    background-color: rgba(236, 216, 65, 0.495);
 }
 
 .ghost_nest{
-    background-color: rgb(113, 109, 109);
+    background-color: transparent;
+    background-color: rgba(202, 57, 57, 0.495);
 }
 
 .tunnel{
-    background-color: rgb(255, 255, 255);
+    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.328);
 }
