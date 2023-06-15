@@ -7,10 +7,12 @@ const POWER_PELLET_VALUE = 2;
 const NOTHING_VALUE = 3;
 const GHOST_NEST_VALUE = 4;
 const TUNNEL_TELEPORT_VALUE = 5;
-const START_POS = 6;
+// const START_POS = 6;
+
 // The container - 2d array which represents the objects as values 
     // Rows x Columns i.e. 28 x 31 = 868 VALUES
 const  GPS_arr = [
+  //0 1  2  3  4  5  6 7  8  9 10  11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
   // 1                                                                                             // Y's       // X's
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//----> 1*8px = 8
   // 2
@@ -63,7 +65,7 @@ const  GPS_arr = [
  [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],//----> 23*8px = 184
 
  // 24,index 23                      //startPacMan, first 6 at index 14, second 6 at 15
- [0, 2, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 6, 6, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 2, 0], //----> 24*8px = 192
+ [0, 2, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 2, 0], //----> 24*8px = 192
  // 25
  [0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0],//----> 25*8px = 200
  // 26
@@ -202,6 +204,9 @@ for (let row = 0; row < ROWS; row++)
 // NOTE: Each box i.e. cell will be of height 8px
 
 const maze_container = document.querySelector(".maze");
+
+function putPellets()
+{
 // Loop through the maze cells and place the object in a certain locations
 for (let i = 0; i < GPS_arr.length; i++) 
 {
@@ -223,7 +228,7 @@ for (let i = 0; i < GPS_arr.length; i++)
       //top (position) - vertical lines
       pellet.style.top = i * 8 + "px"; // multiply by 8 to match the grid size
        //left (position) - horizontal lines
-       pellet.style.left = j * 8 + "px";
+      pellet.style.left = j * 8 + "px";
 
     // Set style to each object
     // https://www.w3schools.com/js/js_htmldom_css.asp
@@ -257,9 +262,12 @@ for (let i = 0; i < GPS_arr.length; i++)
     // The power pellet element is added to the maze container element
       maze_container.appendChild(gazer);   
     }
+    
+    
   } 
 }
-
+}
+putPellets();
  /* **************************************************************** 2.06.2023 **************************************************************** */ 
  /* get info which arrow key is pressed from the keyboard in the console */
 //  document.addEventListener('keyup', 
@@ -418,8 +426,9 @@ for (let i = 0; i < GPS_arr.length; i++)
 /* **************************************************************** 14.06.2023 **************************************************************** */
 // https://makersaid.com/array-of-images-in-javascript/
 
-
-
+// Declare an array object for our array of images
+// var pacmanEatingSprites = ["pacman_0","pacman","pacman1",];
+// var eatingAnimation_indx = 0;
 
 /* **************************************************************** 12.-13.06.2023 **************************************************************** */
 
@@ -434,8 +443,11 @@ for (let i = 0; i < GPS_arr.length; i++)
  */
 var direction = "left"; // Initial direction
 
+var timer;
+
 // Create a starting Pacman element 
 var startingPacManEmoji = document.createElement("div");
+
 startingPacManEmoji.style.position = "absolute";
 startingPacManEmoji.className = "pacman_0";
 // Initial position of Pacman
@@ -452,6 +464,10 @@ var pacManEmoji = document.createElement("div");
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects
 var pacmanPos = { x: 13, y: 23 };  //  Using object initializers we set initial row and column
 
+
+
+
+
 /*
 About transform :
   https://www.w3schools.com/css/css3_2dtransforms.asp
@@ -465,6 +481,7 @@ About ${} :
   https://css-tricks.com/template-literals/#:~:text=The%20%24%7B%7D%20syntax%20allows%20us,Literal%20for%20the%20name%20variable.
 */
 pacManEmoji.style.transform = `translate(${pacmanPos.x * 8}px, ${pacmanPos.y * 8}px)`;
+
 
 
 // Keyboard event listener
@@ -497,6 +514,11 @@ else if (k === "ArrowRight")
   direction = "right";
   moveRight();
 }
+// else
+// {
+//   direction = "left_bydefault";
+//   moveLeft();
+// }
   
 
   event.preventDefault();
@@ -545,7 +567,7 @@ function moveRight() {
   {
     // Update Pacman's position
     pacmanPos = newPos;
-    update_pacManPosition();
+    update_pacManPos();
   }
 }
 
@@ -560,7 +582,7 @@ function moveLeft()
   {
     // Update Pacman's position
     pacmanPos = newPos;
-    update_pacManPosition();
+    update_pacManPos();
   }
 }
 
@@ -575,7 +597,7 @@ function moveUp()
   {
     // Update Pacman's position
     pacmanPos = newPos;
-    update_pacManPosition();
+    update_pacManPos();
   }
 }
 
@@ -590,30 +612,104 @@ function moveDown()
   {
     // Update Pacman's position
     pacmanPos = newPos;
-    update_pacManPosition();
+    update_pacManPos();
   }
 }
 
+const scoreElement_highscore = document.querySelector('.high-score');
+const scoreElement_1up = document.querySelector('.one-up');
+
+
+var scores = 0;
+var scoresPellets = 0;
+var scoresGazers = 0;
 
 // Check if the taken step is allowed
   // considering the maze boundaries and its walls
-function isallowedStep(pos) {
+function isallowedStep(pos) 
+{
+  
   // Ensure that the position is in the boundaries of the maze
+  // y rows
+  // x columns
   if (pos.x >= 0 && pos.x < 28 && pos.y >= 0 && pos.y < 31) 
   {
     // Ensure that the position is not a wall
-    if (GPS_arr[pos.y][pos.x] !== 0) // 0's are the walls
+    // if (GPS_arr[pos.y][pos.x] !== 0) // 0's are the walls
+    // {
+    //   return true; // the step is allowed
+    // }
+
+    if (GPS_arr[pos.y][pos.x] !== 0) // It is NOT a 0 i.e. wall
     {
-      return true; // the step is allowed
+      if(GPS_arr[pos.y][pos.x] === 1) // Pellet cell
+      {
+        // scoresPellets += 10;
+        // console.log("scoresPellets: " + scoresPellets);
+    
+/*
+1.  scores: It is assumed that scores is a variable that holds the score value, 
+    possibly as a number or string.
+
+2. scores.toString(): The toString() method is called on the scores variable to convert 
+    the score value to a string. 
+    This is necessary because the padStart() method works with strings.
+
+3. padStart(4, '0'): The padStart() method is called on the string representation of the score. 
+    It adds leading zeros to the string to ensure that it has a minimum length of 4 characters.
+      -> 4: The first argument to padStart() is the target length of the resulting string. 
+      In this case, it is set to 4, indicating that 
+      the final string should have a minimum length of 4 characters.
+      -> '0': The second argument is the padding string that will be added to the start of the string. 
+      In this case, it is set to '0', meaning that leading zeros will be added.
+      For example, if the score is 12, the padStart() method will add two leading zeros to make it 0012. 
+      If the score is 1234, no padding will be added since it already has four digits.
+
+4. scoreElement_highscore.textContent: Assuming that result references an element in the DOM, 
+      the textContent property is used to set the text content of that element.
+            textContent: It represents the plain text content of an element, excluding any HTML tags. 
+            By assigning a value to this property, the displayed text of the element will be updated.
+
+
+       In summary, the line of code you provided takes the scores variable,
+        converts it to a string, adds leading zeros to ensure a minimum length of 4 characters, 
+        and then updates the text content of the result element with the formatted score value.
+*/
+        scores += 10; 
+        scoreElement_highscore.textContent = scores.toString().padStart(8, '0'); // Update the score display with padding
+        scoreElement_1up.textContent = scores.toString().padStart(8, '0'); // Update the score display with padding
+ 
+        console.log("Scores: " + scores);
+        
+        return true; // the step is allowed
+      }
+      
+      if(GPS_arr[pos.y][pos.x] === 2) // Gazer cell 
+      {
+        // scoresGazers += 50;
+        // console.log("scoresGazers: " + scoresGazers);
+        scores += 50;
+        scoreElement_highscore.textContent = scores.toString().padStart(8, '0'); // Update the score display with padding
+        scoreElement_1up.textContent = scores.toString().padStart(8, '0'); // Update the score display with padding
+ 
+        console.log("Scores: " + scores);
+
+        return true; // the step is allowed
+      }
+      
+      if(GPS_arr[pos.y][pos.x] === 3) //Empty cell 
+      {
+        return true; // the step is allowed
+      } 
     }
   }
+  
+
   return false; //  the step is not allowed
 }
-
-
-
+ 
 // Function to update Pacman's position in the DOM
-function update_pacManPosition() 
+function update_pacManPos() 
 {
 
 /* Insert the PacMan sprite-emoji correctly within maze corridors */
@@ -632,6 +728,10 @@ function update_pacManPosition()
         (-) The positioning is wrong 
         (+) Better STEPS value i.e. 8, than 4!
   */
+
+  // Here, we define each step to be 3.5 instead of 4 like in WAY 1
+  // because this Pacman sprite-emoji size is 15x15 
+  // not like in earlier styling code when the Pacman sprite-emoji was 16x16, so, (-8) / 2 = 4 (earlier case)
   const x_offset = (cell_size - pacman_size) / 2; // (-7) / 2 = 3.5
   const y_offset = (cell_size - pacman_size) / 2; // (-7) / 2 = 3.5
 
@@ -643,10 +743,14 @@ function update_pacManPosition()
 
  // Remove the starting Pacman sprite-emoji
   startingPacManEmoji.style.display = "none"; 
-
+  
+  
   // Use another one Pacman sprite-emoji which is the main one
   pacManEmoji.className = "pacman";
+
+  // pacManEmoji.style.animationPlayState = 'running';
   maze_container.appendChild(pacManEmoji);
+  
 
   // Set the position of the existing and main Pacman element
   pacManEmoji.style.transform = `translate(${x_translate}px, ${y_translate}px)`;
@@ -660,6 +764,10 @@ function update_pacManPosition()
   {
     pacManEmoji.style.transform += "scaleX(-1)";
   }
+  // else if (direction === "left_bydefault") 
+  // {
+  //   pacManEmoji.style.transform += "scaleX(-1)";
+  // }
   else if (direction === "up") 
   {
     pacManEmoji.style.transform += "rotate(-90deg)";
@@ -667,11 +775,11 @@ function update_pacManPosition()
   else if (direction === "down") 
   {
     pacManEmoji.style.transform += "rotate(90deg)";
-  } 
-  
-  // Remove the previous Pacman element 
+  }
+
+  // // Remove the previous Pacman element 
   maze_container.removeChild(pacManEmoji);
-  // Add Pacman back to the maze
+  // // Add Pacman back to the maze
   maze_container.appendChild(pacManEmoji);
 }
 

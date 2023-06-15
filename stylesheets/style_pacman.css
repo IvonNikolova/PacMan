@@ -6,6 +6,7 @@
     background-image: url("../assets/images/spritesheet.png");
 }
 
+/* a PacMan for testing */
 .pacman_1{
     height: 8px;
     width: 8px;
@@ -14,7 +15,7 @@
     z-index: 3;
 }
 
-.pacman_0{
+.pacmanN_0{
     background-image: url("../assets/images/pacman/0.png");
     height: 15px;
     width: 15px;
@@ -26,7 +27,7 @@
     transform-origin: center; */
 }
 
-.pacman{
+.pacmanN{
     background-image: url("../assets/images/pacman/1.png");
     height: 15px;
     width: 15px;
@@ -35,14 +36,17 @@
     z-index: 2;
 }
 
-.scaled-pacman {
-    /* transform: scale(0.5); */
-    /* transform-origin: center center; */
-  }
 
-.start_rightPacMan{
-    background-position: -260px 1px; 
-    width: 16px; /* coord. (x,y), we look at x! 
+/* .start_rightPacMan{ */
+.pacman_0{
+    background-image: url("../assets/images/spritesheet.png");
+    background-position: -261px 0px; 
+    width: 15px;
+    height: 15px;
+    z-index: 2;
+
+
+    /*width: 16px;*/ /* coord. (x,y), we look at x! 
                     start-left pos. within the figure: (489,7) i.e. 489, 
                     end-right pos. within the figure: 501 
                     which is: 501,500,499,498,497,496,495,494,493,492,491,490,489 = 13pos. + 1 or 14 px width
@@ -50,7 +54,7 @@
                     or we calculate the outside pixels of the figure,
                     in our case, 502-488 = 14px + 1px
                 */
-    height: 16px; /* coord. (x,y), we look at y! 
+    /*height: 16px;*/ /* coord. (x,y), we look at y! 
                     start-top pos. within the figure: (495,1) i.e. 1
                     end-down pos. within the figure: 13 
                     which is:13,12,11,10,9,8,7,6,5,4,3,2,1 = 13pos. + 1 or 14 px width
@@ -59,20 +63,49 @@
                     in our case, 14-0 = 14px + 1px
                 */
 }
-/* 1+12+1x1+13*/
-.right1_PacMan{
+
+/* .right1_PacMan{ */
+.pacman{
+    background-image: url("../assets/images/spritesheet.png");
     background-position: -245px 0px; 
 
-    width: 14px;
-    height: 14px; 
+    width: 15px;
+    height: 15px; 
+
+    z-index: 2;
+   
+   /* animation: pacman-animation 0.5s infinite steps(3); */
 }
+
 /* okay for NOW - no changes */
-.right2_PacMan{
-    background-position: -228px 0px;
+/* .right2_PacMan{ */
+.pacman1{
+    background-image: url("../assets/images/spritesheet.png");
+    background-position: -229px 0px;
+    
+    width: 15px;
+    height: 15px; 
+
+    z-index: 2;
+
+    /* background-position: -228px 0px;
     
     width: 12px;
-    height: 16px; 
+    height: 16px;  */
 }
+
+@keyframes pacman-animation {
+    0%{
+        background-position: -261px 0px; /* whole pacman */
+    }
+    50%  {
+        background-position: -245px 0px; /* barely open mouth pacman */
+    }
+    100% {
+        background-position: -229px 0px; /* open mouth pacman */
+    }
+}
+
 
 .start_leftPacMan{
     background-position: -260px -16px; 
