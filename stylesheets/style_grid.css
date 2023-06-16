@@ -1,4 +1,7 @@
-
+.hidden {
+    display: none;
+  }
+  
  /* version 2 */ 
  div.grid {
    

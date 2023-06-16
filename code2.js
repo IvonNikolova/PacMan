@@ -624,6 +624,53 @@ var scores = 0;
 var scoresPellets = 0;
 var scoresGazers = 0;
 
+
+const container = document.querySelector(".maze");
+const pellets = container.querySelectorAll(".dot-pellet");
+console.log("All inserted Pellets: " + pellets.length); // 240
+const gazers = document.querySelectorAll(".power_pellet"); 
+console.log("All inserted Power pellets: " + gazers.length); // 4
+
+
+function findPelletAtCoordinates(x, y) 
+{
+  for (let i = 0; i < pellets.length; i++)  // pellts.length =  240
+  {
+    const pellet = pellets[i];
+    const pelletPositionX = parseInt(pellet.style.left) / 8;
+    const pelletPositionY = parseInt(pellet.style.top) / 8;
+
+    if (pelletPositionX === x && pelletPositionY === y) 
+    {
+      return pellet;
+    }
+  }
+  
+  // Return null if at that position no pellet is found 
+  return null; 
+}
+
+// Find a gazer at the input x and y coordinates
+function findGazerAtCoordinates(x, y) 
+{
+  for (let i = 0; i < gazers.length; i++)  // gazers.length =  4
+  {
+    const gazer = gazers[i];
+    const gazerPositionX = parseInt(gazer.style.left) / 8;
+    const gazerPositionY = parseInt(gazer.style.top) / 8;
+
+    if (gazerPositionX === x && gazerPositionY === y) 
+    {
+      return gazer;
+    }
+  }
+  
+  // Return null if at that position no gazer is found 
+  return null; 
+}
+
+
+
 // Check if the taken step is allowed
   // considering the maze boundaries and its walls
 function isallowedStep(pos) 
@@ -675,17 +722,42 @@ function isallowedStep(pos)
         converts it to a string, adds leading zeros to ensure a minimum length of 4 characters, 
         and then updates the text content of the result element with the formatted score value.
 */
+
+      // Provide the Pacman coordinates / positions i.e. which pellet he just ate 
+        // if such exists 
+      const pelletAtPos = findPelletAtCoordinates(pos.x, pos.y); 
+      if (pelletAtPos) // if it exists i.e. it is different than null
+      {
+        // The pellet at the specific position was just eaten
+        // we should no more display it
+        pelletAtPos.style.display = "none";
+      }
+
         scores += 10; 
         scoreElement_highscore.textContent = scores.toString().padStart(8, '0'); // Update the score display with padding
         scoreElement_1up.textContent = scores.toString().padStart(8, '0'); // Update the score display with padding
  
         console.log("Scores: " + scores);
         
+        // Avoid multiple score counting and eating of the same pellet
+        GPS_arr[pos.y][pos.x] = 3;// it is NO more a PELLET position value
+
         return true; // the step is allowed
       }
       
       if(GPS_arr[pos.y][pos.x] === 2) // Gazer cell 
       {
+      // Provide the Pacman coordinates / positions i.e. which gazer he just ate 
+        // if such exists
+        const gazerAtPos = findGazerAtCoordinates(pos.x, pos.y);
+        if (gazerAtPos)  // if it exists i.e. it is different than null
+        {
+          // The gazer at the specific position  was just eaten
+            // we should no more display it
+          gazerAtPos.style.display = "none";
+        }
+
+      // Count the points
         // scoresGazers += 50;
         // console.log("scoresGazers: " + scoresGazers);
         scores += 50;
@@ -694,17 +766,21 @@ function isallowedStep(pos)
  
         console.log("Scores: " + scores);
 
+      // Avoid multiple score counting and eating of the same gazer
+        GPS_arr[pos.y][pos.x] = 3;// it is NO more a GAZER position value
+
         return true; // the step is allowed
       }
       
       if(GPS_arr[pos.y][pos.x] === 3) //Empty cell 
       {
+        // Do nothing special 
+          // just pass through the empty cells
         return true; // the step is allowed
       } 
     }
   }
   
-
   return false; //  the step is not allowed
 }
  
