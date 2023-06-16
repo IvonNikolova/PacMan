@@ -121,10 +121,10 @@ html,body{
 }
 
 /* From the spritesheet */
-.pellet{
+.dot-pellet{
     position: absolute;
     background-image: url("../assets/images/spritesheet.png"); 
-    background-position: -225px -240px; 
+    background-position: -225px -241px; /* includes a single black pixel column on the left but otherwise, it is not possible to be positioned in the center within the cell*/
     background-repeat: no-repeat;
     /* we will extract and some black pixels with the pellets in order to center visually the pellets*/
     width: 8px;
@@ -133,7 +133,7 @@ html,body{
     z-index: -1; 
 }
 
-.power_pellet{
+.gazer-pellet{
     position: absolute;
     background-image: url("../assets/images/spritesheet.png"); 
     background-position: -233px -240px; 
@@ -142,15 +142,21 @@ html,body{
     height: 8px;
 }
 
+
+
+
+
+
+
 /* From individual images */
-.dot-pellet{
+.pellet{
     background-image: url("../assets/images/pellet.png"); 
     width: 8px;
     height: 8px;
     z-index: 1; 
 }
 
-.gazer-pellet{
+.power_pellet{
     background-image: url("../assets/images/gazer.png"); 
     width: 8px;
     height: 8px;
