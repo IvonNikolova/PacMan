@@ -1,4 +1,7 @@
-/* **************************************************************** 19.05.2023 **************************************************************** */  
+/* ***17.06.23***********PACMAN ANIMATION, changing MULTIPLE faces in one cell************** */
+
+
+/* ********************************* 19.05.2023 **************************************************************** */  
 
 // The values of the objects within the grid  maze 
 const WALL_VALUE = 0;
@@ -432,7 +435,6 @@ putPellets();
   according to the pressed arrow keys.
  */
 var direction = "left"; // Initial direction
-var mouthAnimationIndex = 0;
 
 // Create a starting Pacman element 
 var startingPacManEmoji = document.createElement("div");
@@ -473,39 +475,7 @@ pacManEmoji.style.transform = `translate(${pacmanPos.x * 8}px, ${pacmanPos.y * 8
 
 
 
-// Keyboard event listener
-document.addEventListener("keydown", (event) => {
-  const k = event.key;
-
-  // https://www.geeksforgeeks.org/how-to-move-an-element-to-left-right-up-and-down-using-arrow-keys/
-  
-  // pacmanElement.className = 'pacman';
-  // mazeElement.appendChild(pacmanElement);
-  // Move Pacman based on the arrow keys
-// Move Pacman based on the arrow keys
-if (k === "ArrowUp") 
-{
-  direction = "up";
-  moveUp();
-} 
-else if (k === "ArrowDown") 
-{
-  direction = "down";
-  moveDown();
-} 
-else if (k === "ArrowLeft") 
-{
-  direction = "left";
-  moveLeft();
-} 
-else if (k === "ArrowRight") 
-{
-  direction = "right";
-  moveRight();
-} 
-
-  event.preventDefault();
-});
+//---------------------------> HERE 
 
 /*
 IMPORTANT:
@@ -544,10 +514,9 @@ Down:
 function moveRight() 
 {
 
+/* **************************************************************** 17.06.2023 **************************************************************** */ 
 // console.log("pacmanPos.x = " + pacmanPos.x);
 // console.log("pacmanPos.y = " + pacmanPos.y);
-
-/* **************************************************************** 17.06.2023 **************************************************************** */
 
   // (27,14) if we step on 27 PacMan teleports, so, after the last visible cell of the grid
   if(pacmanPos.x === 27 && pacmanPos.y === 14) 
@@ -587,10 +556,11 @@ function moveRight()
 // Moving Pacman to left
 function moveLeft() 
 {
+
+ /* **************************************************************** 17.06.2023 **************************************************************** */ 
   //console.log("pacmanPos.x = " + pacmanPos.x);
   //console.log("pacmanPos.y = " + pacmanPos.y);
 
-  /* **************************************************************** 17.06.2023 **************************************************************** */
   // (0,14) if we step on 0 PacMan teleports, so, before the last visible cell of the grid
   if(pacmanPos.x === 0 && pacmanPos.y === 14) 
   // (1,14) if we step on 1 PacMan teleports so, at the first right-most visible cell of the grid
@@ -653,6 +623,8 @@ function moveDown()
   }
 }
 
+ /* **************************************************************** 14-15.06.2023 **************************************************************** */ 
+
 const scoreElement_highscore = document.querySelector('.high-score');
 const scoreElement_1up = document.querySelector('.one-up');
 
@@ -662,12 +634,13 @@ var scoresPellets = 0;
 var scoresGazers = 0;
 
 
+ /* **************************************************************** 14-15.06.2023 **************************************************************** */ 
+
 const container = document.querySelector(".maze");
 const pellets = container.querySelectorAll(".dot-pellet");
 console.log("All inserted Pellets: " + pellets.length); // 240
 const gazers = document.querySelectorAll(".power_pellet"); 
 console.log("All inserted Power pellets: " + gazers.length); // 4
-
 
 function findPelletAtCoordinates(x, y) 
 {
@@ -705,7 +678,6 @@ function findGazerAtCoordinates(x, y)
   // Return null if at that position no gazer is found 
   return null; 
 }
-
 
 
 // Check if the taken step is allowed
@@ -812,7 +784,7 @@ function isallowedStep(pos)
       if(GPS_arr[pos.y][pos.x] === 3 || GPS_arr[pos.y][pos.x] === 5) //Empty cell || Tunnel cell 
       {
         // Do nothing special 
-          // just pass through the empty cells or tunnel
+          // just pass through the empty cells or tunnel ones
         return true; // the step is allowed
       } 
     }
@@ -821,6 +793,34 @@ function isallowedStep(pos)
   return false; //  the step is not allowed
 }
  
+
+
+/* **************************************************************** 17.06.2023 **************************************************************** */
+// https://makersaid.com/array-of-images-in-javascript/
+
+// Define the three Pacman images of eating moods
+const pacmanFaceClasses = [
+  "pacman_0",
+  "pacman",
+  "pacman1"
+];
+var mouthAnimationIndex = 0;
+
+
+function changeImage() {
+  // Increment the animation index
+  mouthAnimationIndex = (mouthAnimationIndex + 1) % pacmanFaceClasses.length;
+  
+  // Remove the previous face class and apply the new one
+  pacManEmoji.classList.remove(...pacmanFaceClasses);
+  pacManEmoji.classList.add(pacmanFaceClasses[mouthAnimationIndex]);
+  
+}
+
+var intervalId = setInterval(changeImage, 120); // Change image every 500ms (0.5s)
+
+
+
 // Function to update Pacman's position in the DOM
 function update_pacManPos() 
 {
@@ -853,19 +853,13 @@ function update_pacManPos()
   const y_translate = pacmanPos.y * cell_size + y_offset;
 
 
-
  // Remove the starting Pacman sprite-emoji
   startingPacManEmoji.style.display = "none"; 
-  
-  // Define the mouth animation classes (replace with your own class names)
-  //const pacmanMouthClasses = ['pacman_0', 'pacman','pacman1'];
 
   // Use another one Pacman sprite-emoji which is the main one
   pacManEmoji.className = "pacman";
-
   // // pacManEmoji.style.animationPlayState = 'running';
   maze_container.appendChild(pacManEmoji);
-  
 
   // Set the position of the existing and main Pacman element
   pacManEmoji.style.transform = `translate(${x_translate}px, ${y_translate}px)`;
@@ -888,5 +882,79 @@ function update_pacManPos()
     pacManEmoji.style.transform += "rotate(90deg)";
   }
 
+  changeImage();
+  
+  // // Remove the previous Pacman element 
+  //maze_container.removeChild(pacManEmoji);
+  // // // Add Pacman back to the maze
+  //maze_container.appendChild(pacManEmoji);
+
+
 }
 
+
+// Keyboard event listener
+// document.addEventListener("keydown", (event) => {
+function movePacman(event)
+{
+  const k = event.key;
+
+  // https://www.geeksforgeeks.org/how-to-move-an-element-to-left-right-up-and-down-using-arrow-keys/
+  
+  // pacmanElement.className = 'pacman';
+  // mazeElement.appendChild(pacmanElement);
+  // Move Pacman based on the arrow keys
+
+  // Move Pacman based on the arrow keys
+  if (k === "ArrowUp") 
+  {
+    direction = "up";
+    moveUp();
+    // clearInterval(intervalId);
+    // intervalId = setInterval(moveUp, 50); 
+
+  } 
+  else if (k === "ArrowDown") 
+  {
+    direction = "down";
+    moveDown();
+    // clearInterval(intervalId);
+    // intervalId = setInterval(moveDown, 50); 
+
+  } 
+  else if (k === "ArrowLeft") 
+  {
+    direction = "left";
+    moveLeft();
+    // clearInterval(intervalId);
+    // intervalId = setInterval(moveLeft, 50); 
+
+  } 
+  else if (k === "ArrowRight") 
+  {
+    direction = "right";
+    moveRight();
+    // clearInterval(intervalId);
+    // intervalId = setInterval(moveRight, 50); 
+  } 
+  // else
+  // {
+  //   direction = "left";
+  //   // moveLeft();
+  //   setInterval(moveLeft, 60);
+  // }
+
+  clearInterval(intervalId);
+  intervalId = setInterval(changeImage, 120); 
+
+  event.preventDefault();
+  
+}
+
+
+// Attach the arrow key event listener
+document.addEventListener("keydown", movePacman);
+
+
+  // // Delay the next animation frame using a timer (e.g., 200ms)
+  // setInterval(update_pacManPos, 100);
