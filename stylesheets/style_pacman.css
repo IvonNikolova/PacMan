@@ -1,49 +1,25 @@
-.start_rightPacMan,.start_leftPacMan,.left1_PacMan,.left2_PacMan,.right1_PacMan,.right2_PacMan,
-.up1_PacMan,.up2_PacMan,.down1_PacMan,.down2_PacMan,
-.dead1_PacMan,.dead2_PacMan,.dead3_PacMan,.dead4_PacMan,
-.dead5_PacMan,.dead6_PacMan,.dead7_PacMan,.dead8_PacMan,
-.dead9_PacMan,.dead10_PacMan,.dead11_PacMan{
-    background-image: url("../assets/images/spritesheet.png");
+.pacman0,.pacman, .pacman2,
+.dead1_pacman,.dead2_pacman,.dead3_pacman,.dead4_pacman,
+.dead5_pacman,.dead6_pacman,.dead7_pacman,.dead8_pacman,
+.dead9_pacman,.dead10_pacman,.dead11_pacman{
+    background-image: url("../assets/images/game/spritesheet.png");
 }
 
-/* a PacMan for testing */
-.pacman_1{
+/* a PacMan figure for testing which is just a yellow circle with the same dimensions as one maze cell 8x8 */
+.pacman_test{
     height: 8px;
     width: 8px;
     border-radius: 50%;
     background-color: yellow;
-    z-index: 3;
-}
-
-.pacmanN_0{
-    background-image: url("../assets/images/pacman/0.png");
-    height: 15px;
-    width: 15px;
-  
-    z-index: 2;
-    
-    /* transform: scale(0.5); */
-    /* transform: scale(0.2);
-    transform-origin: center; */
-}
-
-.pacmanN{
-    background-image: url("../assets/images/pacman/1.png");
-    height: 15px;
-    width: 15px;
-    /* background-size: 8px ; */
-    /* position: absolute; */
     z-index: 2;
 }
 
-
-/* .start_rightPacMan{ */
-.pacman_0{
-    background-image: url("../assets/images/spritesheet.png");
+/* Initial PacMan figure which is full like a circle */
+.pacman0{
     background-position: -261px 0px; 
     width: 15px;
     height: 15px;
-    z-index: 2;
+    z-index: 3;
 
 
     /*width: 16px;*/ /* coord. (x,y), we look at x! 
@@ -64,186 +40,102 @@
                 */
 }
 
-/* .right1_PacMan{ */
+/* PacMan with half-open mounth */
 .pacman{
-    background-image: url("../assets/images/spritesheet.png");
     background-position: -245px 0px; 
 
     width: 15px;
     height: 15px; 
 
     z-index: 2;
-   
-   /* animation: pacman-animation 0.5s infinite steps(3); */
 }
 
-/* okay for NOW - no changes */
-/* .right2_PacMan{ */
-.pacman1{
-    background-image: url("../assets/images/spritesheet.png");
+/* PacMan with the most open mounth */
+.pacman2{
     background-position: -229px 0px;
     
     width: 15px;
     height: 15px; 
 
     z-index: 2;
-
-    /* background-position: -228px 0px;
-    
-    width: 12px;
-    height: 16px;  */
-}
-
-@keyframes pacman-animation {
-    0%{
-        background-position: -261px 0px; /* whole pacman */
-    }
-    50%  {
-        background-position: -245px 0px; /* barely open mouth pacman */
-    }
-    100% {
-        background-position: -229px 0px; /* open mouth pacman */
-    }
 }
 
 
-.start_leftPacMan{
-    background-position: -260px -16px; 
-    width: 16px; /* coord. (x,y), we look at x! 
-                    start-left pos. within the figure: (489,7) i.e. 489, 
-                    end-right pos. within the figure: 501 
-                    which is: 501,500,499,498,497,496,495,494,493,492,491,490,489 = 13pos. + 1 or 14 px width
-                    
-                    or we calculate the outside pixels of the figure,
-                    in our case, 502-488 = 14px + 1px
-                */
-    height: 16px; /* coord. (x,y), we look at y! 
-                    start-top pos. within the figure: (495,1) i.e. 1
-                    end-down pos. within the figure: 13 
-                    which is:13,12,11,10,9,8,7,6,5,4,3,2,1 = 13pos. + 1 or 14 px width
-                    
-                    or we calculate the outside pixels of the figure,
-                    in our case, 14-0 = 14px + 1px
-                */
-}
-
-/* 12+1x13+1*/
-.left1_PacMan{
-    background-position: -246px -16px; 
-
-    width: 14px;
-    height: 14px;
-}
-/* okay for NOW - no changes */
-.left2_PacMan{
-    background-position: -232px -16px; 
-
-    width: 12px;
-    height: 16px;
-}
-/* 13x12 */
-.up1_PacMan{
-    background-position: -246px -34px; 
-
-    width: 13px;
-    height: 12px; 
-}
-/* 13x9 */
-.up2_PacMan{
-    background-position: -230px -37px; 
-
-    width: 13px;
-    height: 9px; 
-}
-/* 13x12 */
-.down1_PacMan{
-   background-position: -246px -49px; 
-
-    width: 13px;
-    height: 12px; 
-}
-/* 13x9 */
-.down2_PacMan{
-    background-position: -230px -49px; 
-
-    width: 13px;
-    height: 9px; 
-}
-
-.dead1_PacMan{
-    background-position: -277px -2px; 
+/* Dead PacMan figures' stages */
+.dead0_pacman{
+    background-position: -277px 0px; 
 
     width: 15px;
     height: 15px; 
 }
 
-.dead2_PacMan{
-    background-position: -292px -3px; 
-
-    width: 17px;
-    height: 15px; 
-}
-
-.dead3_PacMan{
-    background-position: -308px -5px; 
-
-    width: 17px;
-    height: 15px; 
-}
-
-.dead4_PacMan{
-    background-position: -324px -6px; 
-
-    width: 17px;
-    height: 15px; 
-}
-
-.dead5_PacMan{
-    background-position: -340px -7px; 
-
-    width: 17px;
-    height: 15px; 
-}
-
-.dead6_PacMan{
-    background-position: -356px -7px; 
-
-    width: 17px;
-    height: 15px; 
-}
-
-.dead7_PacMan{
-    background-position: -373px -7px; 
+.dead1_pacman{
+    background-position: -293px 0px; 
 
     width: 15px;
     height: 15px; 
 }
 
-.dead8_PacMan{
-    background-position: -391px -7px; 
+.dead2_pacman{
+    background-position: -309px 0px; 
 
-    width: 11px;
+    width: 15px;
     height: 15px; 
 }
 
-.dead9_PacMan{
-    background-position: -409px -7px; 
+.dead3_pacman{
+    background-position: -325px 0px; 
 
-    width: 7px;
+    width: 17px;
     height: 15px; 
 }
 
-.dead10_PacMan{
-    background-position: -426px -7px; 
+.dead4_pacman{
+    background-position: -341px 0px; 
 
-    width: 3px;
+    width: 15px;
     height: 15px; 
 }
 
-.dead11_PacMan{
-    background-position: -438px -5px; 
+.dead5_pacman{
+    background-position: -357px 0px; 
 
-    width: 13px;
+    width: 15px;
+    height: 15px; 
+}
+
+.dead6_pacman{
+    background-position: -373px 0px; 
+
+    width: 15px;
+    height: 15px; 
+}
+
+.dead7_pacman{
+    background-position: -389px 0px; 
+
+    width: 15px;
+    height: 15px; 
+}
+
+.dead8_pacman{
+    background-position: -405px 0px; 
+
+    width: 15px;
+    height: 15px; 
+}
+
+.dead9_pacman{
+    background-position: -421px 0px; 
+
+    width: 15px;
+    height: 15px; 
+}
+
+.dead10_pacman{
+    background-position: -437px -3px; 
+
+    width: 15px;
     height: 15px; 
 }
 

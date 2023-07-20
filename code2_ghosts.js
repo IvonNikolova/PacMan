@@ -805,7 +805,7 @@ var indx_mood = 0;
 var eatingMoodsTimeout = null;
 function eatingMoods() 
 {
-  // Change the mood index by incrementing it 
+  // Change the mood index by increemnting it 
   indx_mood = (indx_mood + 1) % allEatingMoods.length; 
   // Moods:
     // if indx_mood = 0, 
@@ -996,7 +996,6 @@ function switchButtonsMode()
     buttonsMode.classList.remove("resume");
     buttonsMode.classList.add("pause");
     
-
     pauseCover.style.display = "none"; // Hide the pause overlay
   } 
   else if (isPaused === false) 
@@ -1004,7 +1003,7 @@ function switchButtonsMode()
     isPaused = true;
     buttonsMode.classList.remove("pause");
     buttonsMode.classList.add("resume");
-
+    
     pauseCover.style.display = "block"; // Show the pause window cover
 
   }
@@ -1016,7 +1015,6 @@ document.addEventListener("keydown",
     if (event.code === "Space") 
     {
       switchButtonsMode();
-      
     }
   }
 );
@@ -1052,9 +1050,6 @@ const DIRECTION = {
   RIGHT: "right",
 };
 
-
-var moveG;
-
 // Set the initial direction
 let currentDirection = DIRECTION.LEFT;
 let nextDirection = null;
@@ -1063,17 +1058,13 @@ var hasInitialKeyPress = false;
 
 function movePacman() 
 {
-  if (isPaused === true) 
+  if (isPaused) 
   {
-    // clearInterval(moveG);
-    // moveG = null;
     return;
   }
+
   else
   {
-   // moveG = setInterval(moveG,150);
-// clearInterval(moveG);
-     
   // Determine the next position based on the current direction
     if(isReady)
     {
@@ -1107,7 +1098,7 @@ function movePacman()
         update_pacManPos();
         setTimeout(eatingMoods, 100); // way 2 - CHANGING ONE BY ONE FACES i.e. ONE FACE EACH CELL
         // nothing here   // way 1 - CHANGING MULTIPLE FACES in ONE CELL
-        // moveG = setInterval(moveG,150);
+
 
         // Check if Pacman has eaten the cherry
         if (isShownCherry !== null)
@@ -1125,18 +1116,10 @@ function movePacman()
         // Pacman hit a wall, stop automatic movement
         clearInterval(autoMoveInterval);
         autoMoveInterval = null;
-
-       
       }
-
-      
- 
-     
     }
   } 
 }
-
-
 
 document.addEventListener("keydown", function (event) 
 {
@@ -1223,8 +1206,23 @@ function getNextPos(direction)
   return nextPos;
 }
 
+function readylabel() 
+{
+  const labelReady = document.createElement("div");
+  labelReady.classList.add("label-ready");
+  maze_container.appendChild(labelReady);
 
+  setTimeout(() => {
+    maze_container.removeChild(labelReady);
+    isReady = true;
+    // Remove the starting Pacman sprite-emoji
+    startingPacManEmoji.style.display = "none"; 
+    pacManEmoji.classList.add(allEatingMoods[indx_mood]);
 
+    maze_container.appendChild(pacManEmoji);
+  }, 
+  3000);
+}
 
 function checkCherryEaten() 
 {
@@ -1277,111 +1275,96 @@ let autoMoveInterval = setInterval(movePacman, 90);
 let eatingMoodsTimeout3 = setTimeout(eatingMoods, 200); // eatingMoods(); 
 
 
-
-
-
-// ------------------------------------------------ GHOSTS  ------------------------------------------------ 
-
-
-
 // Initial positions 
-const redGhost = { top: 10.5 * 8, left: 13.05 * 8};
+const redGhost = { top: 10.5 * 8, left: 13 * 8};
 /* top: 85px;    i.e. 85/8 = 10,625 */
 /* left: 105px; i.e.  105/8 = 13.125 */
-var redGhostElement = document.createElement("div");
-redGhostElement.classList.add("left1_redGhost");
-redGhostElement.style.position = "absolute";
-redGhostElement.style.top = `${redGhost.top}px`;
-redGhostElement.style.left = `${redGhost.left}px`;
-maze_container.appendChild(redGhostElement);
+
+const blueGhost = { top: 14 * 8, left: 11 * 8};
+/* top: 112px;  i.e. 112/8 = 14 */
+/* left: 88px;   i.e.  88/8 = 11 */
+
+const pinkGhost = { top: 14 * 8, left: 13 * 8};
+/* top: 112px;  i.e. 112/8 = 14 */
+/* left: 104px; i.e.  104/8 = 13 */
+
+const orangeGhost = { top: 14 * 8, left: 15 * 8};
+/* top: 112px;  i.e. 112/8 = 14 */
+/* left: 120px; i.e.  120/8 = 15 */
+
+
+// Define the movement boundaries for the ghosts
+const houseTop = 13 * 8;       //112 // Upper boundary of the house
+const houseBottom = 14 * 8 + 16; //128 // Lower boundary of the house (top position + ghost height)
 
 
 // // Function to update the position of the red ghost
 // function updateRedGhostPosition() 
 // {
-//   // Randomly generate a movement direction for the red ghost
-//   const directions = ["up", "down", "left", "right"];
-//   const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+//   var redGhostElement = document.createElement("div");
+//   redGhostElement.classList.add("left1_redGhost");
 
-//   // Move the red ghost based on the randomly selected direction
-//   switch (randomDirection) {
-//     case "up":
-//       if (redGhost.top > houseTop) {
-//         redGhost.top -= ghostSpeed; // Move up
-//       }
-//       break;
-//     case "down":
-//       if (redGhost.top < houseBottom) {
-//         redGhost.top += ghostSpeed; // Move down
-//       }
-//       break;
-//     case "left":
-//       if (redGhost.left > 0) {
-//         redGhost.left -= ghostSpeed; // Move left
-//       }
-//       break;
-//     case "right":
-//       if (redGhost.left < 24 - 16) {
-//         redGhost.left += ghostSpeed; // Move right
-//       }
-//       break;
-//     default:
-//       break;
-//   }
+//   redGhostElement.style.top = `${redGhost.top}px`;
+//   redGhostElement.style.left = `${redGhost.left}px`;
 
-//   // Update the CSS position of the red ghost
-//   updateGhostPosition(redGhost, redGhostElement);
+//   maze_container.appendChild(redGhostElement);
 // }
 
+// // Function to update the position of the orange ghost
+// function updateOrangeGhostPosition() {
+//   var orangeGhostElement = document.createElement("div");
+//   orangeGhostElement.classList.add("up1_orangeGhost");
 
-// // Call the updateRedGhostPosition function at regular intervals
-// setInterval(updateRedGhostPosition, 500);  // Adjust the interval as needed (in milliseconds) 
+//   orangeGhostElement.style.top = `${orangeGhost.top}px`;
+//   orangeGhostElement.style.left = `${orangeGhost.left}px`;
 
-if(scores === 100)
-{
-  const userName = window.prompt("Enter your name:");
-}
+//   maze_container.appendChild(orangeGhostElement);
+// }
+
+// // Function to update the position of the blue ghost
+// function updateBlueGhostPosition() 
+// {
+//   const blueGhostElement = document.createElement("div");
+//   blueGhostElement.classList.add("up1_blueGhost");
+
+//   blueGhostElement.style.top = `${blueGhost.top}px`;
+//   blueGhostElement.style.left = `${blueGhost.left}px`;
+
+//   maze_container.appendChild(blueGhostElement);
+// }
+
+// // Function to update the position of the pink ghost
+// function updatePinkGhostPosition() 
+// {
+//   const pinkGhostElement = document.createElement("div");
+//   pinkGhostElement.classList.add("down1_pinkGhost");
+
+//   pinkGhostElement.style.top = `${pinkGhost.top}px`;
+//   pinkGhostElement.style.left = `${pinkGhost.left}px`;
+
+//   maze_container.appendChild(pinkGhostElement);
+// }
+
+// // Update the initial positions of the ghosts
+// updateRedGhostPosition();
+// updateOrangeGhostPosition();
+// updateBlueGhostPosition();
+// updatePinkGhostPosition();
 
 
-// Starting intial positions of the ghosts in the nest 
-const blueGhost = { top: 107, left: 11.05 * 8};
-/* top: 112px;  i.e. 112/8 = 14 */ // option 2
-/* left: 88px;   i.e.  88/8 = 11 */
-
-const pinkGhost = { top: 107, left: 13.05 * 8};
-/* top: 112px;  i.e. 112/8 = 14 */ // option 2
-/* left: 104px; i.e.  104/8 = 13 */
-
-const orangeGhost = { top: 107, left: 15.05 * 8};
-/* top: 112px;  i.e. 112/8 = 14 */ // option 2
-/* left: 120px; i.e.  120/8 = 15 */
-
-
-// Define the movement boundaries for the ghosts
-const houseTop = 103;       //104 // Upper boundary of the house
-const houseBottom = 14 * 8;   //128  // Lower boundary of the house (top position + ghost height)
 
 
 // Create the ghost elements in the HTML document
 const blueGhostElement = document.createElement("div");
 blueGhostElement.classList.add("up1_blueGhost");
-blueGhostElement.style.position = "absolute";
-blueGhostElement.style.top = `${blueGhost.top}px`;
-blueGhostElement.style.left = `${blueGhost.left}px`;
 maze_container.appendChild(blueGhostElement);
 
 const pinkGhostElement = document.createElement("div");
 pinkGhostElement.classList.add("down1_pinkGhost");
-pinkGhostElement.style.position = "absolute";
-pinkGhostElement.style.top = `${pinkGhost.top}px`;
-pinkGhostElement.style.left = `${pinkGhost.left}px`;
 maze_container.appendChild(pinkGhostElement);
 
 const orangeGhostElement = document.createElement("div");
 orangeGhostElement.classList.add("up1_orangeGhost");
-orangeGhostElement.style.position = "absolute";
-orangeGhostElement.style.top = `${orangeGhost.top}px`;
-orangeGhostElement.style.left = `${orangeGhost.left}px`;
 maze_container.appendChild(orangeGhostElement);
 
 
@@ -1391,65 +1374,50 @@ let pinkGhostDirection = "down";
 let orangeGhostDirection = "up";
 
 // Define the movement speed for the ghosts
-const ghostSpeedSpace = 8; // Adjust the speed as needed
+const ghostSpeed = 15; // Adjust the speed as needed
 
 // Function to move the ghosts inside the house
-function moveGhosts() 
-{
+function moveGhosts() {
   // Update blue ghost position
-  if (blueGhostDirection === "up") 
-  {
-    
-    blueGhost.top -= ghostSpeedSpace;
-    if (blueGhost.top <= houseTop) 
-    {
+  if (blueGhostDirection === "up") {
+    blueGhost.top -= ghostSpeed;
+    if (blueGhost.top <= houseTop) {
       blueGhost.top = houseTop;
       blueGhostDirection = "down";
     }
-  } 
-  else 
-  {
-    blueGhost.top += ghostSpeedSpace;
-    if (blueGhost.top >= houseBottom) 
-    {
+  } else {
+    blueGhost.top += ghostSpeed;
+    if (blueGhost.top >= houseBottom) {
       blueGhost.top = houseBottom;
       blueGhostDirection = "up";
     }
   }
 
   // Update pink ghost position
-  if (pinkGhostDirection === "up") 
-  {
-    pinkGhost.top -= ghostSpeedSpace;
-    if (pinkGhost.top <= houseTop) 
-    {
+  if (pinkGhostDirection === "up") {
+    pinkGhost.top -= ghostSpeed;
+    if (pinkGhost.top <= houseTop) {
       pinkGhost.top = houseTop;
       pinkGhostDirection = "down";
     }
-  } 
-  else {
-    pinkGhost.top += ghostSpeedSpace;
-    if (pinkGhost.top >= houseBottom) 
-    {
+  } else {
+    pinkGhost.top += ghostSpeed;
+    if (pinkGhost.top >= houseBottom) {
       pinkGhost.top = houseBottom;
       pinkGhostDirection = "up";
     }
   }
 
   // Update orange ghost position
-  if (orangeGhostDirection === "up") 
-  {
-    orangeGhost.top -= ghostSpeedSpace;
-    if (orangeGhost.top <= houseTop) 
-    {
+  if (orangeGhostDirection === "up") {
+    orangeGhost.top -= ghostSpeed;
+    if (orangeGhost.top <= houseTop) {
       orangeGhost.top = houseTop;
       orangeGhostDirection = "down";
-      // orangeGhostElement.classList.add("down1_orangeGhost");
     }
   } else {
-    orangeGhost.top += ghostSpeedSpace;
-    if (orangeGhost.top >= houseBottom) 
-    {
+    orangeGhost.top += ghostSpeed;
+    if (orangeGhost.top >= houseBottom) {
       orangeGhost.top = houseBottom;
       orangeGhostDirection = "up";
     }
@@ -1468,8 +1436,8 @@ function updateGhostPosition(ghost, ghostElement)
   ghostElement.style.left = `${ghost.left}px`;
 }
 
-// // Call the moveGhosts function at regular intervals
-// setInterval(moveGhosts, 150);  // Adjust
+// Call the moveGhosts function at regular intervals
+setInterval(moveGhosts, 500);  // Adjust
 
 
 
@@ -1589,31 +1557,3 @@ function updateGhostPosition(ghost, ghostElement)
 
 // // Call the moveGhosts function at regular intervals
 // setInterval(moveGhosts, 500); // Adjust the interval as needed (in milliseconds)
-
-
-// var moveG  = setInterval(moveGhosts, 150); 
-
-function readylabel() 
-{
-  const labelReady = document.createElement("div");
-  labelReady.classList.add("label-ready");
-  maze_container.appendChild(labelReady);
-
-
-  setTimeout(() => {
-    maze_container.removeChild(labelReady);
-    isReady = true;
-     moveG  = setInterval(moveGhosts, 150); 
-    // Call the moveGhosts function at regular intervals
-     // Adjust
-    // Remove the starting Pacman sprite-emoji
-    startingPacManEmoji.style.display = "none"; 
-    pacManEmoji.classList.add(allEatingMoods[indx_mood]);
-
-    maze_container.appendChild(pacManEmoji);
-  }, 
-  3000);
-
-
-}
-

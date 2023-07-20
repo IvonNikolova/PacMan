@@ -1,0 +1,46 @@
+/* Blinky - Red Ghost */
+.left1_redGhost,.left2_redGhost, 
+.right1_redGhost,.right2_redGhost, 
+.up1_redGhost, .up2_redGhost,
+.down1_redGhost,.down2_redGhost
+{
+    background-image: url("../assets/images/game/spritesheet.png");
+        
+    width: 16px; 
+    height: 16px; 
+
+    position: absolute;
+}
+
+
+.right1_redGhost{
+    background-position: -229px -64px; 
+    
+}
+.right2_redGhost{
+    background-position: -245px -64px; 
+}
+
+/* Initial Red Ghost */
+.left1_redGhost{
+    background-position: -261px -64px; 
+    
+
+}
+
+.left2_redGhost{
+    background-position: -277px -64px; 
+}
+
+.up1_redGhost{
+    background-position: -293px -64px; 
+}
+.up2_redGhost{
+    background-position: -309px -64px; 
+}
+.down1_redGhost{
+    background-position: -325px -64px; 
+}
+.down2_redGhost{
+    background-position: -341px -64px; 
+}

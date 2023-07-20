@@ -1,10 +1,5 @@
 /* ***23.06.23************************* */
-// Variable to track the initial user input
-var initialUserInput = false;
-// Variable to store the setInterval ID for automatic movement
-var autoMoveInterval;
-// Variable to track the readiness of the game
-var isReady = false;
+
 
 var points = 0;
 /* ***17.06.23***********PACMAN ANIMATION, changing MULTIPLE faces in one cell************** */
@@ -442,7 +437,7 @@ putPellets();
   Later, it will be assigned to different values 
   according to the pressed arrow keys.
  */
-var direction = "left"; // Initial direction
+
 
 // Create a starting Pacman element 
 var startingPacManEmoji = document.createElement("div");
@@ -516,189 +511,6 @@ Down:
   being (x, y + 1).
 
 */
-
-
-// Moving Pacman to right
-function moveRight() 
-{
-
-/* **************************************************************** 17.06.2023 **************************************************************** */ 
-// console.log("pacmanPos.x = " + pacmanPos.x);
-// console.log("pacmanPos.y = " + pacmanPos.y);
-
-  // (27,14) if we step on 27 PacMan teleports, so, after the last visible cell of the grid
-  if(pacmanPos.x === 27 && pacmanPos.y === 14) 
-  // (26,14) if we step on 26 PacMan teleports, so, the last left-most visible cell of the grid
-  // if(pacmanPos.x + 1 === 27 && pacmanPos.y === 14)
-  {
-  // console.log("here right!");
-
-    // pacmanPos.x       we have  HERE:pacmanPos.x = 27
-    // pacmanPos.x + 1  we have  HERE:pacmanPos.x = 26
-  // console.log("HERE: pacmanPos.x = " + pacmanPos.x);
-  // console.log("HERE: pacmanPos.y = " + pacmanPos.y); // 14
-    const newPos = { x: 0, y: 14 };
-
-    if (isallowedStep(newPos)) 
-    {
-      // Update Pacman's position
-      pacmanPos = newPos;
-      update_pacManPos();
-    }
-    /*
-    If the move is invalid, meaning the new position is outside the maze boundaries or is a wall, the else block is executed. 
-    It clears the autoMoveInterval to stop automatic movement and resets the initialUserInput variable to false to wait for the user's next arrow key input.
-    */
-    else 
-    {
-      // Clear the autoMoveInterval and wait for user input
-      //clearInterval(autoMoveInterval);
-      initialUserInput = false;
-    }
-  }
-  else
-  {
-    // Calculate the new position
-    const newPos = { x: pacmanPos.x + 1, y: pacmanPos.y };
-
-  // Ensure that the position is in the boundaries of the maze and it is not a wall
-    if (isallowedStep(newPos)) 
-    {
-      // Update Pacman's position
-      pacmanPos = newPos;
-      update_pacManPos();
-    }
-    /*
-    If the move is invalid, meaning the new position is outside the maze boundaries or is a wall, the else block is executed. 
-    It clears the autoMoveInterval to stop automatic movement and resets the initialUserInput variable to false to wait for the user's next arrow key input.
-    */
-    else 
-    {
-      // Clear the autoMoveInterval and wait for user input
-      //clearInterval(autoMoveInterval);
-      initialUserInput = false;
-    }
-  }
-}
-
-// Moving Pacman to left
-function moveLeft() 
-{
-
- /* **************************************************************** 17.06.2023 **************************************************************** */ 
-  //console.log("pacmanPos.x = " + pacmanPos.x);
-  //console.log("pacmanPos.y = " + pacmanPos.y);
-
-  // (0,14) if we step on 0 PacMan teleports, so, before the last visible cell of the grid
-  if(pacmanPos.x === 0 && pacmanPos.y === 14) 
-  // (1,14) if we step on 1 PacMan teleports so, at the first right-most visible cell of the grid
-  // if(pacmanPos.x - 1 === 0 && pacmanPos.y === 14)
-  {
-    //console.log("here left!");
-     // pacmanPos.x - 1  we have  HERE:pacmanPos.x = 1
-     // pacmanPos.x       we have  HERE:pacmanPos.x = 0
-    //console.log("HERE left: pacmanPos.x = " + pacmanPos.x);
-    //console.log("HERE left: pacmanPos.y = " + pacmanPos.y); // 14
-    const newPos = { x: 27, y: 14 };
-
-    if (isallowedStep(newPos)) 
-    {
-      // Update Pacman's position
-      pacmanPos = newPos;
-      update_pacManPos();
-    }
-    /*
-    If the move is invalid, meaning the new position is outside the maze boundaries or is a wall, the else block is executed. 
-    It clears the autoMoveInterval to stop automatic movement and resets the initialUserInput variable to false to wait for the user's next arrow key input.
-    */
-    else 
-    {
-      // Clear the autoMoveInterval and wait for user input
-      //clearInterval(autoMoveInterval);
-      initialUserInput = false;
-    }
-  }
-  else
-  {
-    const newPos = { x: pacmanPos.x - 1, y: pacmanPos.y };
-    // Ensure that the position is in the boundaries of the maze and it is not a wall
-    if (isallowedStep(newPos)) 
-    {
-      // Update Pacman's position
-      pacmanPos = newPos;
-      update_pacManPos();
-    }
-    /*
-    If the move is invalid, meaning the new position is outside the maze boundaries or is a wall, the else block is executed. 
-    It clears the autoMoveInterval to stop automatic movement and resets the initialUserInput variable to false to wait for the user's next arrow key input.
-    */
-    else 
-    {
-      // Clear the autoMoveInterval and wait for user input
-      //clearInterval(autoMoveInterval);
-      initialUserInput = false;
-    }
-  }
-}
-
-// Moving Pacman up
-function moveUp() 
-{
-  // 
-  const newPos = { x: pacmanPos.x, y: pacmanPos.y - 1 };
-
-// Ensure that the position is in the boundaries of the maze and it is not a wall
-  if (isallowedStep(newPos)) 
-  {
-    // Update Pacman's position
-    pacmanPos = newPos;
-    update_pacManPos();
-  }
-  /*
-    If the move is invalid, meaning the new position is outside the maze boundaries or is a wall, the else block is executed. 
-    It clears the autoMoveInterval to stop automatic movement and resets the initialUserInput variable to false to wait for the user's next arrow key input.
-  */
-  else 
-  {
-      // Clear the autoMoveInterval and wait for user input
-      //clearInterval(autoMoveInterval);
-      initialUserInput = false;
-  }
-}
-
-// Moving Pacman down
-function moveDown() 
-{
-  // 
-  const newPos = { x: pacmanPos.x, y: pacmanPos.y + 1 };
-
-  // Ensure that the position is in the boundaries of the maze and it is not a wall
-  if (isallowedStep(newPos)) 
-  {
-    // Update Pacman's position
-    pacmanPos = newPos;
-    update_pacManPos();
-    
-  }
-  
-  /*
-    If the move is invalid, 
-    meaning the new position is outside the maze boundaries 
-    or is a wall, the else block is executed. 
-
-    It clears the autoMoveInterval to stop automatic movement 
-    and 
-    resets the initialUserInput variable to false to wait for the user's next arrow key input.
-    */
-    else 
-    {
-      // Clear the autoMoveInterval and wait for user input
-      //clearInterval(autoMoveInterval);
-      initialUserInput = false;
-    }
-}
-
-
 
  /* **************************************************************** 14-15.06.2023 **************************************************************** */ 
 const scoreElement_highscore = document.querySelector('.high-score');
@@ -777,7 +589,7 @@ function findGazerAtCoordinates(x, y)
 
 // Check if the taken step is allowed
   // considering the maze boundaries and its walls
-function isallowedStep(pos) 
+function isValid(pos) 
 {
   
   // Ensure that the position is in the boundaries of the maze
@@ -901,34 +713,15 @@ if(points === 500 || points === 1000 || points === 2000 || points === 2500)
   maze_container.appendChild(cherry1);
 
 }
-    
       // Avoid multiple score counting and eating of the same gazer
         GPS_arr[pos.y][pos.x] = 3;// it is NO more a GAZER position value
 
         return true; // the step is allowed
       }
-      
-      
-
-
-      
-      //   setTimeout(() => {
-      //     // Clear the ready label and start the automatic movement
-      //       maze_container.removeChild(labelReady);
-      //       isReady = true;
-          
-      //       if (initialUserInput === false) 
-      //       {
-      //         // Start the automatic movement if no user input is received
-      //         autoMoveInterval = setInterval(autoMove, 100); // Adjust the delay as needed
-      //       } 
-      //   } , 2000);  // Add the duration as needed (in milliseconds)
-
-
       if(GPS_arr[pos.y][pos.x] === 3 || GPS_arr[pos.y][pos.x] === 5) //Empty cell || Tunnel cell 
       {
         // Do nothing special 
-        // just pass through the empty cells or tunnel ones
+          // just pass through the empty cells or tunnel ones
         return true; // the step is allowed
       } 
     }
@@ -972,295 +765,210 @@ function eatingMoods()
   // setTimeout(eatingMoods, 250); 
 }
 
-// Function to update Pacman's position in the DOM
-function update_pacManPos() 
-{
 
-/* Insert the PacMan sprite-emoji correctly within maze corridors */
-  const cell_size = 8; // the size of each grid cell is 8x8
-  const pacman_size = 15; // the size of the Pacman sprite-emoji is 15x15
 
-  // Calculate the centering offsets
-  /*
-    Note: This formula is created and combined of the pros(+) from the ways 
-    of the code from 4-5.06.2023:
-      Way 1 - WHAT I WANT for my 15x15 Pacman sprite-emoji,
-        (+) The visually correct positioning
-        (-) Worse STEPS value i.e. 4, than the needed 8 because of each cell size!
+function isallowedStep(pos) {
+  if (pos.x >= 0 && pos.x < 28 && pos.y >= 0 && pos.y < 31) {
+    // Ensure that the position is not a wall
+    if (GPS_arr[pos.y][pos.x] !== 0) // 0's are the walls
+    {
+      return true; // the step is allowed
+    }
+  }
+  return false;
+}
 
-      Way 2 - NOT EXACTLY what I want for my 15x15 Pacman sprite-emoji
-        (-) The positioning is wrong 
-        (+) Better STEPS value i.e. 8, than 4!
-  */
+// Define direction constants
+const DIRECTION = {
+  UP: "up",
+  DOWN: "down",
+  LEFT: "left",
+  RIGHT: "right",
+};
 
-  // Here, we define each step to be 3.5 instead of 4 like in WAY 1
-  // because this Pacman sprite-emoji size is 15x15 
-  // not like in earlier styling code when the Pacman sprite-emoji was 16x16, so, (-8) / 2 = 4 (earlier case)
-  const x_offset = (cell_size - pacman_size) / 2; // (-7) / 2 = 3.5
-  const y_offset = (cell_size - pacman_size) / 2; // (-7) / 2 = 3.5
+// Set the initial direction
+let currentDirection = DIRECTION.LEFT;
+let nextDirection = null;
 
-  // Calculate the translated position
+function update_pacManPos() {
+  const cell_size = 8;
+  const pacman_size = 15;
+
+  const x_offset = (cell_size - pacman_size) / 2;
+  const y_offset = (cell_size - pacman_size) / 2;
+
   const x_translate = pacmanPos.x * cell_size + x_offset;
   const y_translate = pacmanPos.y * cell_size + y_offset;
 
-
- // Remove the starting Pacman sprite-emoji
-  startingPacManEmoji.style.display = "none"; 
-
-  // Use another one Pacman sprite-emoji which is the main one
-  //pacManEmoji.className = "pacman";
-  pacManEmoji.classList.add(allEatingMoods[indx_mood]);
+  startingPacManEmoji.style.display = "none";
+  pacManEmoji.className = "pacman";
 
   maze_container.appendChild(pacManEmoji);
 
-  //Set the position of the existing and main Pacman element
   pacManEmoji.style.transform = `translate(${x_translate}px, ${y_translate}px)`;
-
-  // Modify the style properties based on movement direction
-  if (direction === "right") 
-  {
-    pacManEmoji.style.transform += "scaleY(-1)";
-  } 
-  else if (direction === "left") 
-  {
-    pacManEmoji.style.transform += "scaleX(-1)";
-  }
-  else if (direction === "up") 
-  {
-    pacManEmoji.style.transform += "rotate(-90deg)";
-  } 
-  else if (direction === "down") 
-  {
-    pacManEmoji.style.transform += "rotate(90deg)";
-  }   
-  
-/*
-    If we place the setTimeout(movePacman, 200) 
-    inside the movePacman() function, 
-    it means that the timeout will be set after each movement of the pacman.
-    
-    This can lead to a delay between each movement, 
-    causing the pacman to move in a jerky manner.
-
-    On the other hand, 
-    by placing the setTimeout(movePacman, 200) 
-    inside the updatePacmanPosition function, 
-    the timeout is set after updating the pacman's position 
-    and animating it. 
-
-    This ensures a consistent delay between each animation frame, 
-    resulting in smoother movement.
-*/ 
-/*   
-  setTimeout  vs  setInterval
-
-  setTimeout(expression, timeout); 
-      runs the code/function once after the timeout.
-
-  setInterval(expression, timeout); 
-      runs the code/function repeatedly, 
-      with the length of the timeout between each repeat.
-*/
-  eatingMoods();
-  setTimeout(eatingMoods, 100);
-
-  //clearInterval(autoMoveInterval);
-  //autoMoveInterval = setInterval(autoMove, 100); // Adjust the delay as needed
-
-  
 }
 
+function moveRight() {
+  const newPos = { x: pacmanPos.x + 1, y: pacmanPos.y };
+  if (isallowedStep(newPos)) {
+    pacmanPos = newPos;
+    update_pacManPos();
+  }
+}
 
+function moveLeft() {
+  const newPos = { x: pacmanPos.x - 1, y: pacmanPos.y };
+  if (isallowedStep(newPos)) {
+    pacmanPos = newPos;
+    update_pacManPos();
+  }
+}
 
-// Keyboard event listener
-// document.addEventListener("keydown", (event) => {
-  function movePacman(event)
-  {
-    const k = event.key;
-  
-    // isReady should be true
-    if (isReady !== false) // in order to cannot move Pacman before Ready label is hidden
-    {
-      // Stop the automatic movement
-      //clearInterval(autoMoveInterval);
-  
-    // https://www.geeksforgeeks.org/how-to-move-an-element-to-left-right-up-and-down-using-arrow-keys/
-    
-    // pacmanElement.className = 'pacman';
-    // mazeElement.appendChild(pacmanElement);
-    // Move Pacman based on the arrow keys
-  
-    // Set the user input based on the arrow keys
-      if (k === "ArrowUp" || k === "ArrowDown" || k === "ArrowLeft" || k === "ArrowRight") 
-      {
-        // // Clear the autoMoveInterval if it's set
-        //clearInterval(autoMoveInterval);
+function moveUp() {
+  const newPos = { x: pacmanPos.x, y: pacmanPos.y - 1 };
+  if (isallowedStep(newPos)) {
+    pacmanPos = newPos;
+    update_pacManPos();
+  }
+}
 
-        if (initialUserInput === false) 
-        {
-          //alert("to true!");
-          // Clear the autoMoveInterval if it's set
-      // clearInterval(autoMoveInterval);
-          initialUserInput = true;
+function moveDown() {
+  const newPos = { x: pacmanPos.x, y: pacmanPos.y + 1 };
+  if (isallowedStep(newPos)) {
+    pacmanPos = newPos;
+    update_pacManPos();
+  }
+}
+
+function movePacman() {
+  // Determine the next position based on the current direction
+  let nextPos;
+  if (currentDirection === DIRECTION.UP) {
+    nextPos = { x: pacmanPos.x, y: pacmanPos.y - 1 };
+  } else if (currentDirection === DIRECTION.DOWN) {
+    nextPos = { x: pacmanPos.x, y: pacmanPos.y + 1 };
+  } else if (currentDirection === DIRECTION.LEFT) {
+    nextPos = { x: pacmanPos.x - 1, y: pacmanPos.y };
+  } else if (currentDirection === DIRECTION.RIGHT) {
+    nextPos = { x: pacmanPos.x + 1, y: pacmanPos.y };
+  }
+
+  // Check if the next position is allowed
+  if (isallowedStep(nextPos)) {
+    pacmanPos = nextPos;
+    update_pacManPos();
+  } else {
+    // Pacman hit a wall, stop automatic movement
+    clearInterval(autoMoveInterval);
+    autoMoveInterval = null;
+  }
+}
+
+document.addEventListener("keydown", function (event) {
+  const key = event.key;
+
+  // Save the user's input as the next direction
+  if (key === "ArrowUp") {
+    nextDirection = DIRECTION.UP;
+  } else if (key === "ArrowDown") {
+    nextDirection = DIRECTION.DOWN;
+  } else if (key === "ArrowLeft") {
+    nextDirection = DIRECTION.LEFT;
+  } else if (key === "ArrowRight") {
+    nextDirection = DIRECTION.RIGHT;
+  }
+
+  // If Pacman is not currently moving automatically, start the automatic movement
+  if (!autoMoveInterval) {
+    autoMoveInterval = setInterval(function () {
+      if (nextDirection) {
+        // Check if the next direction is valid
+        const nextPos = getNextPos(nextDirection);
+        if (isallowedStep(nextPos)) {
+          currentDirection = nextDirection;
+          nextDirection = null;
         }
       }
-        // Move Pacman based on the arrow keys
-          if (k === "ArrowUp") 
-          {
-            direction = "up";
-            moveUp();
-          } 
-          else if (k === "ArrowDown") 
-          {
-            direction = "down";
-            moveDown();
-          } 
-          else if (k === "ArrowLeft") 
-          {
-            direction = "left";
-            moveLeft();
-          } 
-          else if (k === "ArrowRight") 
-          {
-            direction = "right";
-            moveRight();
-          }
-        }
-    
-    event.preventDefault();
+      movePacman();
+    }, 100);
   }
-  // });
-// Attach the arrow key event listener
-document.addEventListener("keydown", movePacman);
+});
 
-
-
-
-
-// Automatic movement function
-function autoMove() 
-{
-    if (direction === 'left') 
-    {
-      //clearInterval(autoMoveInterval);
-      moveLeft();
-    } 
-    else if (direction === 'right') 
-    {
-      //clearInterval(autoMoveInterval);
-      moveRight();
-    } 
-    else if (direction === 'up') 
-    {
-      //clearInterval(autoMoveInterval);
-      moveUp();
-    } 
-    else if (direction === 'down') 
-    {
-      // clearInterval(autoMoveInterval);
-      moveDown();
-    }
+function getNextPos(direction) {
+  let nextPos;
+  if (direction === DIRECTION.UP) {
+    nextPos = { x: pacmanPos.x, y: pacmanPos.y - 1 };
+  } else if (direction === DIRECTION.DOWN) {
+    nextPos = { x: pacmanPos.x, y: pacmanPos.y + 1 };
+  } else if (direction === DIRECTION.LEFT) {
+    nextPos = { x: pacmanPos.x - 1, y: pacmanPos.y };
+  } else if (direction === DIRECTION.RIGHT) {
+    nextPos = { x: pacmanPos.x + 1, y: pacmanPos.y };
+  }
+  return nextPos;
 }
 
 
 
-// Show the "READY" label for a certain duration
-function readyToStartPlaying() 
-{
-  const labelReady = document.createElement("div");
-  labelReady.classList.add("label-ready");
-  maze_container.appendChild(labelReady);
+// Call the function to update the position of Pacman initially
+update_pacManPos();
 
-  setTimeout(() => {
-    // Clear the ready label and start the automatic movement
-      maze_container.removeChild(labelReady);
-      isReady = true;
-    
-      if (initialUserInput === false) 
-      {
-        // Start the automatic movement if no user input is received
-        autoMoveInterval = setInterval(autoMove, 120); // Adjust the delay as needed
-      } 
-  } , 2000);  // Add the duration as needed (in milliseconds)
+// Start the automatic movement of Pacman
+let autoMoveInterval = setInterval(movePacman, 100);
+
+
+
+// // Define the initial positions of the ghosts inside the house
+// const ghost1 = { top: 112.5, left: 119, className: "up1_orangeGhost" }; // Ghost 1 initial position and ID
+// const ghost2 = { top: 112.5, left: 89, className: "up1_blueGhost" };    // Ghost 2 initial position and ID
+// const ghost3 = { top: 112.5, left: 104, className: "down1_pinkGhost" };   // Ghost 3 initial position and ID
+
+// // Rest of the code...
+
+// // Function to update the CSS position of a ghost
+// // Function to update the CSS position of a ghost
+// function updateGhostPosition(ghost) {
+//   const ghostElements = document.getElementsByClassName(ghost.className);
+//   Array.from(ghostElements).forEach((element) => {
+//     element.style.top = `${ghost.top}px`;
+//     element.style.left = `${ghost.left}px`;
+//   });
+// }
+
+// updateGhostPosition(ghost1);
+
+
+// Rest of the code...
+// Define the initial positions of the ghosts inside the house
+const orangeGhost = { top: 112.5, left: 119 };
+const blueGhost = { top: 112.5, left: 89 };
+const pinkGhost = { top: 112.5, left: 104 };
+
+// Function to update the position of the orange ghost
+function updateOrangeGhostPosition() {
+  const orangeGhostElement = document.querySelector("up1_orangeGhost");
+  orangeGhostElement.style.top = `${orangeGhost.top}px`;
+  orangeGhostElement.style.left = `${orangeGhost.left}px`;
+  maze_container.appendChild(orangeGhostElement);
 }
-// Call the function to show the "READY" label
-readyToStartPlaying();
 
+// Function to update the position of the blue ghost
+function updateBlueGhostPosition() {
+  const blueGhostElement = document.querySelector("up1_blueGhost");
+  blueGhostElement.style.top = `${blueGhost.top}px`;
+  blueGhostElement.style.left = `${blueGhost.left}px`;
+  maze_container.appendChild(blueGhostElement);
+}
 
+// Function to update the position of the pink ghost
+function updatePinkGhostPosition() {
+  const pinkGhostElement = document.querySelector("down1_pinkGhost");
+  pinkGhostElement.style.top = `${pinkGhost.top}px`;
+  pinkGhostElement.style.left = `${pinkGhost.left}px`;
+  maze_container.appendChild(pinkGhostElement);
+}
 
-
-
-//-------------- METHOD 2
-
-// let direction = "left"; // Initial direction
-// //----- METHOD 2
-//   function movePacman(k)
-//   {
-//       // Clear the autoMoveInterval if it's set
-//       clearInterval(autoMoveInterval);
-
-//       if (!initialUserInput) 
-//       {
-//         initialUserInput = true;
-//       }
-  
-//       // Move Pacman based on the arrow keys
-//         if (k === "ArrowUp") 
-//         {
-//           direction = "up";
-//           autoMoveInterval = setInterval(moveUp, 100); 
-//            // moveUp();
-//         } 
-//         else if (k === "ArrowDown") 
-//         {
-//           direction = "down";
-//           autoMoveInterval = setInterval(moveDown, 100);
-//           // moveDown();
-//         } 
-//         else if (k === "ArrowLeft") 
-//         {
-//           direction = "left";
-//           autoMoveInterval = setInterval(moveLeft, 100); 
-//           //moveLeft();
-//         } 
-//         else if (k === "ArrowRight") 
-//         {
-//           direction = "right";
-//           autoMoveInterval = setInterval(moveRight, 100); 
-//           //moveRight();
-//         }
-// }
-// // // --- TO METHOD 2
-// document.addEventListener('keydown', function(event) 
-// {
-//   const key = event.key;
-
-//   if (isReady) 
-//   {
-//     if (key === 'ArrowUp' || key === 'ArrowDown' || key === 'ArrowLeft' || key === 'ArrowRight') 
-//     {
-//       movePacman(key);
-//       event.preventDefault();
-//     }
-//   }
-// });
-
-
-// function readylabel() 
-// {
-//   const labelReady = document.createElement("div");
-//   labelReady.classList.add("label-ready");
-//   maze_container.appendChild(labelReady);
-
-//   setTimeout(() => {
-//       maze_container.removeChild(labelReady);
-//       isReady = true;
-    
-//       if (initialUserInput === false) 
-//       {
-//         autoMoveInterval = setInterval(moveLeft, 100); 
-//       } 
-//   } , 2000); 
-// }
-
-// readylabel();
+// Update the initial positions of the ghosts
+updateOrangeGhostPosition();
+updateBlueGhostPosition();
+updatePinkGhostPosition();

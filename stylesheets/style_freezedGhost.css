@@ -1,0 +1,27 @@
+/* Freezed after gazer and Gray Scared after the freezed mood */
+.freezed_Ghost1,.freezed_Ghost2,
+.grayScared_Ghost1,.grayScared_Ghost2{
+    background-image: url("../assets/images/game/spritesheet.png");
+    
+    width: 16px; 
+    height: 16px; 
+
+    position: absolute;
+}
+
+.freezed_Ghost1{
+    background-position: -357px -64px; 
+}
+
+.freezed_Ghost1{
+    background-position: -373px -64px; 
+}
+
+
+.grayScared_Ghost1{
+    background-position: -389px -64px; 
+}
+
+.grayScared_Ghost2{
+    background-position: -405px -64px; 
+}

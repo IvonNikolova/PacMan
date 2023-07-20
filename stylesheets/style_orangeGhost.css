@@ -1,0 +1,44 @@
+/* Clyde - Orange Ghost */
+.left1_orangeGhost,.left2_orangeGhost,.right1_redGhost,.right2_redGhost,
+.up1_orangeGhost,.up1_orangeGhost, .down1_orangeGhost,.down2_orangeGhost
+{
+    background-image: url("../assets/images/game/spritesheet.png");
+        
+    width: 16px; 
+    height: 16px; 
+
+    position: absolute;
+}
+
+.right1_orangeGhost{
+    background-position: -229px -112px; 
+}
+
+.right2_orangeGhost{
+    background-position: -245px -112px; 
+}
+
+.left1_orangeGhost{
+    background-position: -261px -112px; 
+}
+
+.left2_orangeGhost{
+    background-position: -277px -112px; 
+}
+
+/* Initial Orange Ghost */
+.up1_orangeGhost{
+    background-position: -293px -112px; 
+}
+
+.up2_orangeGhost{
+    background-position: -309px -112px; 
+}
+
+.down1_orangeGhost{
+    background-position: -325px -112px; 
+}
+
+.down2_orangeGhost{
+    background-position: -341px -112px; 
+}

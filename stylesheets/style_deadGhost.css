@@ -1,0 +1,27 @@
+/* Eyes */
+
+.eyes_left,.eyes_right,.eyes_up,.eyes_down
+{
+    background-image: url("../assets/images/game/spritesheet.png");
+    
+    width: 16px; 
+    height: 16px; 
+    
+    position: absolute;
+}
+
+.eyes_down{
+    background-position: -405px -80px; 
+}
+
+.eyes_left{
+    background-position: -373px -80px; 
+}
+
+.eyes_right{
+    background-position: -357px -80px; 
+}
+
+.eyes_up{
+    background-position: -389px -80px; 
+}

@@ -1,0 +1,43 @@
+/* Inky - Blue Ghost */
+.left1_blueGhost,.left2_blueGhost,.right1_blueGhost,.right2_blueGhost,
+.up1_blueGhost,.up1_blueGhost, .down1_blueGhost,.down2_blueGhost
+{
+    background-image: url("../assets/images/game/spritesheet.png");
+        
+    width: 16px; 
+    height: 16px; 
+
+    position: absolute;
+}
+
+
+.right1_blueGhost{
+    background-position: -229px -96px; 
+}
+.right2_blueGhost{
+    background-position: -245px -96px; 
+}
+
+.left1_blueGhost{
+    background-position: -261px -96px; 
+}
+.left2_blueGhost{
+    background-position: -277px -96px; 
+}
+
+/* Initial Blue Ghost */
+.up1_blueGhost{
+    background-position: -293px -96px; 
+}
+
+.up2_blueGhost{
+    background-position: -309px -96px; 
+}
+
+.down1_blueGhost{
+    background-position: -325px -96px; 
+}
+
+.down2_blueGhost{
+    background-position: -341px -96px; 
+}

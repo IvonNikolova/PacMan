@@ -440,7 +440,7 @@ var direction = "left"; // Initial direction
 var startingPacManEmoji = document.createElement("div");
 
 startingPacManEmoji.style.position = "absolute";
-startingPacManEmoji.className = "pacman_0";
+startingPacManEmoji.className = "pacman0";
 // Initial position of Pacman
 startingPacManEmoji.style.left = 13.1 * 8 + "px";
 startingPacManEmoji.style.top = 22.5 * 8 + "px";
@@ -863,9 +863,9 @@ function isallowedStep(pos)
 
 // Define the three Pacman images of eating moods
 const pacmanFaceClasses = [
-  "pacman_0",
+  "pacman0",
   "pacman",
-  "pacman1"
+  "pacman2"
 ];
 var mouthAnimationIndex = 0;
 

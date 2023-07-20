@@ -1,0 +1,43 @@
+/* Pinky - Pink Ghost */
+.left1_pinkGhost,.left2_pinkGhost,.right1_pinkGhost,.right2_pinkGhost,
+.up1_pinkGhost,.up1_pinkGhost, .down1_pinkGhost,.down2_pinkGhost{
+    background-image: url("../assets/images/game/spritesheet.png");
+        
+    width: 16px; 
+    height: 16px; 
+
+    position: absolute;
+}
+
+.right1_pinkGhost{
+    background-position: -229px -80px; 
+}
+
+.right2_pinkGhost{
+    background-position: -245px -80px; 
+}
+
+.left1_pinkGhost{
+    background-position: -261px -80px; 
+}
+
+.left2_pinkGhost{
+    background-position: -277px -80px; 
+}
+
+.up1_pinkGhost{
+    background-position: -293px -80px; 
+}
+
+.up2_pinkGhost{
+    background-position: -309px -80px; 
+}
+
+/* Initial Pink Ghost */
+.down1_pinkGhost{
+    background-position: -325px -80px; 
+}
+
+.down2_pinkGhost{
+    background-position: -341px -80px; 
+}

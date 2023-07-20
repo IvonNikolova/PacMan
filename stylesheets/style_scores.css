@@ -20,7 +20,7 @@ h2{
 
 .letter1{
     background-position: -9px -52px; 
-    background-image: url("../assets/images/letters.png");
+    background-image: url("../assets/images/game/letters.png");
 
     width: 8px; 
     height: 9px; 
@@ -35,7 +35,7 @@ h2{
 }
 
 .letterU, .letterP{
-    background-image: url("../assets/images/letters.png");
+    background-image: url("../assets/images/game/letters.png");
     
     width: 9px; 
     height: 9px; 
@@ -56,6 +56,11 @@ h2{
 	left: 126px;
 }
 
+.letter1,.letterU, .letterP{
+    animation: blink .6s infinite;
+
+}
+
 /* at-rules: https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule */
 @keyframes blink {
     50% {
@@ -65,7 +70,7 @@ h2{
 
 .label-ready{
   
-    background-image: url("../assets/images/labels.png");
+    background-image: url("../assets/images/game/labels.png");
     background-position: -201px 0px; 
     width: 47px; 
     height: 8px; 
@@ -73,12 +78,13 @@ h2{
     position: absolute;
 	left: 90px;
     top: 136px;
+    z-index: 3;
 
-    animation: blink 1s infinite;
+    /* animation: blink 0.5s infinite; */
 }
 
 .label-gameover{
-    background-image: url("../assets/images/labels.png");
+    background-image: url("../assets/images/game/labels.png");
     background-position: -11px -190px; 
     width: 80px; 
     height: 8px; 
@@ -93,7 +99,7 @@ h2{
 
 .letterH, .letterI, .letterG, .letterH2{
 
-    background-image: url("../assets/images/letters.png");
+    background-image: url("../assets/images/game/letters.png");
 
     width: 8px; 
     height: 8px; 
@@ -125,7 +131,7 @@ h2{
 }
 
 .letterS,.letterC,.letterO,.letterR,.letterE{
-    background-image: url("../assets/images/letters.png");
+    background-image: url("../assets/images/game/letters.png");
     
     width: 7px; 
     height: 8px; 

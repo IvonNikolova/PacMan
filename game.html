@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <title>PacMan - Ivon's Project</title>
+        <!-- A favicon image is displayed to the left of the page title in the browser tab. -->
+        <link rel="icon" type="image/png" href="./assets/images/favicon/favicon.ico">
+
+        <!--This example links to a style sheet located in the same folder as the current page:-->
+
+        <!-- The overall window styling, the extraction of the maze from the spritesheet and the pellets' images -->
+        <link rel="stylesheet" href="./stylesheets/style.css"> 
+        <!-- The grid styling -->
+        <link rel="stylesheet" href="./stylesheets/style_grid.css"> 
+        <!-- The PacmMan styling - alive and dead Pacman spritesheets -->
+        <link rel="stylesheet" href="./stylesheets/style_pacman.css"> 
+        <!-- The game titles - letters and labels, and scores stylings -->
+        <link rel="stylesheet" href="./stylesheets/style_scores.css">     
+
+        <!-- The ghosts' styling -->
+        <link rel="stylesheet" href="./stylesheets/style_redGhost.css"> 
+        <link rel="stylesheet" href="./stylesheets/style_blueGhost.css"> 
+        <link rel="stylesheet" href="./stylesheets/style_orangeGhost.css">
+        <link rel="stylesheet" href="./stylesheets/style_pinkGhost.css"> 
+        <link rel="stylesheet" href="./stylesheets/style_freezedGhost.css">  <!-- The freezed ghosts faces after an eaten gazer -->
+        <link rel="stylesheet" href="./stylesheets/style_deadGhost.css"> <!-- The eyes of the dead ghosts-->
+
+         <!-- The styling of the outer maze figures like PacMan lives and fruits -->
+        <link rel="stylesheet" href="./stylesheets/style_lives_fruits.css"> 
+ 
+        
+    </head>
+      
+    <body>
+    
+        
+    <div class="game-container"> <!-- the main container having the whole game content -->
+
+        <!-- The resume/pause buttons -->
+        <div id="buttons" class="pause"></div>
+        <!-- <div id="pause"></div> -->
+        
+        <!-- The container includes the titles and the scores -->
+        <h2 class="one-up" style="z-index: 10;">00000000</h2>
+        <div class="letter1"></div>
+        <div class="letterU"></div>
+        <div class="letterP"></div> 
+       
+        <h2 class="high-score">00000000</h2> 
+        <div class="letterH"></div>
+        <div class="letterI"></div>
+        <div class="letterG"></div>
+        <div class="letterH2"></div>
+        <div class="letterS"></div>
+   
+        <div class="letterC"></div>
+        <div class="letterO"></div>
+        <div class="letterR"></div>
+        <div class="letterE"></div> 
+
+        
+        <!-- The container includes the maze -->
+        <div class="maze">  
+             <!-- The maze includes the grid -->
+            <div class="grid"></div>
+         
+           
+            <!-- <div class="left1_redGhost"></div> -->
+            <!-- <div class="up1_orangeGhost"></div>
+            <div class="down1_pinkGhost"></div>
+            <div class="up1_blueGhost"></div> -->
+          
+
+            
+            <!-- The maze includes the lives and fruits outside its bounds -->
+            <div class="life1"></div>
+            <div class="life2"></div>
+            <div class="life3"></div>
+            <div class="outer_cherry"></div>
+        </div> 
+    </div>
+
+        
+
+    <div id="pause-window-cover">
+        <span id="pause-text">PAUSED</span>
+    </div>
+        
+        <script type="text/javascript" src="./code2.js"> </script>
+        <!-- <script type="text/javascript" src="./code2_ghosts.js"> </script> -->
+        <!-- <script type="text/javascript" src="./code3.js"> </script> -->
+         <!-- <script type="text/javascript" src="./code drafts and old ones/code2new_backup.js"> </script> -->
+        
+    </body>
+</html>
+
+
