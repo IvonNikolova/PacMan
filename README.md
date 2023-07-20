@@ -8,9 +8,10 @@ Important to be done tasks:
 
 Secondary to be done tasks:
 1. Buttons start/pause - correct the PAUSE window to allow pressing the pause button even having the PAUSE window  Top left button is not able to be pressed if space pause is pressed
-2. Synchronise the 3. Ghosts to pause with the pause button 
-3. Make the other three ghosts get out of the nest according to the Pacman eaten dots i.e. scores
+2. The other three ghosts:
+   2.1. Synchronise them to pause with the pause button 
+   2.2. Make them get out of the nest according to the Pacman eaten dots i.e. scores
 
 Additional to be done tasks:
-1. Correct the cherry appearance  - create an interval (5 seconds and then to dissapear), no replicates (no more than one cherry)
+1. Cherry: correct its appearance  - create an interval (5 seconds and then to dissapear), no replicates (no more than one cherry)
 2. Music: at the beginning | while eating | while just moving | when colliding with a ghost | when dying 
