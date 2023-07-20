@@ -1,6 +1,7 @@
 # PacMan
 
-Note from 20.07.2023:
+Future Work note from 20.07.2023: 
+
 Important to be done tasks:
 1. Intro page: change to flex box 
 2. Move the red ghost - math.random
