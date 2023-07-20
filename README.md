@@ -11,6 +11,6 @@ Secondary to be done tasks:
 2. Synchronise the 3. Ghosts to pause with the pause button 
 3. Make the other three ghosts get out of the nest according to the Pacman eaten dots i.e. scores
 
-Additional tasks to do:
+Additional to be done tasks:
 1. Correct the cherry appearance  - create an interval (5 seconds and then to dissapear), no replicates (no more than one cherry)
 2. Music: at the beginning | while eating | while just moving | when colliding with a ghost | when dying 
