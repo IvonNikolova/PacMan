@@ -2,7 +2,7 @@
 
 Note from 20.07.2023:
 Important to be done tasks:
-1. Change to flex box intro page 
+1. Intro page: change to flex box 
 2. Move the red ghost - math.random
 3. Storage the highest points on the browser: localStorage
 
