@@ -4,10 +4,10 @@ Future Work note from 20.07.2023:
 
 Important to be done tasks:
 1. Move the red ghost - test it using math.random
-2. The other three ghosts:
-   2.1. Synchronise them to pause with the pause button **(DONE - 25.07.23)**
-   2.2. Create an animation, loop their moods while moving
-   2.3. Make them get out of the nest according to the Pacman eaten dots i.e. scores
+2. The other three ghosts:<br />
+   2.1. Synchronise them to pause with the pause button **(DONE - 25.07.23)**<br />
+   2.2. Create an animation, loop their moods while moving<br />
+   2.3. Make them get out of the nest according to the Pacman eaten dots i.e. scores<br />
 
 
 Secondary to be done tasks:
