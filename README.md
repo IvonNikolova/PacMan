@@ -1,6 +1,6 @@
 # PacMan
 
-<h1>Future Work note from 20.07.2023: </h1>
+<h2>Future Work note from 20.07.2023: </h2>
 
 Important to be done tasks:
 1. Move the red ghost - test it using math.random
