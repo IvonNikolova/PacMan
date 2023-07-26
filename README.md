@@ -8,13 +8,14 @@ Important to be done tasks:
    2.1. Synchronise them to pause with the pause button **(DONE - 25.07.23)** <br />
    2.2. Create an animation, loop their moods while moving **(DONE - 25.07.23)** <br />
    2.3. Make them get out of the nest according to the Pacman eaten dots i.e. scores<br />
-3. Collisions with the ghosts <br />
-  3.1. Lives of Pacman: decrease them
-4. Freezed Ghosts - change the ghosts mode when a gazer is eaten <br />
-   4.1. Count the bonus points when Pacman eats a freezed blue ghost
+
 
 Secondary to be done tasks: 
 1. Storage the highest points on the browser: localStorage
+2. Collisions with the ghosts <br />
+   2.1. Lives of Pacman: decrease them
+3. Freezed Ghosts - change the ghosts mode when a gazer is eaten <br />
+   3.1. Count the bonus points when Pacman eats a freezed blue ghost
 
 Additional to be done tasks: 
 1. Intro page: change to flex box 
