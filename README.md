@@ -4,6 +4,11 @@
 
 Important to be done tasks:
 1. Move the red ghost - test it using math.random **(DONE - 28.07.23)** <br />
+   1.1.Correct red ghost problem with the first move. **(DONE - 30.07.23)** <br />
+   1.2. Change the ghost direction with another valid one before colliding a wall if it is possible. **(DONE - 31.07.23)** <br />
+      Explanation: take any opportunity for any valid direction, if such appears, while moving in the corridors, do not wait until the end - to collide a wall in order to change the direction.
+   1.2. Animation of the red ghost while moving. **(DONE - 31.07.23)** <br />
+
 2. The other three ghosts:<br />
    2.1. Synchronise them to pause with the pause button **(DONE - 25.07.23)** <br />
    2.2. Create an animation, loop their moods while moving **(DONE - 25.07.23)** <br />
