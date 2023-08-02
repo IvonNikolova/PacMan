@@ -37,8 +37,7 @@ compare at each step pacman and red ghost coordinates <br />
 - Анимация на мъртъв Пакман <br />
 - Намали животи<br />
 - Започни от начална позиция + Пакман + призрак <br />
-<br />
-II. Gazer eaten by Pacman -> ghosts become afraid  (Interval)<br />
+   II. Gazer eaten by Pacman -> ghosts become afraid  (Interval)<br />
 - Пакман изяжда Призракa <br />
 - Анимация на мъртъв Призрак<br />
 - Започни от начална позиция + призрак<br />
