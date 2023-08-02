@@ -44,7 +44,7 @@ const  GPS_arr = [
  // 11
  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 11*8px = 88
  
- // 12
+ // 12 - Red GHOST 
  [0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 12*8px = 96
  // 13
  [0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 4, 4, 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 13*8px = 104
@@ -664,16 +664,14 @@ function isallowedStep(pos)
           console.log("Scores: " + scores);
 
 
-      
-
+    
         // Fruits 
-           if(scores === 50 || scores === 500 || scores === 1500) //|| scores === 2000 || scores === 2500)
+           if(scores === 50 || scores === 800 || scores === 2000) //|| scores === 2000 || scores === 2500)
           { 
             
             insertCherry();
             
           }
-
           
           
 
@@ -914,6 +912,7 @@ function update_pacManPos()
 }
 
 
+
 function moveRight() 
 {
   if(pacmanPos.x === 27 && pacmanPos.y === 14) 
@@ -955,7 +954,7 @@ function moveLeft()
   }
   else
   {
-    const newPos = { x: pacmanPos.x - 1, y: pacmanPos.y };
+    const newPos = { x: pacmanPos.x - 1, y: pacmanPos.y }; //left
     // if (isallowedStep(newPos)) {
     //   pacmanPos = newPos;
     //   update_pacManPos();
@@ -984,6 +983,7 @@ function moveDown()
 
   return newPos;
 }
+
 
 // ------------------------------------------------ PAUSE  ------------------------------------------------ 
 
@@ -1278,106 +1278,360 @@ let eatingMoodsTimeout3 = setTimeout(eatingMoods, 200); // eatingMoods();
 
 
 
+
+
 // ------------------------------------------------ RED GHOST ------------------------------------------------ 
+// TO DO 
+// 1. correct red ghost problem  !
+// 2. animation of the red ghost ! 
+// 3. gazer eaten - ghosts become afraid 
+//     4. localstorage  !
+//     5. collision pacman and the ghosts - same coordinates, 
+//      compare at each step pacman and red ghost coordinates 
 
-// Initial positions 
-const redGhost = { top: 10.5 * 8, left: 13.05 * 8};
-/* top: 85px;    i.e. 85/8 = 10,625 */
-/* left: 105px; i.e.  105/8 = 13.125 */
-var redGhostElement = document.createElement("div");
-redGhostElement.classList.add("left1_redGhost");
-redGhostElement.style.position = "absolute";
-redGhostElement.style.top = `${redGhost.top}px`;
-redGhostElement.style.left = `${redGhost.left}px`;
-maze_container.appendChild(redGhostElement);
+  // ++++++++++++++++++++++++++++ WAY 2 +++++++++++++++++++++++++++++
+  // Create the red ghost element and add it to the maze container
+  var redGhostElement = document.createElement("div");
+  redGhostElement.classList.add("left1_redGhost");
+  redGhostElement.style.position = "absolute";
+  // vertical line:top is y = column = up and down
+  // horizontal line: left is x = row = left and right
+  redGhostElement.style.top = 10.5 * 8 + "px"; // Initial positioning 
+  redGhostElement.style.left = 13.05 * 8 + "px"; // Initial positioning 
+  maze_container.appendChild(redGhostElement);
 
+// First move positioning
+const redGhost = { top: 11.5 * 8, left: 13.05 * 8, size: 16};
+//const redGhost = { top: 92, left: 104.4, size: 16}; 
 
+// Define the direction constants
+const DIRECTION2 = {
+    UP: "up",
+    DOWN: "down",
+    LEFT: "left",
+    RIGHT: "right"
+  };
+  
+  // Set the initial direction for the red ghost
+  var redGhostDirection = DIRECTION2.LEFT;
 
-//>>>>>>>>>>>>>>>>>> the RED GHOST does NOT move correctly but it moves, it is just a test for now!
+// console.log("INITIAL DIRECTION is " + redGhostDirection);
+// const cellSize_init = 8;
+// const ghostSize_init = 16;
+// const halfCellSize_init = cellSize_init / 2;;
+// const halfGhostSize_init = ghostSize_init / 2;
+// console.log(" ---------------------------- ");
+// console.log(" initial info: redGhost.top = " + redGhost.top );
+// console.log(" initial info: redGhost.left = " + redGhost.left);
+// // Calculate the row and column of the current cell
+// const row_init = Math.floor(redGhost.top / cellSize_init);
+// const col_init = Math.floor(redGhost.left / cellSize_init);
+// const cellCenterTop_init = row_init * cellSize_init + halfCellSize_init;
+// const cellCenterLeft_init = col_init * cellSize_init + halfCellSize_init;
+// const xTranslate_init = cellCenterLeft_init - halfGhostSize_init;
+// const yTranslate_init = cellCenterTop_init - halfGhostSize_init;
+// console.log(" ---------------------------- ");
+// console.log("initial: yTranslate = " + yTranslate_init);
+// console.log("initial: xTranslate = " + xTranslate_init);
+
 
 // Define the movement speed for the red ghost
 const ghostSpeed = 8; // Adjust the speed as needed
 
-
-// Function to update the CSS position of the red ghost
-function updateRedGhostPosition() 
-{
-  redGhostElement.style.top = `${redGhost.top}px`;
-  redGhostElement.style.left = `${redGhost.left}px`;
-}
-
-
-// Function to move the red ghost randomly in the maze
+  
 function moveRedGhost() 
 {
-  /*
-    possibleDirections is an array 
-    that contains the possible movement directions for the red ghost. 
-    Each element of the array represents a direction 
-    in which the ghost can move. 
-    In this case, the array contains the strings "up", "down", "left", and "right", 
-    representing the four cardinal directions.
-  */
-  const possibleDirections = ["up", "down", "left", "right"];
 
-/*
-  This expression below has to give us randomly a result i.e. an index for the direction
-  from 0 to 3, inclusive. 
-  Which choose the valid next direction for the red ghost.
+    if(!isPaused)// If the pause button is not pressed, the three ghosts are not paused, too
+    {
+        const row = Math.floor(redGhost.top / 8); // Convert pixel position to GPS array row
+        const col = Math.floor(redGhost.left / 8); // Convert pixel position to GPS array column
+    
+        // Calculate the next cell's position based on the movement direction
+        let nextRow = row;
+        let nextCol = col;
+    
+        console.log("NEW DIRECTION is " + redGhostDirection);
 
-    Index 0: "up"
-    Index 1: "down"
-    Index 2: "left"
-    Index 3: "right"
-*/
-const randomDirection = possibleDirections[Math.floor(Math.random() * possibleDirections.length)];
-/*
-  The logic of the above expression:
-    1. Math.random(): 
-      Produces a random floating-point number between 0 and 1 (exclusive).
 
-    2. Math.random() * possibleDirections.length: 
-        Multiplies the random number by the length of possibleDirections, 
-        which scales the range to be between 0 and the length of the array (exclusive). 
-        
-        For example, the possibleDirections has 4 elements, 
-        this expression will give a random number between 0 and 3.99999... 
-        (but not including 4).
-    3. Math.floor(Math.random() * possibleDirections.length): 
-        Rounds down the scaled random number to the nearest integer. 
-        This gives you an integer between 0 and possibleDirections.length - 1, 
-        which 
-        
-        is a valid index to access an element in the array.
-*/
-if(!isPaused)// If the pause button is not pressed, the three ghosts are not paused, too
-{
-  if (randomDirection === "up") 
-  {
-    redGhost.top -= ghostSpeed;
-  } 
-  else if (randomDirection === "down") 
-  {
-    redGhost.top += ghostSpeed;
-  } 
-  else if (randomDirection === "left") 
-  {
-    redGhost.left -= ghostSpeed;
-  } 
-  else if (randomDirection === "right") 
-  {
-    redGhost.left += ghostSpeed;
-  }
+        if (redGhostDirection === DIRECTION2.UP) 
+        {
+        nextRow = row - 1;
+        } 
+        else if (redGhostDirection === DIRECTION2.DOWN) 
+        {
+        nextRow = row + 1;
+        } 
+        else if (redGhostDirection === DIRECTION2.LEFT) 
+        {
+        nextCol = col - 1;
+        } 
+        else if (redGhostDirection === DIRECTION2.RIGHT) 
+        {
+        nextCol = col + 1;
+        }
 
- 
-    // Update the position of the red ghost
-    updateRedGhostPosition();
-  }
+
+        // Check if the next movement is valid (not colliding with a wall)
+        if (isValidMove(nextRow, nextCol)) 
+        {
+        // Update the cell-based position based on the movement direction
+        if (redGhostDirection === DIRECTION2.UP) 
+        {
+            redGhost.top -= ghostSpeed;
+        } 
+        else if (redGhostDirection === DIRECTION2.DOWN) 
+        {
+            redGhost.top += ghostSpeed;
+        } 
+        else if (redGhostDirection === DIRECTION2.LEFT) 
+        {
+            redGhost.left -= ghostSpeed;
+        } 
+        else if (redGhostDirection === DIRECTION2.RIGHT) 
+        {
+            redGhost.left += ghostSpeed;
+        }
+
+        // Update the position of the red ghost
+            updateRedGhostPosition();
+        } 
+        else 
+        {
+        // If the next movement is not valid, randomly choose a new direction
+        redGhostDirection = getRandomDirection();
+        }
+    }
 }
+  
+// // Function to update the position of the red ghost
+function updateRedGhostPosition() 
+{
+    const cellSize = 8;
+    const ghostSize = redGhost.size;
+    const halfCellSize = cellSize / 2;;
+    const halfGhostSize = ghostSize / 2;
+   
+    // console.log(" ---------------------------- ");
+    // console.log(" redGhost.top = " + redGhost.top );
+    // console.log(" redGhost.left = " + redGhost.left);
 
-// ------------------------------------------------ THE THREE GHOSTS  ------------------------------------------------ 
+    // Calculate the row and column of the current cell
+    const row = Math.floor(redGhost.top / cellSize);
+    const col = Math.floor(redGhost.left / cellSize);
+  
+    // Calculate the center position of the current cell
+    const cellCenterTop = row * cellSize + halfCellSize;
+    const cellCenterLeft = col * cellSize + halfCellSize;
+  
+    // Calculate the new position of the red ghost
+    const xTranslate = cellCenterLeft - halfGhostSize;
+    const yTranslate = cellCenterTop - halfGhostSize;
+  
+
+    // console.log(" ---------------------------- ");
+    // console.log("new top is yTranslate = " + yTranslate);
+    // console.log("new left is xTranslate " + xTranslate);
+
+    // Update the CSS position of the red ghost
+    redGhostElement.style.top = `${yTranslate}px`;
+    redGhostElement.style.left = `${xTranslate}px`;
+  }
+  
+  
+  // Function to check if the next movement is valid (not colliding with a wall)
+  function isValidMove(row, col) 
+  {
+    // There is no actual need of these if-condition below 
+    // because the ghost is synchronised with the 0's 
+    // i.e. walls which are the actual stoppers i.e. boundaries
+        //  GPS_arr is a 2D array containing maze layout as described earlier
+        if (row < 0 || col < 0 || row >= 31 || col >= 28) 
+        {
+            // console.log(" GPS_arr[0].length = " + GPS_arr[0].length); // 28
+            // console.log(" GPS_arr.length = " + GPS_arr.length); // 31
+            // console.log("NOT ALLOWED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            return false; // The move is outside the maze boundaries
+        }
+
+    return (GPS_arr[row][col] !== 0 && GPS_arr[row][col] !== 4);
+  }
+  
+  // Function to randomly choose a new direction for the red ghost
+  function getRandomDirection() 
+  {
+    const possibleDirections = [DIRECTION2.UP, DIRECTION2.DOWN, DIRECTION2.LEFT, DIRECTION2.RIGHT];
+    
+    return possibleDirections[Math.floor(Math.random() * possibleDirections.length)];
+  }
+//   // Function to move the red ghost in a given direction
+//   function moveRedGhost() {
+//     if (!isPaused) {
+//       const row = Math.floor(redGhost.top / 8); // Convert pixel position to GPS array row
+//       const col = Math.floor(redGhost.left / 8); // Convert pixel position to GPS array column
+  
+//       // Calculate the next cell's position based on the movement direction
+//       let nextRow = row;
+//       let nextCol = col;
+  
+//       if (redGhostDirection === DIRECTION2.UP) {
+//         nextRow = row - 1;
+//       } else if (redGhostDirection === DIRECTION2.DOWN) {
+//         nextRow = row + 1;
+//       } else if (redGhostDirection === DIRECTION2.LEFT) {
+//         nextCol = col - 1;
+//       } else if (redGhostDirection === DIRECTION2.RIGHT) {
+//         nextCol = col + 1;
+//       }
+  
+//       // Check if the next movement is valid (not colliding with a wall)
+//       if (isValidMove(nextRow, nextCol)) {
+//         // Update the direction since the move is valid
+//         redGhost.top = nextRow * 8; // Convert row to pixel position
+//         redGhost.left = nextCol * 8; // Convert column to pixel position
+  
+//         // Update the position of the red ghost
+//         updateRedGhostPosition();
+//       } else {
+//         // If the next movement is not valid, randomly choose a new direction
+//         redGhostDirection = getRandomDirection();
+//         console.log("DIRECTION is " + redGhostDirection);
+//       }
+//     }
+//   }
+
+  
+
+// ++++++++++++++++++++++++++++ WAY 1 +++++++++++++++++++++++++++++
+//   // Create the red ghost element and add it to the maze container
+//   var redGhostElement = document.createElement("div");
+//   redGhostElement.classList.add("left1_redGhost");
+//   redGhostElement.style.position = "absolute";
+//   // vertical line:top is y = column = up and down
+//   // horizontal line: left is x = row = left and right
+//   redGhostElement.style.top = 10.5 * 8 + "px"; // Initial positioning 
+//   redGhostElement.style.left = 13.05 * 8 + "px"; // Initial positioning 
+//   maze_container.appendChild(redGhostElement);
+
+// // First move positioning
+// const redGhost = { top: 11.5 * 8, left: 13.05 * 8, size: 16};
 
 
+// // Define the direction constants
+// const DIRECTION2 = {
+//   UP: "up",
+//   DOWN: "down",
+//   LEFT: "left",
+//   RIGHT: "right",
+// };
+
+// // Set the initial direction for the red ghost
+// let redGhostDirection = DIRECTION2.LEFT;
+
+// // Define the movement speed for the red ghost
+// const ghostSpeed = 8; // Adjust the speed as needed
+
+// // Function to move the red ghost in a given direction
+// function moveRedGhost() 
+// {
+//   const row = Math.floor(redGhost.top / 8); // Convert pixel position to GPS array row
+//   const col = Math.floor(redGhost.left / 8); // Convert pixel position to GPS array column
+
+// if(!isPaused)// If the pause button is not pressed, the three ghosts are not paused, too
+// {
+//   // Check if the next movement is valid (not colliding with a wall)
+//   if (
+//     (redGhostDirection === DIRECTION2.UP && GPS_arr[row - 1][col] !== 0) ||
+//     (redGhostDirection === DIRECTION2.DOWN && GPS_arr[row + 1][col] !== 0) ||
+//     (redGhostDirection === DIRECTION2.LEFT && GPS_arr[row][col - 1] !== 0) ||
+//     (redGhostDirection === DIRECTION2.RIGHT && GPS_arr[row][col + 1] !== 0)
+//   ) 
+//   {
+//     if (redGhostDirection === DIRECTION2.UP) 
+//     {
+//       redGhost.top -= ghostSpeed;
+//     } 
+//     else if (redGhostDirection === DIRECTION2.DOWN) 
+//     {
+//       redGhost.top += ghostSpeed;
+//     } 
+//     else if (redGhostDirection === DIRECTION2.LEFT) 
+//     {
+//       redGhost.left -= ghostSpeed;
+//     } 
+//     else if (redGhostDirection === DIRECTION2.RIGHT) 
+//     {
+//       redGhost.left += ghostSpeed;
+//     }
+
+    
+//     // Update the CSS position of the red ghost
+//     updateRedGhostPosition();
+//   } 
+//   else 
+//   {
+//     // If the next movement is not valid, randomly choose a new direction
+//     redGhostDirection = getRandomDirection();
+//   }
+// }
+// }
+
+
+// // Function to update the CSS position of the red ghost
+// function updateRedGhostPosition() 
+// {
+//   const cellSize = 8; // Size of each grid cell is 8x8
+//   const ghostSize = 16; // Size of the red ghost is 16x16
+
+//   // Calculate the offset to center the red ghost within the cell
+//   const xOffset = (cellSize - ghostSize) / 2; // (8 - 16) / 2 = -8/2 = -4
+//   const yOffset = (cellSize - ghostSize) / 2; // (8 - 16) / 2 = -8/2 = -4
+
+//   console.log("------------------");
+//   // Calculate the new position of the red ghost
+//   console.log("redGhost.left " + redGhost.left); // 96.4
+//   const xTranslate = redGhost.left + xOffset; // 96.4 + (-4) = 92.4
+//   console.log("  redGhostElement.style.top = `${yTranslate}px`; xTranslate = " + xTranslate); // 92.4
+
+//   console.log("redGhost.top " + redGhost.top); // 84
+//   const yTranslate = redGhost.top + yOffset; // 84 +(-4) = 80
+//   console.log("redGhostElement.style.left = `${xTranslate}px`; yTranslate = " + yTranslate); // 80
+
+
+//   // Update the CSS position of the red ghost
+//   redGhostElement.style.top = `${yTranslate}px`;
+//   redGhostElement.style.left = `${xTranslate}px`;
+
+// }
+
+
+// // Function to check if the next movement is valid (not colliding with a wall)
+// function isValidMove(row, col, direction) 
+// {
+//   if (
+//     (direction === DIRECTION2.UP && GPS_arr[row - 1][col] !== 0) ||
+//     (direction === DIRECTION2.DOWN && GPS_arr[row + 1][col] !== 0) ||
+//     (direction === DIRECTION2.LEFT && GPS_arr[row][col - 1] !== 0) ||
+//     (direction === DIRECTION2.RIGHT && GPS_arr[row][col + 1] !== 0)
+//   ) 
+//   {
+//     return true;
+//   }
+//   return false;
+// }
+
+// // Function to randomly choose a new direction for the red ghost
+// function getRandomDirection() 
+// {
+//   const possibleDirections = [DIRECTION2.UP, DIRECTION2.DOWN, DIRECTION2.LEFT, DIRECTION2.RIGHT];
+//   return possibleDirections[Math.floor(Math.random() * possibleDirections.length)];
+// }
+
+
+
+
+
+// ------------------------------------------------ GHOSTS  ------------------------------------------------ 
 
 // Starting intial positions of the ghosts in the nest 
 const blueGhost = { top: 107, left: 11.05 * 8};
@@ -1494,6 +1748,13 @@ function changeOG()
   orangeGhostElement.classList.add(ofaces[o_indx]);
 }
 
+
+
+
+
+
+
+
 // Function to update the CSS position of a ghost
 function updateGhostPosition(ghost, ghostElement) 
 {
@@ -1534,9 +1795,9 @@ const ghostSpeedSpace = 8; // Adjust the space as needed
 // Function to move the ghosts inside the house
 function moveGhosts() 
 {
-  if(!isPaused)// If the pause button is not pressed, the three ghosts are not paused, too
-  { 
-  // Update blue ghost position
+if(!isPaused)// If the pause button is not pressed, the three ghosts are not paused, too
+{
+    // Update blue ghost position
     if (blueGhostDirection === "up") 
     {
       blueGhost.top -= ghostSpeedSpace;
@@ -1597,17 +1858,22 @@ function moveGhosts()
       }
     }
 
-
+ 
     // Update the CSS position of each ghost
     updateGhostPosition(blueGhost, blueGhostElement);
     updateGhostPosition(pinkGhost, pinkGhostElement);
     updateGhostPosition(orangeGhost, orangeGhostElement);
 
-    let timeoutOG = setTimeout(changeOG, 450); 
-    let timeoutPG = setTimeout(changePG, 400); 
-    let timeoutBG = setTimeout(changeBG, 450); 
+    changeOG();
+    changePG();
+    changeBG();
+    // let timeoutOG = setTimeout(changeOG, 600); 
+    // let timeoutPG = setTimeout(changePG, 600); 
+    // let timeoutBG = setTimeout(changeBG, 0); 
   }
 }
+
+
 
 
 function readylabel() 
@@ -1620,13 +1886,16 @@ function readylabel()
   setTimeout(() => {
     maze_container.removeChild(labelReady);
     isReady = true;
-    
+
     // Call the moveGhosts function at regular intervals
-    moveG  = setInterval(moveGhosts, 150); 
-
-    // Call the moveRedGhost function at regular intervals
+    moveG  = setInterval(moveGhosts, 180); 
+    // WAY 1: Call the moveRedGhost function at regular intervals
+        // setInterval(() => {
+        //     moveRedGhost(redGhostDirection);
+        //   }, 150); // Adjust the interval as needed (in milliseconds)
+        
+    // WAY 2: Call the moveRedGhost function at regular intervals
     setInterval(moveRedGhost, 150); // Adjust the interval as needed (in milliseconds)
-
      // Adjust
     // Remove the starting Pacman sprite-emoji
     startingPacManEmoji.style.display = "none"; 
@@ -1634,6 +1903,6 @@ function readylabel()
 
     maze_container.appendChild(pacManEmoji);
   }, 
-    3000);
+    1000);
 }
 

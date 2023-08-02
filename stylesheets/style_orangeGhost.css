@@ -1,6 +1,6 @@
 /* Clyde - Orange Ghost */
-.left1_orangeGhost,.left2_orangeGhost,.right1_redGhost,.right2_redGhost,
-.up1_orangeGhost,.up1_orangeGhost, .down1_orangeGhost,.down2_orangeGhost
+.left1_orangeGhost,.left2_orangeGhost,.right1_orangeGhost,.right2_orangeGhost,
+.up1_orangeGhost,.up2_orangeGhost, .down1_orangeGhost,.down2_orangeGhost
 {
     background-image: url("../assets/images/game/spritesheet.png");
         

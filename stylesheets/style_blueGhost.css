@@ -1,6 +1,6 @@
 /* Inky - Blue Ghost */
 .left1_blueGhost,.left2_blueGhost,.right1_blueGhost,.right2_blueGhost,
-.up1_blueGhost,.up1_blueGhost, .down1_blueGhost,.down2_blueGhost
+.up1_blueGhost,.up2_blueGhost, .down1_blueGhost,.down2_blueGhost
 {
     background-image: url("../assets/images/game/spritesheet.png");
         

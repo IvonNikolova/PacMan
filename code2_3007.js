@@ -16,6 +16,77 @@ const GHOST_NEST_VALUE = 4;
 const TUNNEL_TELEPORT_VALUE = 5;
 const FRUIT_VALUE = 6;
 
+// ghost maze testing
+// const  GPS_arr = [
+//     //0 1  2  3  4  5  6 7  8  9 10  11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
+//     // 1                                                                                             // Y's       // X's
+//    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//----> 1*8px = 8
+//     // 2
+//    [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],//----> 2*8px = 16
+//    // 3
+//    [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],//----> 3*8px = 24
+//    // 4
+//    [0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0],//----> 4*8px = 32
+//    // 5
+//    [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],//----> 5*8px = 40
+//    // 6
+//    [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],//----> 6*8px = 48
+//    // 7
+//    [0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0],//----> 7*8px = 56
+//    // 8
+//    [0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0],//----> 8*8px = 64
+//    // 9
+//    [0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0],//----> 9*8px = 72
+   
+//    // 10
+//    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 10*8px = 80
+//    // 11
+//    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 11*8px = 88
+   
+//    // 12 - Red GHOST 
+//    [0, 0, 0, 0, 0, 0, 1, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 12*8px = 96
+//    // 13
+//    [0, 0, 0, 0, 0, 0, 1, 0, 0, 5, 0, 0, 0, 4, 4, 0, 0, 0, 5, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 13*8px = 104
+//    // 14
+//    [0, 0, 0, 0, 0, 0, 1, 0, 0, 5, 0, 4, 4, 4, 4, 4, 4, 0, 5, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 14*8px = 112
+//    // 15 ---- the tunnel teleport's row, (15,0) and (15,27)
+//    [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 4, 4, 4, 4, 4, 4, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 ],//----> 15*8px = 120
+//    // 16 
+//    [0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 4, 4, 4, 4, 4, 4, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 16*8px = 128
+//    // 17
+//    [0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 17*8px = 136
+//    // 18
+//    [0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 18*8px = 144
+//    // 19
+//    [0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 19*8px = 152
+//    // 20
+//    [0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 20*8px = 160
+//    // 21
+//    [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],//----> 21*8px = 168
+//    // 22
+//    [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],//----> 22*8px = 176
+                                                                                        
+//                                                                                         // ---->22.5*8=180
+//    // 23
+//    [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],//----> 23*8px = 184
+  
+//    // 24,index 23     //startPacMan, first 3 value at index 13, second 3 value at 14
+//    [0, 2, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 2, 0], //----> 24*8px = 192
+//    // 25
+//    [0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0],//----> 25*8px = 200
+//    // 26
+//    [0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0],//----> 26*8px = 208
+//    // 27
+//    [0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0],//----> 27*8px = 216
+//    // 28
+//    [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],//----> 28*8px = 224
+//    // 29
+//    [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],//----> 29*8px = 232
+//    // 30
+//    [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],//----> 30*8px = 240
+//    // 31 
+//    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]//----> 31*8px = 248
+//   ];
 // The container - 2d array which represents the objects as values 
     // Rows x Columns i.e. 28 x 31 = 868 VALUES
 const  GPS_arr = [
@@ -44,7 +115,7 @@ const  GPS_arr = [
  // 11
  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 11*8px = 88
  
- // 12
+ // 12 - Red GHOST 
  [0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 12*8px = 96
  // 13
  [0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 4, 4, 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0],//----> 13*8px = 104
@@ -524,10 +595,10 @@ var scoresGazers = 0;
 const container = document.querySelector(".maze");
 
 const pellets = container.querySelectorAll(".dot-pellet");
-console.log("All inserted Pellets: " + pellets.length); // 240
+// console.log("All inserted Pellets: " + pellets.length); // 240
 
 const gazers = document.querySelectorAll(".gazer-pellet"); 
-console.log("All inserted Power pellets: " + gazers.length); // 4
+// console.log("All inserted Power pellets: " + gazers.length); // 4
 
 
 
@@ -588,7 +659,7 @@ function isallowedStep(pos)
   // x columns
   if (pos.x >= 0 && pos.x < 28 && pos.y >= 0 && pos.y < 31) 
   {
-    console.log(pos.y + "," + pos.x);
+    // console.log("Pacman positions: " + pos.y + "," + pos.x);
     // Ensure that the position is not a wall
     // if (GPS_arr[pos.y][pos.x] !== 0) // 0's are the walls
     // {
@@ -661,19 +732,17 @@ function isallowedStep(pos)
           scoreElement_highscore.textContent = scores.toString().padStart(8, '0'); // Update the score display with padding
           scoreElement_1up.textContent = scores.toString().padStart(8, '0'); // Update the score display with padding
       
-          console.log("Scores: " + scores);
+          // console.log("Scores: " + scores);
 
 
-      
-
+    
         // Fruits 
-           if(scores === 50 || scores === 500 || scores === 1500) //|| scores === 2000 || scores === 2500)
+           if(scores === 50 || scores === 800 || scores === 2000) //|| scores === 2000 || scores === 2500)
           { 
             
             insertCherry();
             
           }
-
           
           
 
@@ -825,6 +894,7 @@ function eatingMoods()
   //setTimeout(eatingMoods, 100); // way 1 - CHANGING MULTIPLE FACES in ONE CELL
  // nothing // way 2 - CHANGING ONE BY ONE FACES i.e. ONE FACE EACH CELL
 }
+var x_translate, y_translate;
 
 // Function to update Pacman's position in the DOM
 function update_pacManPos() 
@@ -854,8 +924,8 @@ function update_pacManPos()
   const y_offset = (cell_size - pacman_size) / 2; // (-7) / 2 = 3.5
 
   // Calculate the translated position
-  const x_translate = pacmanPos.x * cell_size + x_offset;
-  const y_translate = pacmanPos.y * cell_size + y_offset;
+    x_translate = pacmanPos.x * cell_size + x_offset;
+    y_translate = pacmanPos.y * cell_size + y_offset;
 
   // Use another one Pacman sprite-emoji which is the main one
   //pacManEmoji.className = "pacman";
@@ -865,6 +935,11 @@ function update_pacManPos()
 
   // Set the position of the existing and main Pacman element
   pacManEmoji.style.transform = `translate(${x_translate}px, ${y_translate}px)`;
+
+//   console.log("Pacman positions: " + pacmanPos.x + "," + pacmanPos.y);
+//   console.log("Pacman translate-positions: " + x_translate + "," + y_translate);
+
+extractPPositionValues(x_translate, y_translate);
 
   // Modify the style properties based on movement direction
   if (currentDirection === DIRECTION.RIGHT) 
@@ -914,6 +989,7 @@ function update_pacManPos()
 }
 
 
+
 function moveRight() 
 {
   if(pacmanPos.x === 27 && pacmanPos.y === 14) 
@@ -955,7 +1031,7 @@ function moveLeft()
   }
   else
   {
-    const newPos = { x: pacmanPos.x - 1, y: pacmanPos.y };
+    const newPos = { x: pacmanPos.x - 1, y: pacmanPos.y }; //left
     // if (isallowedStep(newPos)) {
     //   pacmanPos = newPos;
     //   update_pacManPos();
@@ -963,6 +1039,8 @@ function moveLeft()
     return newPos;
   }
 }
+
+
 
 function moveUp() 
 {
@@ -984,6 +1062,7 @@ function moveDown()
 
   return newPos;
 }
+
 
 // ------------------------------------------------ PAUSE  ------------------------------------------------ 
 
@@ -1108,6 +1187,7 @@ function movePacman()
       {
         pacmanPos = nextPos;
         update_pacManPos();
+        
         setTimeout(eatingMoods, 100); // way 2 - CHANGING ONE BY ONE FACES i.e. ONE FACE EACH CELL
         // nothing here   // way 1 - CHANGING MULTIPLE FACES in ONE CELL
         // moveG = setInterval(moveG,150);
@@ -1115,12 +1195,12 @@ function movePacman()
         // Check if Pacman has eaten the cherry
         if (isShownCherry !== null)
         {
-          console.log("Cherry is somewhere in the maze!");
+          // console.log("Cherry is somewhere in the maze!");
           checkCherryEaten(); 
         }
         else if(isShownCherry === null)
         {
-          console.log("Cherry is still not shown! ");
+          // console.log("Cherry is still not shown! ");
         }
       } 
       else 
@@ -1257,7 +1337,7 @@ function checkCherryEaten()
 
 function eatCherry()
 {
-  console.log("****************eat cherry da!****************");
+  // console.log("****************eat cherry da!****************");
   // Increment points
   scores += 100;
   scoreElement_highscore.textContent = scores.toString().padStart(8, '0'); // Update the score display with padding
@@ -1273,111 +1353,451 @@ readylabel();
 update_pacManPos();
 
 // Start the automatic movement of Pacman
-let autoMoveInterval = setInterval(movePacman, 90);
+let autoMoveInterval = setInterval(movePacman, 180);
 let eatingMoodsTimeout3 = setTimeout(eatingMoods, 200); // eatingMoods(); 
 
 
 
-// ------------------------------------------------ RED GHOST ------------------------------------------------ 
 
-// Initial positions 
-const redGhost = { top: 10.5 * 8, left: 13.05 * 8};
-/* top: 85px;    i.e. 85/8 = 10,625 */
-/* left: 105px; i.e.  105/8 = 13.125 */
+
+// ------------------------------------------------ RED GHOST ------------------------------------------------ 
+// TO DO 
+
+// 4. Ghost in tunnel 
+
+
+// 5. gazer eaten - ghosts become afraid 
+//     6. localstorage  !
+//     7. collision pacman and the ghosts - same coordinates, 
+//      compare at each step pacman and red ghost coordinates 
+
+
+  
+// WAY 2
+// Create the red ghost element and add it to the maze container
 var redGhostElement = document.createElement("div");
 redGhostElement.classList.add("left1_redGhost");
 redGhostElement.style.position = "absolute";
-redGhostElement.style.top = `${redGhost.top}px`;
-redGhostElement.style.left = `${redGhost.left}px`;
+// vertical line:top is y = column = up and down
+// horizontal line: left is x = row = left and right
+redGhostElement.style.top = 10.5 * 8 + "px"; // Initial positioning 
+redGhostElement.style.left = 13.05 * 8 + "px"; // Initial positioning 
 maze_container.appendChild(redGhostElement);
 
+// First move positioning
+var redGhost = { top: 11.5 * 8, left: 13.05 * 8, size: 16};
+//const redGhost = { top: 92, left: 104.4, size: 16}; 
+
+// Define the direction constants
+const DIRECTION2 = {
+  UP: "up",
+  DOWN: "down",
+  LEFT: "left",
+  RIGHT: "right"
+};
+
+// Set the initial direction for the red ghost
+var redGhostDirection = DIRECTION2.LEFT;
+
+// console.log("INITIAL DIRECTION is " + redGhostDirection);
+// const cellSize_init = 8;
+// const ghostSize_init = 16;
+// const halfCellSize_init = cellSize_init / 2;;
+// const halfGhostSize_init = ghostSize_init / 2;
+// console.log(" ---------------------------- ");
+// console.log(" initial info: redGhost.top = " + redGhost.top );
+// console.log(" initial info: redGhost.left = " + redGhost.left);
+// // Calculate the row and column of the current cell
+// const row_init = Math.floor(redGhost.top / cellSize_init);
+// const col_init = Math.floor(redGhost.left / cellSize_init);
+// const cellCenterTop_init = row_init * cellSize_init + halfCellSize_init;
+// const cellCenterLeft_init = col_init * cellSize_init + halfCellSize_init;
+// const xTranslate_init = cellCenterLeft_init - halfGhostSize_init;
+// const yTranslate_init = cellCenterTop_init - halfGhostSize_init;
+// console.log(" ---------------------------- ");
+// console.log("initial: yTranslate = " + yTranslate_init);
+// console.log("initial: xTranslate = " + xTranslate_init);
+
+let lastRedGhostDirection = DIRECTION2.LEFT;
 
 
-//>>>>>>>>>>>>>>>>>> the RED GHOST does NOT move correctly but it moves, it is just a test for now!
-
-// Define the movement speed for the red ghost
-const ghostSpeed = 8; // Adjust the speed as needed
-
-
-// Function to update the CSS position of the red ghost
-function updateRedGhostPosition() 
-{
-  redGhostElement.style.top = `${redGhost.top}px`;
-  redGhostElement.style.left = `${redGhost.left}px`;
-}
-
-
-// Function to move the red ghost randomly in the maze
 function moveRedGhost() 
 {
-  /*
-    possibleDirections is an array 
-    that contains the possible movement directions for the red ghost. 
-    Each element of the array represents a direction 
-    in which the ghost can move. 
-    In this case, the array contains the strings "up", "down", "left", and "right", 
-    representing the four cardinal directions.
-  */
-  const possibleDirections = ["up", "down", "left", "right"];
+  // Define the movement speed for the red ghost
+// const ghostSpeed = 8; // Adjust the speed as needed
+  const cellSize = 8;
+  
+  if (!isPaused) 
+  {
 
-/*
-  This expression below has to give us randomly a result i.e. an index for the direction
-  from 0 to 3, inclusive. 
-  Which choose the valid next direction for the red ghost.
-
-    Index 0: "up"
-    Index 1: "down"
-    Index 2: "left"
-    Index 3: "right"
-*/
-const randomDirection = possibleDirections[Math.floor(Math.random() * possibleDirections.length)];
-/*
-  The logic of the above expression:
-    1. Math.random(): 
-      Produces a random floating-point number between 0 and 1 (exclusive).
-
-    2. Math.random() * possibleDirections.length: 
-        Multiplies the random number by the length of possibleDirections, 
-        which scales the range to be between 0 and the length of the array (exclusive). 
-        
-        For example, the possibleDirections has 4 elements, 
-        this expression will give a random number between 0 and 3.99999... 
-        (but not including 4).
-    3. Math.floor(Math.random() * possibleDirections.length): 
-        Rounds down the scaled random number to the nearest integer. 
-        This gives you an integer between 0 and possibleDirections.length - 1, 
-        which 
-        
-        is a valid index to access an element in the array.
-*/
-if(!isPaused)// If the pause button is not pressed, the three ghosts are not paused, too
-{
-  if (randomDirection === "up") 
+    // console.log("Red ghost: DIRECTION is " + redGhostDirection);
+    if(redGhostDirection == DIRECTION2.UP)
   {
-    redGhost.top -= ghostSpeed;
-  } 
-  else if (randomDirection === "down") 
-  {
-    redGhost.top += ghostSpeed;
-  } 
-  else if (randomDirection === "left") 
-  {
-    redGhost.left -= ghostSpeed;
-  } 
-  else if (randomDirection === "right") 
-  {
-    redGhost.left += ghostSpeed;
+    // Remove all classes from redGhostElement
+    redGhostElement.className = "";
+    changeRG_up();
+    // var iUp = setInterval(changeRG_up, 100);
   }
+  else if(redGhostDirection === DIRECTION2.DOWN)
+  {
+    clearInterval();
+    // Remove all classes from redGhostElement
+    redGhostElement.className = "";
+    changeRG_down();
+    // var iDown = setInterval(changeRG_down, 100);
+  }
+  else if(redGhostDirection === DIRECTION2.LEFT)
+  {
+    // Remove all classes from redGhostElement
+    redGhostElement.className = "";
+    changeRG_left();
+    //var iLeft = setInterval(changeRG_left, 100);
 
- 
-    // Update the position of the red ghost
-    updateRedGhostPosition();
+  }
+  else if(redGhostDirection === DIRECTION2.RIGHT)
+  {
+    // Remove all classes from redGhostElement
+    redGhostElement.className = "";
+    changeRG_right();
+    //var iRight = setInterval(changeRG_right, 100);
+  }
+//   clearInterval(iRight);
+//   clearInterval(iLeft);
+//   clearInterval(iDown);
+//   clearInterval(iUp);
+
+    const row = Math.floor(redGhost.top / 8);
+    const col = Math.floor(redGhost.left / 8);
+
+    console.log("ROW = " + row);
+    console.log("COL = " + col);
+  
+     // LEFT to right
+    if(row === 14 && col === 0) 
+    {
+      console.log("GHOST IN TUNNEL: LEFT to right");
+    //row
+    redGhost.top = 112; 
+    //col
+    redGhost.left = 212; //26.5*8 = 212,..., IT HAS TO BE different from col 27, otherwise, inifinite move
+    }  
+    // RIGHT to left
+    else if (row === 14 && col === 27) 
+    {
+      console.log("GHOST IN TUNNEL: RIGHT to left");
+
+      // Set the red ghost's position to the destination teleportation cell 
+      //row - Update the pixel position for top
+      redGhost.top = 112; //14*8 = 112, later, 112 - 4 = 108 translated pos 
+      //col -  Update the pixel position for left
+      redGhost.left = 1 * 8; // IT HAS TO BE different from col 0, otherwise, inifinite move
+    }
+    else
+    {
+
+    
+        const possibleMoves = [];
+
+        // Check if the movement in each direction is valid
+        if (isValidMove(row - 1, col) && lastRedGhostDirection !== DIRECTION2.DOWN) 
+        {
+            // changeRG_up();
+        possibleMoves.push(DIRECTION2.UP);
+        }
+        if (isValidMove(row + 1, col) && lastRedGhostDirection !== DIRECTION2.UP) 
+        {
+            // changeRG_down();
+        possibleMoves.push(DIRECTION2.DOWN);
+        }
+        if (isValidMove(row, col - 1) && lastRedGhostDirection !== DIRECTION2.RIGHT) 
+        {
+        //   changeRG_left();
+        possibleMoves.push(DIRECTION2.LEFT);
+        }
+        if (isValidMove(row, col + 1) && lastRedGhostDirection !== DIRECTION2.LEFT) 
+        {
+            // changeRG_right();
+        possibleMoves.push(DIRECTION2.RIGHT);
+        }
+
+        if (possibleMoves.length > 0) 
+        {
+        // If there are valid moves available, 
+        // pick a random one 
+        // and update the direction
+        const randomIndex = Math.floor(Math.random() * possibleMoves.length);
+        redGhostDirection = possibleMoves[randomIndex];
+
+        // Update the cell-based position based on the movement direction
+        if (redGhostDirection === DIRECTION2.UP) 
+        {
+        
+            redGhost.top -= cellSize;
+        } 
+        else if (redGhostDirection === DIRECTION2.DOWN) 
+        {
+        
+            redGhost.top += cellSize;
+        } 
+        else if (redGhostDirection === DIRECTION2.LEFT) 
+        {
+        
+            redGhost.left -= cellSize;
+        } 
+        else if (redGhostDirection === DIRECTION2.RIGHT) 
+        {
+        
+            redGhost.left += cellSize;
+        }
+
+        // Update the last movement direction
+        lastRedGhostDirection = redGhostDirection;
+
+        // Update the position of the red ghost
+        updateRedGhostPosition();
+        
+        } 
+        else 
+        {
+        // If no valid moves are available, randomly choose a new direction
+        redGhostDirection = getRandomDirection();
+        }
+    }
   }
 }
 
-// ------------------------------------------------ THE THREE GHOSTS  ------------------------------------------------ 
+// ---------------------------------- TUNNEL THINGS
+// LEFT to right
+// if(pacmanPos.x === 0 && pacmanPos.y === 14) 
+  // {
+  //   const newPos = { x: 27, y: 14 };
+// }
+// RIGHT to left
+// if(pacmanPos.x === 27 && pacmanPos.y === 14) 
+  // {
+  //   const newPos = { x: 0, y: 14 };
+  // }
 
 
+
+// // Function to update the position of the red ghost
+function updateRedGhostPosition() 
+{
+  const cellSize = 8;
+  const ghostSize = redGhost.size;
+  const halfCellSize = cellSize / 2;;
+  const halfGhostSize = ghostSize / 2;
+ 
+//   console.log(" ---------------------------- ");
+//   console.log(" redGhost.top = " + redGhost.top );
+//   console.log(" redGhost.left = " + redGhost.left);
+
+  // Calculate the row and column of the current cell
+  let row = Math.floor(redGhost.top / cellSize);
+  let col = Math.floor(redGhost.left / cellSize);
+
+
+//   if(pacmanPos.x === 27 && pacmanPos.y === 14) 
+//   {
+//     const newPos = { x: 0, y: 14 };
+//     // if (isallowedStep(newPos)) 
+//     // {
+//     //   // Update Pacman's position
+//     //   pacmanPos = newPos;
+//     //   update_pacManPos();
+//     // }
+//     return newPos;
+//   }
+//   else 
+//   {
+//     const newPos = { x: pacmanPos.x + 1, y: pacmanPos.y };
+//     // if (isallowedStep(newPos)) {
+//     //   pacmanPos = newPos;
+//     //   update_pacManPos();
+//     // }
+//     return newPos;
+//  }
+
+    // Calculate the center position of the current cell
+    const cellCenterTop = row * cellSize + halfCellSize;
+    const cellCenterLeft = col * cellSize + halfCellSize;
+    
+    // Calculate the new position of the red ghost
+   
+    var xTranslate = cellCenterLeft - halfGhostSize;
+    var yTranslate = cellCenterTop - halfGhostSize;
+
+
+    //   console.log(" ---------------------------- ");
+    //   console.log("new top is yTranslate = " + yTranslate);
+    //   console.log("new left is xTranslate " + xTranslate);
+
+    // Update the CSS position of the red ghost
+    redGhostElement.style.top = `${yTranslate}px`;
+    redGhostElement.style.left = `${xTranslate}px`;
+
+    // Call the function to extract the values each time they change
+    extractGPositionValues(xTranslate, yTranslate);
+ 
+}
+
+
+// Function to check if the next movement is valid (not colliding with a wall)
+function isValidMove(row, col) 
+{
+  // There is no actual need of these if-condition below 
+  // because the ghost is synchronised with the 0's 
+  // i.e. walls which are the actual stoppers i.e. boundaries
+      //  GPS_arr is a 2D array containing maze layout as described earlier
+      if (row < 0 || col < 0 || row >= 31 || col >= 28) 
+      {
+          // console.log(" GPS_arr[0].length = " + GPS_arr[0].length); // 28
+          // console.log(" GPS_arr.length = " + GPS_arr.length); // 31
+        // console.log("NOT ALLOWED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+          return false; // The move is outside the maze boundaries
+      }
+    //   return (GPS_arr[row][col] !== 0  && GPS_arr[row][col] !== 1  && GPS_arr[row][col] !== 2  && GPS_arr[row][col] !== 3 && GPS_arr[row][col] !== 4);
+    // }
+  return (GPS_arr[row][col] !== 0 && GPS_arr[row][col] !== 4);
+}
+
+// Function to randomly choose a new direction for the red ghost
+function getRandomDirection() 
+{
+  const possibleDirections = [DIRECTION2.UP, DIRECTION2.DOWN, DIRECTION2.LEFT, DIRECTION2.RIGHT];
+  const dir = possibleDirections[Math.floor(Math.random() * possibleDirections.length)];
+  
+  return dir;
+}
+  
+//---------- ANIMATION OF RED GHOST-------
+// Define the pink ghost images of moving moods
+const rfaces_l = [  "left1_redGhost", "left2_redGhost", "left1_redGhost"];
+const rfaces_r = [ "right1_redGhost", "right2_redGhost", "right1_redGhost"];
+const rfaces_d = [ "down1_redGhost", "down2_redGhost", "down1_redGhost"];
+const rfaces_u = [ "up1_redGhost", "up2_redGhost", "up1_redGhost"];
+
+var r_indx_l = 0;
+var r_indx_r = 0;
+var r_indx_u = 0;
+var r_indx_d = 0;
+
+function changeRG_left() 
+{
+    r_indx_l = (r_indx_l + 1) % rfaces_l.length; 
+    // console.log("r_indx_l" + r_indx_l);
+    redGhostElement.classList.remove(...rfaces_l);
+    redGhostElement.classList.add(rfaces_l[r_indx_l]);
+}
+
+function changeRG_right() 
+{
+    r_indx_r = (r_indx_r + 1) % rfaces_r.length; 
+    // console.log("r_indx_r" + r_indx_r);
+    redGhostElement.classList.remove(...rfaces_r);
+    redGhostElement.classList.add(rfaces_r[r_indx_r]);
+}
+
+function changeRG_up() 
+{
+    r_indx_u = (r_indx_u + 1) % rfaces_u.length; 
+    // console.log("r_indx_u" + r_indx_u);
+    redGhostElement.classList.remove(...rfaces_u);
+    redGhostElement.classList.add(rfaces_u[r_indx_u]);
+}
+
+function changeRG_down() 
+{
+    r_indx_d = (r_indx_d + 1) % rfaces_d.length; 
+    // console.log("r_indx_d" + r_indx_d);
+    redGhostElement.classList.remove(...rfaces_d);
+    redGhostElement.classList.add(rfaces_d[r_indx_d]);
+}
+// ----------------------------------------------- COLLISION between the red ghost and Pacman ----------------------------------------------------
+/*
+        redGhost.top = 12 -> 12 / 8 = 1.5, floor(1.5) = 1
+        redGhost.left = 168.4 -> 168,4 / 8 = 21.05, floor(21.05) = 21
+
+        Pacman positions: 21,1
+
+        ---------------------------- 
+
+        new top is yTranslate = 4
+        new left is xTranslate = 164
+
+        Pacman translate-positions: 164.5, 4.5 -> floor(4.5) and floor(164.5) to get 4 and 164
+*/
+
+// Extract the coordinate values each time they change of the ghost
+function extractGPositionValues(x, y)
+{
+    console.log("Ghost: xTranslate:", x, ", yTranslate:", y);
+   
+    return { x, y }; // Return an object with x and y properties
+}
+
+// Extract the coordinate values each time they change of Pacman
+function extractPPositionValues(x, y)
+{
+    
+    x =  Math.floor(x);
+    y =  Math.floor(y);
+    console.log("Pacman: xTranslate:", x, ", yTranslate:", y);
+
+    return { x, y }; // Return an object with x and y properties
+}
+
+
+// Function to check if the coordinates are the same
+function areCoordinatesEqual(x1, y1, x2, y2) 
+{
+    return x1 === x2 && y1 === y2;
+  }
+  
+// Combine functions
+  function extractBothCoordinates() 
+  {
+
+    // Declare variables for Ghost and Pacman coordinates
+    let ghostX, ghostY, pacmanX, pacmanY;
+
+    // Call extract1 and extract2 to get their coordinates
+    const ghostCoordinates = extractGPositionValues(ghostX, ghostY);
+    const pacmanCoordinates = extractPPositionValues(pacmanX, pacmanY);
+
+    // Extract the x and y coordinates for Ghost and Pacman
+    ghostX = ghostCoordinates.x;
+    ghostY = ghostCoordinates.y;
+    pacmanX = pacmanCoordinates.x;
+    pacmanY = pacmanCoordinates.y;
+
+
+
+    // Check if the coordinates are already extracted from extract1 and extract2
+    if (!ghostCoordinates || !pacmanCoordinates) 
+    {
+        console.log("Coordinates not extracted yet.");
+        return;
+    }
+
+
+
+    // Compare the coordinates
+    if (areCoordinatesEqual(ghostX, ghostY, pacmanX, pacmanY)) 
+    {
+        console.log("Ghost and Pacman have the same coordinates.");
+    } 
+    else 
+    {
+        console.log("Ghost and Pacman have different coordinates.");
+    }
+}
+  
+
+
+
+
+// ------------------------------------------------ GHOSTS  ------------------------------------------------ 
 
 // Starting intial positions of the ghosts in the nest 
 const blueGhost = { top: 107, left: 11.05 * 8};
@@ -1494,6 +1914,13 @@ function changeOG()
   orangeGhostElement.classList.add(ofaces[o_indx]);
 }
 
+
+
+
+
+
+
+
 // Function to update the CSS position of a ghost
 function updateGhostPosition(ghost, ghostElement) 
 {
@@ -1534,9 +1961,9 @@ const ghostSpeedSpace = 8; // Adjust the space as needed
 // Function to move the ghosts inside the house
 function moveGhosts() 
 {
-  if(!isPaused)// If the pause button is not pressed, the three ghosts are not paused, too
-  { 
-  // Update blue ghost position
+if(!isPaused)// If the pause button is not pressed, the three ghosts are not paused, too
+{
+    // Update blue ghost position
     if (blueGhostDirection === "up") 
     {
       blueGhost.top -= ghostSpeedSpace;
@@ -1597,17 +2024,22 @@ function moveGhosts()
       }
     }
 
-
+ 
     // Update the CSS position of each ghost
     updateGhostPosition(blueGhost, blueGhostElement);
     updateGhostPosition(pinkGhost, pinkGhostElement);
     updateGhostPosition(orangeGhost, orangeGhostElement);
 
-    let timeoutOG = setTimeout(changeOG, 450); 
-    let timeoutPG = setTimeout(changePG, 400); 
-    let timeoutBG = setTimeout(changeBG, 450); 
+    changeOG();
+    changePG();
+    changeBG();
+    // let timeoutOG = setTimeout(changeOG, 600); 
+    // let timeoutPG = setTimeout(changePG, 600); 
+    // let timeoutBG = setTimeout(changeBG, 0); 
   }
 }
+
+
 
 
 function readylabel() 
@@ -1620,20 +2052,26 @@ function readylabel()
   setTimeout(() => {
     maze_container.removeChild(labelReady);
     isReady = true;
-    
+
+
+
     // Call the moveGhosts function at regular intervals
-    moveG  = setInterval(moveGhosts, 150); 
-
-    // Call the moveRedGhost function at regular intervals
-    setInterval(moveRedGhost, 150); // Adjust the interval as needed (in milliseconds)
-
+    moveG  = setInterval(moveGhosts, 180); 
+    // WAY 1: Call the moveRedGhost function at regular intervals
+        // setInterval(() => {
+        //     moveRedGhost(redGhostDirection);
+        //   }, 150); // Adjust the interval as needed (in milliseconds)
+        
+    // WAY 2: Call the moveRedGhost function at regular intervals
+    setInterval(moveRedGhost, 180); // Adjust the interval as needed (in milliseconds)
      // Adjust
     // Remove the starting Pacman sprite-emoji
     startingPacManEmoji.style.display = "none"; 
     pacManEmoji.classList.add(allEatingMoods[indx_mood]);
-
+    
+    // extractBothCoordinates();
     maze_container.appendChild(pacManEmoji);
   }, 
-    3000);
+    500);
 }
 

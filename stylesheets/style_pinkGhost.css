@@ -1,6 +1,6 @@
 /* Pinky - Pink Ghost */
 .left1_pinkGhost,.left2_pinkGhost,.right1_pinkGhost,.right2_pinkGhost,
-.up1_pinkGhost,.up1_pinkGhost, .down1_pinkGhost,.down2_pinkGhost{
+.up1_pinkGhost,.up2_pinkGhost, .down1_pinkGhost,.down2_pinkGhost{
     background-image: url("../assets/images/game/spritesheet.png");
         
     width: 16px; 
