@@ -30,10 +30,16 @@ Additional to be done tasks:
 
 
 
-TO DO from the meeting from 28.07.23
-1. correct red ghost problem  with jumping and if the ghost collides a wall it changes randomly to another valid direction, but also, we need to add an option while moving in the corridors if a valid direction in a corridor appears it could change it, too, before collides a wall if it decides!
-2. animation of the red ghost ! 
-3. gazer eaten - ghosts become afraid 
-    4. localstorage  !
-    5. collision pacman and the ghosts - same coordinates, 
-     compare at each step pacman and red ghost coordinates 
+TO DO from the meeting from 02.08.23
+ I. Collision pacman and the ghosts - same coordinates,  
+compare at each step pacman and red ghost coordinates <br />
+- Призракът изяжда Пакман (спри движение  Interval на Пакман)<br />
+- Анимация на мъртъв Пакман <br />
+- Намали животи<br />
+- Започни от начална позиция + Пакман + призрак<br />
+II. Gazer eaten by Pacman -> ghosts become afraid  (Interval)<br />
+- Пакман изяжда Призракa<br />
+- Анимация на мъртъв Призрак<br />
+- Започни от начална позиция + призрак<br />
+ - Добави бонус точки<br />
+
