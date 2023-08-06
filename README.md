@@ -19,7 +19,7 @@ Secondary to be done tasks:
 1. Storage the highest points on the browser: localStorage
 2. Collisions with the ghosts <br />
    2.1. Lives of Pacman: decrease them
-3. Freezed Ghosts - change the ghosts mode when a gazer is eaten **(DONE - 06.08.23)** <br />
+3. Freezed Ghosts - change the ghosts mode when a gazer is eaten**(DONE - 06.08.23)** <br />
    3.1. Count the bonus points when Pacman eats a freezed blue ghost
 
 Additional to be done tasks: 
