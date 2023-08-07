@@ -40,6 +40,6 @@ compare at each step pacman and red ghost coordinates <br />
    II. Gazer eaten by Pacman -> ghosts become afraid  (Interval)<br />
 - Пакман изяжда Призракa **(DONE - 7.08.23)** <br /> 
 - Анимация на мъртъв Призрак<br />
-- Започни от начална позиция + призрак **(DONE - 7.08.23)** + Пакман <br />
+- Започни от начална позиция + призрак **(DONE - 7.08.23)**  <br />
  - Добави бонус точки<br />
 
