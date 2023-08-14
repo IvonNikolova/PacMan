@@ -9,7 +9,6 @@ Important to be done tasks:
       Explanation: take any opportunity for any valid direction, if such appears, while moving in the corridors, do not wait until the end - to collide a wall in order to change the direction. <br />
    1.2. Animation of the red ghost while moving. **(DONE - 31.07.23)** <br />
    1.3. Tunnel teleporting. **(DONE - 2.08.23)** <br />
-
 2. The other three ghosts:<br />
    2.1. Synchronise them to pause with the pause button **(DONE - 25.07.23)** <br />
    2.2. Create an animation, loop their moods while moving **(DONE - 25.07.23)** <br />
@@ -17,14 +16,12 @@ Important to be done tasks:
 3. Freezed Ghosts - change the ghosts mode when a gazer is eaten **(DONE - 06.08.23)** <br />
 4. Collisions with the ghosts **(DONE - 7.08.23)** <br />
 
-
 Additional to be done tasks: 
 1. Storage the highest points on the browser: localStorage <br />
 2. Cherry: correct its appearance  - create an interval (5 seconds and then to dissapear), no replicates (no more than one cherry) <br />
 3. Music: at the beginning | while eating | while just moving | when colliding with a ghost | when dying <br />
 4. Intro page: change to flex box <br />
 5. Buttons start/pause - correct the PAUSE window to allow pressing the pause button even having the PAUSE window  Top left button is not able to be pressed if space pause is pressed <br />
-
 
 
 TO DO from the meeting from 02.08.23 <br />
