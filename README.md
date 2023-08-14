@@ -33,13 +33,19 @@ Additional to be done tasks:
 TO DO from the meeting from 02.08.23 <br />
  I. Collision pacman and the ghosts - same coordinates,  
 compare at each step pacman and red ghost coordinates <br />
+
+
 - Призракът изяжда Пакман (спри движение  Interval на Пакман)<br />
-- Анимация на мъртъв Пакман <br />
-- Намали животи<br />
+- Анимация на мъртъв Пакман **(DONE - 10.08.23)** <br />
+- Намали животи **(DONE - 14.08.23)** <br />
 - Започни от начална позиция + призрак  **(DONE - 7.08.23)** + Пакман  <br />
+
    II. Gazer eaten by Pacman -> ghosts become afraid  (Interval)<br />
 - Пакман изяжда Призракa **(DONE - 7.08.23)** <br /> 
 - Анимация на мъртъв Призрак<br />
 - Започни от начална позиция + призрак **(DONE - 7.08.23)**  <br />
  - Добави бонус точки<br />
 
+III. The game <br />
+- Победа в полза на Пакман: всички pellets и gazers са изядени и има останали животи <br />
+- Загуба в полза на Призраците <br />
