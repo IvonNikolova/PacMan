@@ -947,7 +947,7 @@ function update_pacManPos()
 
 /* Insert the PacMan sprite-emoji correctly within maze corridors */
   const cell_size = 8; // the size of each grid cell is 8x8
-  const pacman_size = 15; // the size of the Pacman sprite-emoji is 15x15
+  const pacman_size = 16; // the size of the Pacman sprite-emoji is 15x15
 
   // Calculate the centering offsets
   /*
@@ -2211,20 +2211,32 @@ var indx_dead = 0;
 var deadPacmanInterval;
 function deadPacmanMoods() 
 {
+ 
+      
+ 
+  
   // Change the mood index by incrementing it 
   indx_dead = (indx_dead + 1) % allDeadMoods.length; 
-
   // We remove the previous dead mood of Pacman i.e. class 
   pacManEmoji.classList.remove(...allDeadMoods);
+
   // and add the new dead mood of Pacman
   pacManEmoji.classList.add(allDeadMoods[indx_dead]);
+
+
 }
+
+
+
+var countDownLives = 0;
 
 function synchronizeModifications() 
 {
-  
+ 
   if (collisionOccurred) 
   {
+
+    
 
     // Stop red ghost movement
     isRedGhostStopped = true;
@@ -2243,46 +2255,113 @@ function synchronizeModifications()
     pacManEmoji.className = "";
     pacManEmoji.className = "pacman0";
 
-    // Start the dead Pacman animation with a slight delay
+    
+      // Start the dead Pacman animation with a slight delay
     setTimeout(() => {
-      indx_dead = 0;
+
       
+      nextDirection = null;
+        // Modify the style properties based on movement direction
+        if (currentDirection === DIRECTION.RIGHT) //CORRECT
+        {
+          pacManEmoji.style.transform += "scaleY(-1)";
+        } 
+        else if (currentDirection === DIRECTION.LEFT) //CORRECT
+        {
+          pacManEmoji.style.transform += "scaleX(-1)";
+        }
+        else if (currentDirection === DIRECTION.UP) //CORRECT
+        {
+          pacManEmoji.style.transform += "rotate(90deg)";
+        } 
+        else if (currentDirection === DIRECTION.DOWN) //CORRECT
+        {
+          
+          pacManEmoji.style.transform += "rotate(-90deg)";
+        }
+        
+
+        // To start the animation of dead pacman from the very beginning each time
+        indx_dead = 0;
+     
+
       deadPacmanInterval = setInterval(deadPacmanMoods,250);
     }, 300);
+
+    countDownLives += 1;
+    console.log("countDownLives: " + countDownLives);
+
+    if(countDownLives != 0)
+    {
+      if(countDownLives == 1)
+      {
+        let life_3 = document.getElementsByClassName("life3")[0]; 
+        life_3.style.display = "none";
+      }
+      else if(countDownLives == 2)
+      {
+        let life_2 = document.getElementsByClassName("life2")[0]; 
+        life_2.style.display = "none";
+      }
+      else if(countDownLives == 3)
+      {
+        let life_1 = document.getElementsByClassName("life1")[0]; 
+        life_1.style.display = "none";
+      }
+    }
 
    
     pacmanPos = { x: 13, y: 23 }; 
 
-    // Reset any other relevant variables or states
-    collisionOccurred = false;
+    
 
-    // Wait for the specified delay time of 2000 as in readyLabel()
-    setTimeout(() => {
 
-      redGhostElement.classList.add("left1_redGhost");
 
-      // Stop the dead Pacman animation
-      pacManEmoji.className = "pacman0";
-      pacManEmoji.style.transform = `translate(${13.1 * 8}px, ${22.5 * 8}px)`;      
+    if(countDownLives == 1)// || countDownLives == 2 || countDownLives == 3)
+    {
+      // Reset any other relevant variables or states
+      collisionOccurred = false;
 
-      clearInterval(deadPacmanInterval);
- //pacManEmoji.style.transform = `translate(${13.1 * 8}px, ${22.5 * 8}px)`;  
- 
-         currentDirection =  DIRECTION.LEFT;
-        nextDirection = null;
- clearInterval(autoMoveInterval);
- autoMoveInterval = setInterval(movePacman,140); // if isPacmanStopped is true only!
+              // Wait for the specified delay time of 2000 as in readyLabel()
+              setTimeout(() => {
 
-      readylabel();
+                redGhostElement.classList.add("left1_redGhost");
+
+                // Stop the dead Pacman animation
+                pacManEmoji.className = "pacman0";
+                pacManEmoji.style.transform = `translate(${13.1 * 8}px, ${22.5 * 8}px)`;      
+
+                clearInterval(deadPacmanInterval);
+          //pacManEmoji.style.transform = `translate(${13.1 * 8}px, ${22.5 * 8}px)`;  
+          
+                  currentDirection =  DIRECTION.LEFT;
+                  nextDirection = null;
+            clearInterval(autoMoveInterval);
+            autoMoveInterval = setInterval(movePacman,140); // if isPacmanStopped is true only!
+
+                readylabel();
+
+      }, 3000);  
+    }
+    else
+    {
+      // Reset any other relevant variables or states
+      //collisionOccurred = false;
+
+      // Wait for the specified delay time of 2000 as in readyLabel()
+      setTimeout(() => {
+        
+        clearInterval(deadPacmanInterval);
+        clearInterval(autoMoveInterval);
+
+        gameOverlabel();
+
+      }, 3000);  
+
      
+    }
 
-           
-     
-
-    }, 3000);  
-
-   
-  }
+  }// if (collisionOccurred) 
 }
 
 
@@ -2397,6 +2476,53 @@ readylabel();
 
 
 
+function gameOverlabel() 
+{
+  clearInterval(moveG);
+  clearInterval(redGInterval);
+
+
+  const labelGameOver = document.createElement("div");
+  labelGameOver.classList.add("label-gameover");
+  maze_container.appendChild(labelGameOver);
+
+ // Remove the Pacman sprite-emoji
+ pacManEmoji.style.display = "none"; 
+  
+ setTimeout(() => {
+  // Remove all objects of out container
+    maze_container.innerHTML = "";
+    // maze_container.remove();
+    //const maze = document.querySelector(".maze");
+   
+    mazesInterval = setInterval(endMaze,200);
+ }, 
+ 3000);
+
+
+}
+
+
+
+// Define the three Pacman images of dead moods
+const mazes = [ 
+  "maze",
+  "mazeWhite"
+];
+
+var indx_mazes = 0;
+var mazesInterval;
+
+function endMaze()
+{
+  // Change the mood index by incrementing it 
+  indx_mazes = (indx_mazes + 1) % mazes.length; 
+  // We remove the previous dead mood of Pacman i.e. class 
+  maze_container.classList.remove(...mazes);
+
+  // and add the new dead mood of Pacman
+  maze_container.classList.add(mazes[indx_mazes]);
+}
 
 
 
@@ -2410,5 +2536,3 @@ readylabel();
 
 
 
-
-//------------------
