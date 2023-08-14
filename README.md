@@ -35,7 +35,7 @@ TO DO from the meeting from 02.08.23 <br />
 I. Collision pacman and the ghosts - same coordinates,  
 compare at each step pacman and red ghost coordinates <br />
 - Призракът изяжда Пакман (спри движение  Interval на Пакман)<br />
-- Анимация на мъртъв Пакман **(DONE - 10.08.- 14.0823)** <br />
+- Анимация на мъртъв Пакман **(DONE - 10.08.-14.08.23)** <br />
 - Намали животи **(DONE - 14.08.23)** <br />
 - Започни от начална позиция + призрак  **(DONE - 7.08.23)** + Пакман  <br />
 
