@@ -3,6 +3,7 @@
 .dead5_pacman,.dead6_pacman,.dead7_pacman,.dead8_pacman,
 .dead9_pacman,.dead10_pacman,.dead11_pacman{
     background-image: url("../assets/images/game/spritesheet.png");
+    z-index: 2;
 }
 
 /* a PacMan figure for testing which is just a yellow circle with the same dimensions as one maze cell 8x8 */
@@ -67,6 +68,7 @@
 
     width: 15px;
     height: 15px; 
+    
 }
 
 .dead1_pacman{

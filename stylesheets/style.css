@@ -125,6 +125,28 @@ html,body{
         */
 }
 
+
+
+.mazeWhite{
+    background-image: url("../assets/images/game/maze_white.png");  /*url("../assets/images/spritesheet0.png");*/
+   
+    
+    background-repeat: no-repeat;
+
+    background-position: 0px 0px; 
+    
+        width: 224px;
+        height: 248px;    
+     
+        position: relative; 
+      
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%)  scale(2.0);  /* Adjust the scale value as needed */
+        transform-origin: center;
+  
+}
+
 /* From the spritesheet */
 .dot-pellet{
     position: absolute;

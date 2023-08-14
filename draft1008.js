@@ -2233,6 +2233,7 @@ function synchronizeModifications()
     redGhostElement.style.left = 13.05 * 8 + "px"; // Initial positioning 
 
     redGhostElement.className = "";
+    redGhostElement.classList.add("left1_redGhost");
         
     // First move positioning
     redGhost = { top: 11.5 * 8, left: 13.05 * 8, size: 16};
@@ -2246,11 +2247,13 @@ function synchronizeModifications()
     // Start the dead Pacman animation with a slight delay
     setTimeout(() => {
       indx_dead = 0;
-      
       deadPacmanInterval = setInterval(deadPacmanMoods,250);
     }, 300);
 
-   
+    //pacManEmoji.style.transform = `translate(${13.1 * 8}px, ${22.5 * 8}px)`;      
+    clearInterval(autoMoveInterval);
+    autoMoveInterval = setInterval(movePacman,140); // if isPacmanStopped is true only!
+
     pacmanPos = { x: 13, y: 23 }; 
 
     // Reset any other relevant variables or states
@@ -2259,29 +2262,22 @@ function synchronizeModifications()
     // Wait for the specified delay time of 2000 as in readyLabel()
     setTimeout(() => {
 
-      redGhostElement.classList.add("left1_redGhost");
-
       // Stop the dead Pacman animation
       pacManEmoji.className = "pacman0";
       pacManEmoji.style.transform = `translate(${13.1 * 8}px, ${22.5 * 8}px)`;      
 
       clearInterval(deadPacmanInterval);
- //pacManEmoji.style.transform = `translate(${13.1 * 8}px, ${22.5 * 8}px)`;  
- 
-         currentDirection =  DIRECTION.LEFT;
-        nextDirection = null;
- clearInterval(autoMoveInterval);
- autoMoveInterval = setInterval(movePacman,140); // if isPacmanStopped is true only!
 
-      readylabel();
-     
+      // Resume ghost and pacman movement
+      isPacmanStopped = false;
+      isRedGhostStopped = false;
 
            
      
 
     }, 3000);  
 
-   
+    readylabel();
   }
 }
 
@@ -2385,10 +2381,6 @@ function readylabel()
 
   
     maze_container.appendChild(pacManEmoji);
-
-     // Resume ghost and pacman movement
-     isPacmanStopped = false;
-     isRedGhostStopped = false;
   }, 
     3000);
 }

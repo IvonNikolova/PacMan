@@ -6,7 +6,7 @@ Important to be done tasks:
 1. Move the red ghost - test it using math.random **(DONE - 28.07.23)** <br />
    1.1.Correct red ghost problem with the first move. **(DONE - 30.07.23)** <br />
    1.2. Change the ghost direction with another valid one before colliding a wall if it is possible. **(DONE - 31.07.23)** <br />
-      Explanation: take any opportunity for any valid direction, if such appears, while moving in the corridors, do not wait until the end - to collide a wall in order to change the direction.
+      Explanation: take any opportunity for any valid direction, if such appears, while moving in the corridors, do not wait until the end - to collide a wall in order to change the direction. <br />
    1.2. Animation of the red ghost while moving. **(DONE - 31.07.23)** <br />
    1.3. Tunnel teleporting. **(DONE - 2.08.23)** <br />
 
@@ -19,7 +19,7 @@ Secondary to be done tasks:
 1. Storage the highest points on the browser: localStorage
 2. Collisions with the ghosts <br />
    2.1. Lives of Pacman: decrease them
-3. Freezed Ghosts - change the ghosts mode when a gazer is eaten <br />
+3. Freezed Ghosts - change the ghosts mode when a gazer is eaten **(DONE - 06.08.23)** <br />
    3.1. Count the bonus points when Pacman eats a freezed blue ghost
 
 Additional to be done tasks: 
@@ -36,10 +36,10 @@ compare at each step pacman and red ghost coordinates <br />
 - Призракът изяжда Пакман (спри движение  Interval на Пакман)<br />
 - Анимация на мъртъв Пакман <br />
 - Намали животи<br />
-- Започни от начална позиция + Пакман + призрак <br />
+- Започни от начална позиция + призрак  **(DONE - 7.08.23)** + Пакман  <br />
    II. Gazer eaten by Pacman -> ghosts become afraid  (Interval)<br />
-- Пакман изяжда Призракa <br />
+- Пакман изяжда Призракa **(DONE - 7.08.23)** <br /> 
 - Анимация на мъртъв Призрак<br />
-- Започни от начална позиция + призрак<br />
+- Започни от начална позиция + призрак **(DONE - 7.08.23)**  <br />
  - Добави бонус точки<br />
 

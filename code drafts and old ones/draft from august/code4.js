@@ -1151,11 +1151,36 @@ var hasInitialKeyPress = false;
 
 
 
+// Define the three Pacman images of dead moods
+const allDeadMoods = [ 
+  "dead0_pacman",
+  "dead1_pacman",
+  "dead2_pacman",
+  "dead3_pacman",
+  "dead4_pacman",
+  "dead5_pacman",
+  "dead6_pacman",
+  "dead7_pacman",
+  "dead8_pacman",
+  "dead9_pacman",
+  "dead10_pacman"
+];
 
+var indx_dead = 0;
+
+function deadPacmanMoods() 
+{
+  // Change the mood index by incrementing it 
+  indx_dead = (indx_dead + 1) % allDeadMoods.length; 
+
+  // We remove the previous dead mood of Pacman i.e. class 
+  pacManEmoji.classList.remove(...allDeadMoods);
+  // and add the new dead mood of Pacman
+  pacManEmoji.classList.add(allDeadMoods[indx_dead]);
+}
 
 var eatingInterval;
-var isPacmanStopped = false;
-
+var isPacmanDead = false;
 
 function movePacman() 
 {
@@ -1220,21 +1245,15 @@ function movePacman()
         
         collisionOccurred = true;
         // Pause red ghost movement
-        isPacmanStopped = true;
-        isRedGhostStopped = true;
+        isPacmanDead = true;
+        isRedGhostDead = true;
      
-       
-       
-
         synchronizeModifications();
- 
       
     }
 
-    if(!isPacmanStopped)// if if(!isPacmanStopped) is equal to true, do this:
+    if(!isPacmanDead)
     {
-      console.log("!isPacmanStopped = ", !isPacmanStopped);
-
       let nextPos;
 
       if (currentDirection === DIRECTION.UP) 
@@ -1298,7 +1317,7 @@ document.addEventListener("keydown", function (event)
 {
   const key = event.key;
 
-   if (!isPaused)// if (!isPaused && isReady)
+  if (!isPaused && isReady)
   {
   // Save the user's input as the next direction
   if (key === "ArrowUp") 
@@ -1548,7 +1567,7 @@ function changeFreeze()
 }
 
 
-var isRedGhostStopped = false; // Variable to track if red ghost movement is reset to the initial position in i.e. the ghost is dead
+var isRedGhostDead = false; // Variable to track if red ghost movement is reset to the initial position in i.e. the ghost is dead
 
 
 function moveRedGhost() 
@@ -1595,20 +1614,20 @@ if (
     // console.log("pacmanX: " ,pacmanX, "== ghostX - 1: ",  ghostX-1);
     // console.log("&& pacmanY: ", pacmanY, " ghostY: ", ghostY);
 
-    if (!isPacmanMoving()) 
-    {
+    // if (!isPacmanMoving()) 
+    // {
       collisionOccurred = true;
       // Pause red ghost movement
-      isRedGhostStopped = true;
-      isPacmanStopped = true;
+      isRedGhostDead = true;
+      isPacmanDead = true;
       synchronizeModifications();
-    }
+            // 
 }
 
 
-if (!isRedGhostStopped) // when isRedGhostStopped is true do the following thing:
+if (!isRedGhostDead) // when isRedGhostDead is true do the following thing:
 {
-  //console.log(!isRedGhostStopped);
+  //console.log(!isRedGhostDead);
   if (!isPaused) 
   {
 
@@ -2192,161 +2211,79 @@ function isPacmanMoving()
   );
 }
 
-// Define the three Pacman images of dead moods
-const allDeadMoods = [ 
-  "dead0_pacman",
-  "dead1_pacman",
-  "dead2_pacman",
-  "dead3_pacman",
-  "dead4_pacman",
-  "dead5_pacman",
-  "dead6_pacman",
-  "dead7_pacman",
-  "dead8_pacman",
-  "dead9_pacman",
-  "dead10_pacman"
-];
 
-var indx_dead = 0;
-var deadPacmanInterval;
-function deadPacmanMoods() 
-{
-  // Change the mood index by incrementing it 
-  indx_dead = (indx_dead + 1) % allDeadMoods.length; 
-
-  // We remove the previous dead mood of Pacman i.e. class 
-  pacManEmoji.classList.remove(...allDeadMoods);
-  // and add the new dead mood of Pacman
-  pacManEmoji.classList.add(allDeadMoods[indx_dead]);
-}
 
 function synchronizeModifications() 
 {
-  
   if (collisionOccurred) 
   {
 
-    // Stop red ghost movement
-    isRedGhostStopped = true;
+   
+    // Pause red ghost movement
+   isRedGhostDead = true;
 
+
+    // Reset the direction of the red ghost
+    redGhostElement.className = "";
+    redGhostElement.classList.add("left1_redGhost");
+    
+    // currentDirection = DIRECTION.LEFT;
+    // nextDirection = DIRECTION.RIGHT;
+  
+    // Reset the position of the red ghost to its initial position
     redGhostElement.style.top = 10.5 * 8 + "px"; // Initial positioning 
     redGhostElement.style.left = 13.05 * 8 + "px"; // Initial positioning 
 
-    redGhostElement.className = "";
-        
     // First move positioning
     redGhost = { top: 11.5 * 8, left: 13.05 * 8, size: 16};
+    currentDirection =  DIRECTION.LEFT;
+    nextDirection = null;
 
-    // Stop pacman movement
-    isPacmanStopped = true;
+
+
+         // Pause pacman movement
+         isPacmanDead = true;
          
-    pacManEmoji.className = "";
-    pacManEmoji.className = "pacman0";
+        clearInterval(autoMoveInterval);
+        autoMoveInterval = setInterval(movePacman,140);
+        pacManEmoji.className = "";
+         
 
-    // Start the dead Pacman animation with a slight delay
-    setTimeout(() => {
-      indx_dead = 0;
-      
-      deadPacmanInterval = setInterval(deadPacmanMoods,250);
-    }, 300);
+         pacmanPos = { x: 13, y: 23 }; 
+           // Reset the direction of the red ghost
+          //  startingPacManEmoji.style.position = "absolute";
+          //  startingPacManEmoji.className = "pacman0";
+          //  startingPacManEmoji.style.top = 22.5 * 8 + "px";
+          //  startingPacManEmoji.style.left = 13.1 * 8 + "px";
 
-   
-    pacmanPos = { x: 13, y: 23 }; 
+          
 
-    // Reset any other relevant variables or states
-    collisionOccurred = false;
 
-    // Wait for the specified delay time of 2000 as in readyLabel()
-    setTimeout(() => {
+         
 
-      redGhostElement.classList.add("left1_redGhost");
 
-      // Stop the dead Pacman animation
-      pacManEmoji.className = "pacman0";
-      pacManEmoji.style.transform = `translate(${13.1 * 8}px, ${22.5 * 8}px)`;      
 
-      clearInterval(deadPacmanInterval);
- //pacManEmoji.style.transform = `translate(${13.1 * 8}px, ${22.5 * 8}px)`;  
- 
-         currentDirection =  DIRECTION.LEFT;
-        nextDirection = null;
- clearInterval(autoMoveInterval);
- autoMoveInterval = setInterval(movePacman,140); // if isPacmanStopped is true only!
+
+
+
+        // Wait for the specified delay time before resuming movement
+         setTimeout(() => {
+           isPacmanDead = false;
+           isRedGhostDead = false;
+         
+            pacManEmoji.className = "pacman0";
+         
+            pacmanPos = { x: 13, y: 23 }; 
+            pacManEmoji.style.transform = `translate(${13.1 * 8 }px, ${22.5 * 8}px)`;
+         }, 2000);
+
+
+      // Reset any other relevant variables or states
+      collisionOccurred = false;
 
       readylabel();
-     
-
-           
-     
-
-    }, 3000);  
-
-   
   }
 }
-
-
-// function synchronizeModifications() 
-// {
-  
-//   if (collisionOccurred) 
-//   {
-
-   
-//         // Stop red ghost movement
-//         isRedGhostStopped = true;
-
-      
-        
-//         // Reset details and the position of the red ghost to its initial position
-//         redGhostElement.className = "";
-//         redGhostElement.className = "left1_redGhost"; //redGhostElement.classList.add("left1_redGhost");
-//         redGhostElement.style.top = 10.5 * 8 + "px"; // Initial positioning 
-//         redGhostElement.style.left = 13.05 * 8 + "px"; // Initial positioning 
-
-//         // First move positioning
-//         redGhost = { top: 11.5 * 8, left: 13.05 * 8, size: 16};
-//         currentDirection =  DIRECTION.LEFT;
-//         nextDirection = null;
-
-
-
-//         // Stop pacman movement
-//         isPacmanStopped = true;
-         
-//         clearInterval(autoMoveInterval);
-//         autoMoveInterval = setInterval(movePacman,140); // if isPacmanStopped is true only!
-
-//         pacManEmoji.className = "";
-//         pacManEmoji.className = "pacman0";
-//         pacmanPos = { x: 13, y: 23 }; 
-//         pacManEmoji.style.transform = `translate(${13.1 * 8 }px, ${22.5 * 8}px)`;      
-
-       
-
-//           // Reset any other relevant variables or states
-//       collisionOccurred = false;
-
-//         // After 2000 (same as readyLabel() delay) 
-//         // Pacman and the Red ghost are going to move
-//         // i.e. they can start moving
-//          setTimeout(() => {
-//             isPacmanStopped = false;
-//             isRedGhostStopped = false;
-          
-//             // pacManEmoji.className = "pacman0";
-       
-//             // pacmanPos = { x: 13, y: 23 }; 
-//             // pacManEmoji.style.transform = `translate(${13.1 * 8 }px, ${22.5 * 8}px)`;
-
-//          }, 2000);  // Wait for the specified delay time  of 2000 as in readyLabel() before resuming movement of both players
-    
-
-    
-  
-//       readylabel();
-//   }
-// }
 
 
 
@@ -2360,8 +2297,7 @@ function readylabel()
 {
   clearInterval(moveG);
   clearInterval(redGInterval);
-
-
+    
   const labelReady = document.createElement("div");
   labelReady.classList.add("label-ready");
   maze_container.appendChild(labelReady);
@@ -2376,21 +2312,18 @@ function readylabel()
        
     // WAY 2: Call the moveRedGhost function at regular intervals
     redGInterval = setInterval(moveRedGhost, 140); // Adjust the interval as needed (in milliseconds)
-    
-
-    
+     // Adjust
     // Remove the starting Pacman sprite-emoji
     startingPacManEmoji.style.display = "none"; 
     pacManEmoji.className = "pacman0";
 
-  
+    
+
     maze_container.appendChild(pacManEmoji);
 
-     // Resume ghost and pacman movement
-     isPacmanStopped = false;
-     isRedGhostStopped = false;
+      
   }, 
-    3000);
+    2000);
 }
 
 readylabel();

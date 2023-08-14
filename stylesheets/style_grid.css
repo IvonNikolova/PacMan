@@ -23,7 +23,7 @@
     */
 
     /* visibility: hidden; */
-    /* display: none; */
+    display: none;
 }
 
 .grid-cells  {
@@ -78,6 +78,7 @@
 
 
 /* Version 1, Style of the grid  */
+
 div.grid-cells:nth-child(odd) {
     background-color: rgba(255, 255, 255, 0.347);
 }
