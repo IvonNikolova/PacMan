@@ -17,9 +17,6 @@ Important to be done tasks:
 3. Freezed Ghosts - change the ghosts mode when a gazer is eaten **(DONE - 06.08.23)** <br />
 4. Collisions with the ghosts **(DONE - 7.08.23)** <br />
 
-Secondary to be done tasks: 
-
-
 
 Additional to be done tasks: 
 1. Storage the highest points on the browser: localStorage <br />
