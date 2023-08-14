@@ -14,19 +14,19 @@ Important to be done tasks:
    2.1. Synchronise them to pause with the pause button **(DONE - 25.07.23)** <br />
    2.2. Create an animation, loop their moods while moving **(DONE - 25.07.23)** <br />
    2.3. Make them get out of the nest according to the Pacman eaten dots i.e. scores<br />
+3. Freezed Ghosts - change the ghosts mode when a gazer is eaten **(DONE - 06.08.23)** <br />
+4. Collisions with the ghosts **(DONE - 7.08.23)** <br />
 
 Secondary to be done tasks: 
-1. Storage the highest points on the browser: localStorage
-2. Collisions with the ghosts <br />
-   2.1. Lives of Pacman: decrease them
-3. Freezed Ghosts - change the ghosts mode when a gazer is eaten **(DONE - 06.08.23)** <br />
-   3.1. Count the bonus points when Pacman eats a freezed blue ghost
+
+
 
 Additional to be done tasks: 
-1. Intro page: change to flex box 
-2. Cherry: correct its appearance  - create an interval (5 seconds and then to dissapear), no replicates (no more than one cherry)
-3. Music: at the beginning | while eating | while just moving | when colliding with a ghost | when dying
-4. Buttons start/pause - correct the PAUSE window to allow pressing the pause button even having the PAUSE window  Top left button is not able to be pressed if space pause is pressed
+1. Storage the highest points on the browser: localStorage <br />
+2. Cherry: correct its appearance  - create an interval (5 seconds and then to dissapear), no replicates (no more than one cherry) <br />
+3. Music: at the beginning | while eating | while just moving | when colliding with a ghost | when dying <br />
+4. Intro page: change to flex box <br />
+5. Buttons start/pause - correct the PAUSE window to allow pressing the pause button even having the PAUSE window  Top left button is not able to be pressed if space pause is pressed <br />
 
 
 
@@ -34,7 +34,7 @@ TO DO from the meeting from 02.08.23 <br />
 
 I. Collision pacman and the ghosts - same coordinates,  
 compare at each step pacman and red ghost coordinates <br />
-- Призракът изяжда Пакман (спри движение  Interval на Пакман)<br />
+- Призракът изяжда Пакман (спри движение Interval на Пакман)<br />
 - Анимация на мъртъв Пакман **(DONE - 10.08.23-14.08.23)** <br />
 - Намали животи **(DONE - 14.08.23)** <br />
 - Започни от начална позиция + призрак  **(DONE - 7.08.23)** + Пакман  <br />
