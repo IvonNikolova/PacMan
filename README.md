@@ -16,7 +16,7 @@
 1. Intro page: change to flex box   </br>
 2. Buttons start/pause - correct the PAUSE window to allow pressing the pause button even having the PAUSE window  Top left button is not able to be pressed if space pause is pressed  </br>
 
-
+ 
 <b>What it is planned for additional Future Plans:</b>
 1. Appropriate algorithms for the ghosts </br>
 2. Different states of the ghosts’ work in the maze</br>
