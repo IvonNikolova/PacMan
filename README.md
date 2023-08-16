@@ -20,6 +20,11 @@
 <b>What it is planned for additional Future Plans:</b>
 1. Appropriate algorithms for the ghosts </br>
 2. Different states of the ghosts’ work in the maze</br>
+   a. Scatter for 7 seconds, then Chase for 20 seconds.</br>
+   b. Scatter for 7 seconds, then Chase for 20 seconds.</br>
+   c. Scatter for 5 seconds, then Chase for 20 seconds.</br>
+   d. Scatter for 5 seconds, then switch to Chase mode permanently</br>
+References: https://gameinternals.com/understanding-pac-man-ghost-behavior
 3. Ghosts’ dead animation with the eyes </br>
 4. Music: at the beginning | while eating | while just moving | when colliding with a ghost | when dying
 5. New levels: 2UP, 3UP...  </br>
