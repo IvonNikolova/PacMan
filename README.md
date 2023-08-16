@@ -3,8 +3,7 @@
 <h2> What’s next for Friday 18/08/23: </h2>
 
 1. Announce the winner i.e. Pacman, all pellets and gazers has to be eaten and the pacman should still have any lives left </br>
-   1.2. New levels  </br>
-   1.3. Scores saved i.e.  store the highest points on the browser: localStorage </br>
+   1.2. Scores saved i.e.  store the highest points on the browser: localStorage </br>
 2. Make the rest of the ghosts to move inside the maze </br>
    2.2. Do their normal animation: kill Pacman->start the game-> initial states for all ghosts and Pacman  </br>
    2.3. Do their freezing animation: bonus points-> initial states only of the eaten ghosts  </br>
@@ -22,4 +21,6 @@
 1. Appropriate algorithms for the ghosts </br>
 2. Different states of the ghosts’ work in the maze</br>
 3. Ghosts’ dead animation with the eyes </br>
-4. Music: at the beginning | while eating | while just moving | when colliding with a ghost | when dying 
+4. Music: at the beginning | while eating | while just moving | when colliding with a ghost | when dying
+5. New levels: 2UP, 3UP...  </br>
+      a. Add new fruits </br>
