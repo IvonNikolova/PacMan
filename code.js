@@ -14,7 +14,7 @@ const TUNNEL_TELEPORT_VALUE = 5;
 const FRUIT_VALUE = 6;
 
 // ghost maze testing
-const  GPS_arr = [
+const  GPS_arr0 = [
     //0 1  2  3  4  5  6 7  8  9 10  11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
     // 1                                                                                             // Y's       // X's
    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//----> 1*8px = 8
@@ -86,7 +86,7 @@ const  GPS_arr = [
   ];
 // The container - 2d array which represents the objects as values 
     // Rows x Columns i.e. 28 x 31 = 868 VALUES
-const  GPS_arr0 = [
+const  GPS_arr = [
   //0 1  2  3  4  5  6 7  8  9 10  11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
   // 1                                                                                             // Y's       // X's
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//----> 1*8px = 8
@@ -515,7 +515,7 @@ startingPacManEmoji.style.position = "absolute";
 startingPacManEmoji.className = "pacman0";
 // Initial position of Pacman
 startingPacManEmoji.style.top = 22.5 * 8 + "px";
-startingPacManEmoji.style.left = 13.1 * 8 + "px";
+startingPacManEmoji.style.left = 13.05 * 8 + "px";
 // Add the Pacman element to the maze
 maze_container.appendChild(startingPacManEmoji);
 
@@ -641,7 +641,8 @@ var remainingFreezeTime = 0;
 let freezeTimerId = null; // To store the timer ID
 
 // Function to handle gazer eating
-function isEatenGazer() {
+function isEatenGazer() 
+{
   // Your logic to detect gazer eating goes here
 
   // For example, when Pacman eats a gazer:
@@ -668,8 +669,10 @@ function isEatenGazer() {
   } 
   else 
   {
-    // If the ghost is already freezed, clear the existing timer and start a new one with the updated remaining freeze time
+  // If the ghost is already freezed, 
+    // clear the existing timer 
     clearTimeout(freezeTimerId);
+    // and start a new one with the updated remaining freeze time
     freezeTimerId = setTimeout(() => {
       isGhostFreezed = false;
       remainingFreezeTime = 0;
@@ -947,7 +950,7 @@ function update_pacManPos()
 
 /* Insert the PacMan sprite-emoji correctly within maze corridors */
   const cell_size = 8; // the size of each grid cell is 8x8
-  const pacman_size = 16; // the size of the Pacman sprite-emoji is 15x15
+  const pacman_size = 15; // the size of the Pacman sprite-emoji is 15x15
 
   // Calculate the centering offsets
   /*
@@ -1145,7 +1148,7 @@ var moveG;
 
 // Set the initial direction
 var currentDirection = DIRECTION.LEFT;
-let nextDirection = null;
+var nextDirection = null;
 var isReady = false;
 var hasInitialKeyPress = false;
 
@@ -1223,9 +1226,8 @@ function movePacman()
         isPacmanStopped = true;
         isRedGhostStopped = true;
      
-       
-       
 
+                                   
         synchronizeModifications();
  
       
@@ -1233,7 +1235,7 @@ function movePacman()
 
     if(!isPacmanStopped)// if if(!isPacmanStopped) is equal to true, do this:
     {
-      console.log("!isPacmanStopped = ", !isPacmanStopped);
+//console.log("!isPacmanStopped = ", !isPacmanStopped);
 
       let nextPos;
 
@@ -1271,12 +1273,12 @@ function movePacman()
         // Check if Pacman has eaten the cherry
         if (isShownCherry !== null)
         {
-          // console.log("Cherry is somewhere in the maze!");
+console.log("Cherry is somewhere in the maze!");
           checkCherryEaten(); 
         }
         else if(isShownCherry === null)
         {
-          // console.log("Cherry is still not shown! ");
+ console.log("Cherry is still NOT shown! ");
         }
       } 
       else 
@@ -1341,9 +1343,17 @@ document.addEventListener("keydown", function (event)
                                   );
   }
 
+  // console.log("OTVUN, !isReady = " + !isReady);
+    console.log("OTVUN, !hasInitialKeyPress = " + !hasInitialKeyPress);
+    console.log("OTVUN, !isPaused = " + !isPaused);
+
   // Set the current direction if the user presses a key at the very beginning
-  if (!isReady && !hasInitialKeyPress && !isPaused) 
+  if (!hasInitialKeyPress && !isPaused ) //&& !isReady)
    {
+    // console.log("HEI ME NA, !isReady = " + !isReady);
+    // console.log("HEI ME NA, !hasInitialKeyPress = " + !hasInitialKeyPress);
+    // console.log("HEI ME NA, !isPaused = " + !isPaused);
+
     hasInitialKeyPress = true;
     if (key === "ArrowRight") 
     {
@@ -1476,19 +1486,14 @@ document.addEventListener("keydown",
 
 buttonsMode.addEventListener("click", switchButtonsMode);
 
+// ------------------------------------------------ RESTART GAME ------------------------------------------------ 
+
+document.getElementById('restart').addEventListener('click', function() {
+  window.location.href = "game.html"; // Replace with your desired URL
+});
 
 
 // ------------------------------------------------ RED GHOST ------------------------------------------------ 
-// TO DO 
-
-// 5. gazer eaten - ghosts become afraid 
-
-
-//     6. localstorage  !
-//     7. collision pacman and the ghosts - same coordinates, 
-//      compare at each step pacman and red ghost coordinates 
-
-
   
 // WAY 2
 // Create the red ghost element and add it to the maze container
@@ -1601,6 +1606,9 @@ if (
       // Pause red ghost movement
       isRedGhostStopped = true;
       isPacmanStopped = true;
+
+
+                            
       synchronizeModifications();
     }
 }
@@ -1857,9 +1865,10 @@ function isValidMove(row, col)
         // console.log("NOT ALLOWED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
           return false; // The move is outside the maze boundaries
       }
-       return (GPS_arr[row][col] !== 0  && GPS_arr[row][col] !== 1  && GPS_arr[row][col] !== 2  && GPS_arr[row][col] !== 4);
+      // for testing only
+       // return (GPS_arr[row][col] !== 0  && GPS_arr[row][col] !== 1  && GPS_arr[row][col] !== 2  && GPS_arr[row][col] !== 4);
 
-      //return (GPS_arr[row][col] !== 0 && GPS_arr[row][col] !== 4);
+      return (GPS_arr[row][col] !== 0 && GPS_arr[row][col] !== 4);
 }
 
 // Function to randomly choose a new direction for the red ghost
@@ -2034,6 +2043,9 @@ function changePG()
   pinkGhostElement.classList.remove(...pfaces);
   pinkGhostElement.classList.add(pfaces[p_indx]);
 }
+
+
+
 
 // Define the orange ghost images of moving moods
 const ofaces = [ 
@@ -2211,19 +2223,16 @@ var indx_dead = 0;
 var deadPacmanInterval;
 function deadPacmanMoods() 
 {
- 
-      
- 
+
+    // Change the mood index by incrementing it 
+    indx_dead = (indx_dead + 1) % allDeadMoods.length; 
+    // We remove the previous dead mood of Pacman i.e. class 
+    pacManEmoji.classList.remove(...allDeadMoods);
+
+    // and add the new dead mood of Pacman
+    pacManEmoji.classList.add(allDeadMoods[indx_dead]);
+
   
-  // Change the mood index by incrementing it 
-  indx_dead = (indx_dead + 1) % allDeadMoods.length; 
-  // We remove the previous dead mood of Pacman i.e. class 
-  pacManEmoji.classList.remove(...allDeadMoods);
-
-  // and add the new dead mood of Pacman
-  pacManEmoji.classList.add(allDeadMoods[indx_dead]);
-
-
 }
 
 
@@ -2233,10 +2242,11 @@ var countDownLives = 0;
 function synchronizeModifications() 
 {
  
-  if (collisionOccurred) 
+  if (collisionOccurred && isGhostFreezed === false) 
   {
-
-    
+    countDownLives += 1;
+   
+    hasInitialKeyPress = false;
 
     // Stop red ghost movement
     isRedGhostStopped = true;
@@ -2259,22 +2269,20 @@ function synchronizeModifications()
       // Start the dead Pacman animation with a slight delay
     setTimeout(() => {
 
-      
-      nextDirection = null;
         // Modify the style properties based on movement direction
-        if (currentDirection === DIRECTION.RIGHT) //CORRECT
+        if (currentDirection === DIRECTION.RIGHT ) //CORRECT
         {
           pacManEmoji.style.transform += "scaleY(-1)";
         } 
-        else if (currentDirection === DIRECTION.LEFT) //CORRECT
+        else if (currentDirection === DIRECTION.LEFT ) //CORRECT
         {
           pacManEmoji.style.transform += "scaleX(-1)";
         }
-        else if (currentDirection === DIRECTION.UP) //CORRECT
+        else if (currentDirection === DIRECTION.UP ) //CORRECT
         {
           pacManEmoji.style.transform += "rotate(90deg)";
         } 
-        else if (currentDirection === DIRECTION.DOWN) //CORRECT
+        else if (currentDirection === DIRECTION.DOWN ) //CORRECT
         {
           
           pacManEmoji.style.transform += "rotate(-90deg)";
@@ -2288,7 +2296,7 @@ function synchronizeModifications()
       deadPacmanInterval = setInterval(deadPacmanMoods,250);
     }, 300);
 
-    countDownLives += 1;
+   
     console.log("countDownLives: " + countDownLives);
 
     if(countDownLives != 0)
@@ -2317,7 +2325,7 @@ function synchronizeModifications()
 
 
 
-    if(countDownLives == 1)// || countDownLives == 2 || countDownLives == 3)
+    if(countDownLives == 1 || countDownLives == 2)// || countDownLives == 3)
     {
       // Reset any other relevant variables or states
       collisionOccurred = false;
@@ -2358,76 +2366,47 @@ function synchronizeModifications()
 
       }, 3000);  
 
-     
     }
 
-  }// if (collisionOccurred) 
-}
-
-
-// function synchronizeModifications() 
-// {
+  }// if (collisionOccurred && isGhostFreezed === false) 
   
-//   if (collisionOccurred) 
-//   {
+  if(collisionOccurred && isGhostFreezed === true) 
+  {
 
-   
-//         // Stop red ghost movement
-//         isRedGhostStopped = true;
+  // Reset any other relevant variables or states
+  collisionOccurred = false;
 
-      
-        
-//         // Reset details and the position of the red ghost to its initial position
-//         redGhostElement.className = "";
-//         redGhostElement.className = "left1_redGhost"; //redGhostElement.classList.add("left1_redGhost");
-//         redGhostElement.style.top = 10.5 * 8 + "px"; // Initial positioning 
-//         redGhostElement.style.left = 13.05 * 8 + "px"; // Initial positioning 
+    console.log("BEFORE scores = ", scores);
+    scores += 200;
+    console.log("AFTER scores = ", scores);
+  
+ 
 
-//         // First move positioning
-//         redGhost = { top: 11.5 * 8, left: 13.05 * 8, size: 16};
-//         currentDirection =  DIRECTION.LEFT;
-//         nextDirection = null;
+  scoreElement_highscore.textContent = scores.toString().padStart(8, '0'); // Update the score display with padding
+  scoreElement_1up.textContent = scores.toString().padStart(8, '0'); // Update the score display with padding
 
 
+    isPacmanStopped = false;
 
-//         // Stop pacman movement
-//         isPacmanStopped = true;
+     // Stop red ghost movement
+     isRedGhostStopped = true;
+
+     redGhostElement.style.top = 10.5 * 8 + "px"; // Initial positioning 
+     redGhostElement.style.left = 13.05 * 8 + "px"; // Initial positioning 
+ 
+     redGhostElement.className = "";
          
-//         clearInterval(autoMoveInterval);
-//         autoMoveInterval = setInterval(movePacman,140); // if isPacmanStopped is true only!
-
-//         pacManEmoji.className = "";
-//         pacManEmoji.className = "pacman0";
-//         pacmanPos = { x: 13, y: 23 }; 
-//         pacManEmoji.style.transform = `translate(${13.1 * 8 }px, ${22.5 * 8}px)`;      
-
-       
-
-//           // Reset any other relevant variables or states
-//       collisionOccurred = false;
-
-//         // After 2000 (same as readyLabel() delay) 
-//         // Pacman and the Red ghost are going to move
-//         // i.e. they can start moving
-//          setTimeout(() => {
-//             isPacmanStopped = false;
-//             isRedGhostStopped = false;
-          
-//             // pacManEmoji.className = "pacman0";
-       
-//             // pacmanPos = { x: 13, y: 23 }; 
-//             // pacManEmoji.style.transform = `translate(${13.1 * 8 }px, ${22.5 * 8}px)`;
-
-//          }, 2000);  // Wait for the specified delay time  of 2000 as in readyLabel() before resuming movement of both players
-    
-
-    
-  
-//       readylabel();
-//   }
-// }
+     // First move positioning
+     redGhost = { top: 11.5 * 8, left: 13.05 * 8, size: 16};
+ 
 
 
+        redGhostElement.classList.add("left1_redGhost");
+
+        readylabel2();
+  }
+
+}
 
 
 
@@ -2440,11 +2419,21 @@ function readylabel()
   clearInterval(moveG);
   clearInterval(redGInterval);
 
-
   const labelReady = document.createElement("div");
   labelReady.classList.add("label-ready");
   maze_container.appendChild(labelReady);
 
+  // isReady = false;
+
+  // Remove the cherry if pacman dies once and the game starts over again but the cherry was not eaten in the previous life of pacman
+  if(cherry1)
+  {
+    cherry1.style.display = "none";
+    isShownCherry = null;
+  }
+
+
+  console.log("isGhostFreezed = " + isGhostFreezed);
 
   setTimeout(() => {
     maze_container.removeChild(labelReady);
@@ -2457,11 +2446,10 @@ function readylabel()
     redGInterval = setInterval(moveRedGhost, 140); // Adjust the interval as needed (in milliseconds)
     
 
-    
+    startingPacManEmoji.style.display = "none";
     // Remove the starting Pacman sprite-emoji
-    startingPacManEmoji.style.display = "none"; 
     pacManEmoji.className = "pacman0";
-
+    pacManEmoji.style.transform = `translate(${13.05 * 8}px, ${22.5 * 8}px)`;      
   
     maze_container.appendChild(pacManEmoji);
 
@@ -2469,12 +2457,28 @@ function readylabel()
      isPacmanStopped = false;
      isRedGhostStopped = false;
   }, 
-    3000);
+    3000); 
 }
 
 readylabel();
 
+// autoMoveInterval = setInterval(movePacman, 140); 
+function readylabel2() 
+{
+  clearInterval(redGInterval);
 
+  setTimeout(() => {    
+    // Call the moveRedGhost function at regular intervals
+    redGInterval = setInterval(moveRedGhost, 140); // Adjust the interval as needed (in milliseconds)
+      
+    isGhostFreezed = false;
+      
+    // Resume ghost and pacman movement
+    isPacmanStopped = false;
+    isRedGhostStopped = false;
+  }, 
+  300); 
+}
 
 function gameOverlabel() 
 {
@@ -2488,7 +2492,11 @@ function gameOverlabel()
 
  // Remove the Pacman sprite-emoji
  pacManEmoji.style.display = "none"; 
-  
+  pinkGhostElement.style.display = "none"; 
+  orangeGhostElement.style.display = "none"; 
+  blueGhostElement.style.display = "none"; 
+  cherry1.style.display = "none";
+
  setTimeout(() => {
   // Remove all objects of out container
     maze_container.innerHTML = "";
@@ -2498,6 +2506,7 @@ function gameOverlabel()
     mazesInterval = setInterval(endMaze,200);
  }, 
  3000);
+
 
 
 }
@@ -2515,6 +2524,8 @@ var mazesInterval;
 
 function endMaze()
 {
+  if(!isPaused)
+  {
   // Change the mood index by incrementing it 
   indx_mazes = (indx_mazes + 1) % mazes.length; 
   // We remove the previous dead mood of Pacman i.e. class 
@@ -2522,6 +2533,7 @@ function endMaze()
 
   // and add the new dead mood of Pacman
   maze_container.classList.add(mazes[indx_mazes]);
+  }
 }
 
 
