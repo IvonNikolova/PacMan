@@ -9,12 +9,12 @@
    2.3. Do their freezing animation: bonus points-> initial states only of the eaten ghosts  </br>
 
 <b> Bugs: </b>
-   1. The cherry appearance bug (correct its appearance  - create a timeout (5 seconds and then to dissapear), no replicates (no more than one cherry)): Idea: to use setTimeout() </br>
-   2. The Pacman dead animation direction bug: Idea: to use boolean flag  </br>
+   1. The cherry appearance bug (correct its appearance  - create a timeout (5 seconds and then to dissapear), no replicates (no more than one cherry)): Idea: to use setTimeout() **DONE 18.08.**  </br>
+   2. The Pacman dead animation direction bug: Idea: to use boolean flag  **DONE 18.08.**  </br>
 
 <b> Additional to be done tasks: </b> </br>
 1. Intro page: change to flex box   </br>
-2. Buttons start/pause - correct the PAUSE window to allow pressing the pause button even having the PAUSE window  Top left button is not able to be pressed if space pause is pressed  </br>
+2. Buttons start/pause - correct the PAUSE window to allow pressing the pause button even having the PAUSE window  Top left button is not able to be pressed if space pause is pressed **DONE 18.08.** </br>
 
  
 <b>What it is planned for additional Future Plans:</b>
