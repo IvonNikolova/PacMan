@@ -1,8 +1,8 @@
 # PacMan
 
 <h2> What’s next for Friday 18/08/23: </h2>
- 
-1. Announce the winner i.e. Pacman, all pellets and gazers has to be eaten and the pacman should still have any lives left </br> **DONE 18.08.** 
+  
+1. Announce the winner i.e. Pacman, all pellets and gazers has to be eaten and the pacman should still have any lives left **DONE 18.08.**   </br>
 2. Scores saved i.e.  store the highest points on the browser: localStorage </br>
 3. Make the rest of the ghosts to move inside the maze </br>
    3.2. Do their normal animation: kill Pacman->start the game-> initial states for all ghosts and Pacman  </br>
