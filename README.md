@@ -1,7 +1,7 @@
 # PacMan
 
 <h2> What’s next for Friday 18/08/23: </h2>
-
+ 
 1. Announce the winner i.e. Pacman, all pellets and gazers has to be eaten and the pacman should still have any lives left </br>
    1.2. Scores saved i.e.  store the highest points on the browser: localStorage </br>
 2. Make the rest of the ghosts to move inside the maze </br>
