@@ -15,6 +15,7 @@
 <b> Additional to be done tasks: </b> </br>
 1. Intro page: change to flex box   </br>
 2. Buttons start/pause - correct the PAUSE window to allow pressing the pause button even having the PAUSE window  Top left button is not able to be pressed if space pause is pressed **DONE 18.08.** </br>
+3. Gray ghost animation after freezed mode **DONE 18.08.** </br>
 
  
 <b>What it is planned for additional Future Plans:</b>
