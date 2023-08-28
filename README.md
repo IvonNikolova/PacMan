@@ -4,12 +4,9 @@
 1. <b>Appropriate algorithms for the ghosts</b> </br>
   a. <b>Different states of the ghosts’ work</b> in the maze</br>
   
-	i. Scatter for 7 seconds, then Chase for 20 seconds.</br>
- 
-     	ii. Scatter for 7 seconds, then Chase for 20 seconds.</br>
-      
-     	iii. Scatter for 5 seconds, then Chase for 20 seconds.</br>
-      
+	i. Scatter for 7 seconds, then Chase for 20 seconds. </br>
+     	ii. Scatter for 7 seconds, then Chase for 20 seconds. </br>
+     	iii. Scatter for 5 seconds, then Chase for 20 seconds. </br>
      	iv. Scatter for 5 seconds, then switch to Chase mode permanently</br> 
       
       	References: https://gameinternals.com/understanding-pac-man-ghost-behavior</br>
