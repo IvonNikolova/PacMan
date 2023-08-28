@@ -3,7 +3,6 @@
 <h3>Future work:</h3>
 1. <b>Appropriate algorithms for the ghosts</b> </br>
   a. <b>Different states of the ghosts’ work</b> in the maze</br>
-  
 	i. Scatter for 7 seconds, then Chase for 20 seconds. </br>
      	ii. Scatter for 7 seconds, then Chase for 20 seconds. </br>
      	iii. Scatter for 5 seconds, then Chase for 20 seconds. </br>
