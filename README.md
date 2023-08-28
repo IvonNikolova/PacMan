@@ -6,7 +6,7 @@
      i. Scatter for 7 seconds, then Chase for 20 seconds.</br>
      ii. Scatter for 7 seconds, then Chase for 20 seconds.</br>
      iii. Scatter for 5 seconds, then Chase for 20 seconds.</br>
-     iv. Scatter for 5 seconds, then switch to Chase mode permanently</br>
+     iv. Scatter for 5 seconds, then switch to Chase mode permanently</br> 
       References: https://gameinternals.com/understanding-pac-man-ghost-behavior</br>
    b. Add  <b>Ghosts’ dead animation with the eyes</b> </br>
 	References: https://en.wikipedia.org/wiki/Maze-solving_algorithm#:~:text=Shortest%20path%20algorithm,-Further%20information%3A%20Pathfinding&text=One%20such%20algorithm%20finds%20the,until%20the%20finish%20is%20reached. </br>
