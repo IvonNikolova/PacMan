@@ -1,6 +1,6 @@
 # PacMan
  
-<h1>Future work:</h1>
+<h3>Future work:</h3>
 1. <b>Appropriate algorithms for the ghosts</b> </br>
   a. Different states of the ghosts’ work in the maze</br>
      i. Scatter for 7 seconds, then Chase for 20 seconds.</br>
