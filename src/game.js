@@ -209,16 +209,3 @@ function resetPacman()
 }//resetPacman()
 
 
-// Animation of the maze at the end of the game if the player lose the game
-function endMaze()
-{
-  if(!isPaused)
-  {
-  // Change the mood index by incrementing it 
-  indx_mazes = (indx_mazes + 1) % mazes.length; 
-  // We remove the previous dead mood of Pacman i.e. class 
-  maze_container.classList.remove(...mazes);
-  // and add the new dead mood of Pacman
-  maze_container.classList.add(mazes[indx_mazes]);
-  }
-}// endMaze()

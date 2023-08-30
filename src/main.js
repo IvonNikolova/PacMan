@@ -79,14 +79,6 @@ var isReady = true; // it is shown by default
 // Flags for the Pacman state in the game
 var pacmanDead = false, pacmanWinner = false;
 
-// For the maze animation at the end when Pacman i.e. the player lose the game
-const mazes = [ 
-  "maze",
-  "mazeWhite"
-];
-var indx_mazes = 0;
-var mazesInterval;
-
 
 // Call the function which starts the game i.e. the game engine
 startGame();
@@ -104,5 +96,16 @@ updateScore();
 // localStorage.clear();
 
 
+
+//--------------------------------- ANIMATIONS  ---------------------------------
+// See also 'animations.js' for more.
+// For the maze animation at the end when Pacman i.e. the player lose the game
+const mazes = [ 
+  "maze",
+  "mazeWhite"
+];
+var indx_mazes = 0;
+var mazesInterval;
+
 //--------------------------------------------------------------------------------
-// See also 'cherry.js', 'buttons.js' and 'animations.js' for more.
+// See also 'cherry.js' and 'buttons.js' for more.
