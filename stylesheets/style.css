@@ -10,7 +10,7 @@
 }
 
 html,body{
-    background-color: black; 
+    background-color: rgb(0, 0, 0); 
     margin: 0;
     /* Improve the overall displaying quality of the used sprites */
     image-rendering: pixelated;
@@ -125,28 +125,6 @@ html,body{
         */
 }
 
-
-
-.mazeWhite{
-    background-image: url("../assets/images/game/maze_white.png");  /*url("../assets/images/spritesheet0.png");*/
-   
-    
-    background-repeat: no-repeat;
-
-    background-position: 0px 0px; 
-    
-        width: 224px;
-        height: 248px;    
-     
-        position: relative; 
-      
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%)  scale(2.0);  /* Adjust the scale value as needed */
-        transform-origin: center;
-  
-}
-
 /* From the spritesheet */
 .dot-pellet{
     position: absolute;
@@ -171,81 +149,22 @@ html,body{
 }
 
 
-.resume{
-    /* background-color: green;
-    width:50px;
-    height:50px; */
+.mazeWhite{
+    background-image: url("../assets/images/game/maze_white.png");  /*url("../assets/images/spritesheet0.png");*/
+   
     
-    /* 
-    https://iconsplace.com/white-icons/play-icon-18/ 
-    https://www.flaticon.com/search?word=pause&color=black
-    */
-    width: 32px;
-    height: 32px;
-    background-image: url("../assets/images/game/resume.png");  
+    background-repeat: no-repeat;
 
-    left: 0px;
-    top: 0px;
-    position: absolute;
-    display: inline-block;
-    z-index: 5;
-}
-
-.pause{
-    /* background-color: red;
-    width:50px;
-    height:50px; */
+    background-position: 0px 0px; 
     
-    width: 32px;
-    height: 32px;
-    background-image: url("../assets/images/game/pause.png");  
-    left: 0px;
-    top: 0px;
-    position: absolute;
-    display: inline-block;
-    z-index: 5;
-
-}
-
-#restart{
-    /* background-color: red;
-    width:50px;
-    height:50px; */
-    
-    width: 22px;
-    height: 22px;
-    background-image: url("../assets/images/game/restart.png");  
-    
-    left: 590px;
-    top: 6px;
-    position: absolute;
-    display: inline-block;
-    z-index: 5;
-
-}
-
-#pause-window-cover {
-    
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
-    display: none; /* Initially hidden */
-    z-index: 9999; /* Ensures the overlay appears on top of other elements */
-  }
+        width: 224px;
+        height: 248px;    
+     
+        position: relative; 
+      
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%)  scale(2.0);  /* Adjust the scale value as needed */
+        transform-origin: center;
   
-  #pause-text {
-
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-
-    font-size: 40px;
-    text-align: center;
-    color: white;
-  }
+}

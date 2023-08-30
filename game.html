@@ -14,10 +14,15 @@
         <link rel="stylesheet" href="./stylesheets/style.css"> 
         <!-- The grid styling -->
         <link rel="stylesheet" href="./stylesheets/style_grid.css"> 
-        <!-- The PacmMan styling - alive and dead Pacman spritesheets -->
+        <!-- The PacmMan styling - alive and dead Pacman desing -->
         <link rel="stylesheet" href="./stylesheets/style_pacman.css"> 
-        <!-- The game titles - letters and labels, and scores stylings -->
-        <link rel="stylesheet" href="./stylesheets/style_scores.css">     
+        <!-- The game titles - letters and numbers desing that show the score -->
+        <link rel="stylesheet" href="./stylesheets/style_letters.css">     
+        <!-- The leaderboard - side navigation bar and high score list desing -->
+        <link rel="stylesheet" href="./stylesheets/style_leaderboard.css">  
+          <!-- The buttons: pause, resume and window desing -->
+        <link rel="stylesheet" href="./stylesheets/style_buttons.css">
+
 
         <!-- The ghosts' styling -->
         <link rel="stylesheet" href="./stylesheets/style_redGhost.css"> 
@@ -25,25 +30,60 @@
         <link rel="stylesheet" href="./stylesheets/style_orangeGhost.css">
         <link rel="stylesheet" href="./stylesheets/style_pinkGhost.css"> 
         <link rel="stylesheet" href="./stylesheets/style_freezedGhost.css">  <!-- The freezed ghosts faces after an eaten gazer -->
-        <link rel="stylesheet" href="./stylesheets/style_deadGhost.css"> <!-- The eyes of the dead ghosts-->
-
-         <!-- The styling of the outer maze figures like PacMan lives and fruits -->
+        <link rel="stylesheet" href="./stylesheets/style_bonusGPoints.css">  <!-- The bonus points we get when Pacman eats a frozen ghost-->
+        <link rel="stylesheet" href="./stylesheets/style_deadGhost.css">     <!-- The eyes of the dead ghosts-->
+        
+        <!-- The styling of the outer maze figures like PacMan lives and fruits -->
         <link rel="stylesheet" href="./stylesheets/style_lives_fruits.css"> 
- 
-        
-    </head>
-      
-    <body>
-    
-        
-    <div class="game-container"> <!-- the main container having the whole game content -->
+ </head>
+<body>
+    <!-- Pressing pause button will apply the following divs -->
+        <div id="pause-window-cover">
+            <span id="pause-text">PAUSED</span>
+        </div>
+    <!-- Winning the game will apply the following divs -->
+        <div id="win-window-cover">
+            <span id="win-text"> <img style="margin-top:5%" src="./assets/images/game/winner.gif" id="gif">
+            </span>
+        </div>
 
-        <!-- The resume/pause buttons -->
+
+<!-- The main container having the whole game content -->
+    <div class="game-container"> 
+
+        <!-- The resume - and pause button -->
         <div id="buttons" class="pause"></div>
-        <!-- <div id="pause"></div> -->
         <div id="restart"></div>
+        
+        <!-- Leaderboard. -->
+        <div class="menu" style="font-size:30px;cursor:pointer;position: absolute;top:0;left: 590px;" onclick="openNav()"></div>
+        <!-- 
+            The side navigation bar which is used to show the leaderboard 
+            and the saved score-records of the players.
+        -->
+        <div id="mySidenav" class="sidenav">
+            <!-- 
+                Using javascript:void(0) in the href attribute of an anchor is a way to create a clickable element 
+                that wouldn't navigate anywhere when clicked. 
+                It's effectively a "do nothing" action. 
+                The void(0) expression evaluates to undefined, 
+                so clicking the link doesn't trigger a page navigation.  
 
-        <!-- The container includes the titles and the scores -->
+                The reason why javascript:void(0) is used is 
+                to create a non-functional anchor link 
+                that doesn't navigate anywhere when clicked. 
+
+                It effectively prevents the page from refreshing or navigating to a new URL.
+            -->
+            <!-- The &times; symbol is used as the content of the anchor to visually represent a close action. -->
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <!-- The title -->
+            <div style="font-size:20px;color: rgb(0, 0, 0); margin-left: 20px; align-items:center;">LEADERBOARD</div>
+            
+            <ul id="highScoresList"> <!-- Dynamically the High scores will be added within this tag --></ul>
+        </div>
+          
+        <!-- The container includes the titles, letters and the numbers -->
         <h2 class="one-up" style="z-index: 10;">00000000</h2>
         <div class="letter1"></div>
         <div class="letterU"></div>
@@ -61,19 +101,10 @@
         <div class="letterR"></div>
         <div class="letterE"></div> 
 
-        
         <!-- The container includes the maze -->
         <div class="maze">  
              <!-- The maze includes the grid -->
             <div class="grid"></div>
-         
-           
-            <!-- <div class="left1_redGhost"></div> -->
-            <!-- <div class="up1_orangeGhost"></div>
-            <div class="down1_pinkGhost"></div>
-            <div class="up1_blueGhost"></div> -->
-          
-
             
             <!-- The maze includes the lives and fruits outside its bounds -->
             <div class="life1"></div>
@@ -83,18 +114,41 @@
         </div> 
     </div>
 
-        
+       
+<!-- Refactoring the code into files -->
+    <!-- 
+        The GPS array that provides the navigation, 
+        the grid for visual representation of the maze cells 
+        and the insertion of the pellets and the gazers within the maze corridors
+    -->
+    <script type="text/javascript" src="./src/maze.js"> </script>
 
-    <div id="pause-window-cover">
-        <span id="pause-text">PAUSED</span>
-    </div>
-        
-    
+    <!-- The Pacman as the main character in the game and its functionalities -->
+    <script type="text/javascript" src="./src/pacman.js"> </script>
+    <!-- The ghosts and their functionalities in the game -->
+    <script type="text/javascript" src="./src/ghosts.js"> </script>
+    <script type="text/javascript" src="./src/ghostsF.js"> </script>
+    <!-- The ghosts animations -->
+    <script type="text/javascript" src="./src/animations.js"> </script>
 
-      
-        <script type="text/javascript" src="./code.js"> </script>
+    <!-- Display the fruit: cherry -->
+    <script type="text/javascript" src="./src/cherry.js"> </script>
+
+    <!-- Detect any collisions between Pacman and the ghosts -->
+    <script type="text/javascript" src="./src/collisions.js"> </script>
+
+     <!-- Start or end the game, announce if Pacman win or lose the game -->
+    <script type="text/javascript" src="./src/game.js"> </script>
+     <!-- Save final score if you win the game -->
+    <script type="text/javascript" src="./src/saveScore.js"> </script>
+
+     <!-- Pause, resume and leaderboard buttons' actions -->
+    <script type="text/javascript" src="./src/buttons.js"> </script>
+
+    <!-- Some global variables and function calls -->
+    <script type="text/javascript" src="./src/main.js"> </script>
    
-    </body>
+</body>
 </html>
 
 

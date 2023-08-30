@@ -1,31 +1,27 @@
 # PacMan
-
-<h2> What’s next for Friday 18/08/23: </h2>
-
-1. Announce the winner i.e. Pacman, all pellets and gazers has to be eaten and the pacman should still have any lives left </br>
-   1.2. Scores saved i.e.  store the highest points on the browser: localStorage </br>
-2. Make the rest of the ghosts to move inside the maze </br>
-   2.2. Do their normal animation: kill Pacman->start the game-> initial states for all ghosts and Pacman  </br>
-   2.3. Do their freezing animation: bonus points-> initial states only of the eaten ghosts  </br>
-
-<b> Bugs: </b>
-   1. The cherry appearance bug (correct its appearance  - create a timeout (5 seconds and then to dissapear), no replicates (no more than one cherry)): Idea: to use setTimeout() </br>
-   2. The Pacman dead animation direction bug: Idea: to use boolean flag  </br>
-
-<b> Additional to be done tasks: </b> </br>
-1. Intro page: change to flex box   </br>
-2. Buttons start/pause - correct the PAUSE window to allow pressing the pause button even having the PAUSE window  Top left button is not able to be pressed if space pause is pressed  </br>
-
  
-<b>What it is planned for additional Future Plans:</b>
-1. Appropriate algorithms for the ghosts </br>
-2. Different states of the ghosts’ work in the maze</br>
-   a. Scatter for 7 seconds, then Chase for 20 seconds.</br>
-   b. Scatter for 7 seconds, then Chase for 20 seconds.</br>
-   c. Scatter for 5 seconds, then Chase for 20 seconds.</br>
-   d. Scatter for 5 seconds, then switch to Chase mode permanently</br>
-References: https://gameinternals.com/understanding-pac-man-ghost-behavior
-3. Ghosts’ dead animation with the eyes </br>
-4. Music: at the beginning | while eating | while just moving | when colliding with a ghost | when dying
-5. New levels: 2UP, 3UP...  </br>
-      a. Add new fruits </br>
+<h3>Future work:</h3>
+1. <b>Appropriate algorithms for the ghosts</b> </br> 
+
+  a. <b>Different states of the ghosts’ work</b> in the maze</br>
+  &nbsp;&nbsp;&nbsp;&nbsp;  i. Scatter for 7 seconds, then Chase for 20 seconds. </br>
+  &nbsp;&nbsp;&nbsp;&nbsp;  ii. Scatter for 7 seconds, then Chase for 20 seconds. </br>
+  &nbsp;&nbsp;&nbsp;&nbsp; iii. Scatter for 5 seconds, then Chase for 20 seconds. </br>
+  &nbsp;&nbsp;&nbsp;&nbsp;  iv. Scatter for 5 seconds, then switch to Chase mode permanently</br> 
+  &nbsp;&nbsp;&nbsp;&nbsp; References: https://gameinternals.com/understanding-pac-man-ghost-behavior</br>
+  
+   b. Add  <b>Ghosts’ dead animation with the eyes</b> </br>
+	References: https://en.wikipedia.org/wiki/Maze-solving_algorithm#:~:text=Shortest%20path%20algorithm,-Further%20information%3A%20Pathfinding&text=One%20such%20algorithm%20finds%20the,until%20the%20finish%20is%20reached. </br>
+
+2. <b>Music:</b>  at the beginning | while eating | while just moving | when colliding with a ghost | when dying … </br>
+3. <b>New levels: 2UP, 3UP... </b> </br>
+      a. Add <b>new fruits:</b> strawberry, orange… </br>
+4. <b>Simple Motion Control</b> of a Sprite w/ the keyboard <b>on a mobile phone or a tablet</b> </br>
+
+
+<b>Bugs to be removed:</b></br>
+	1. Pause button is not synchronized with the timeouts correctly, 
+for example: cherry appearance; frozen ghosts; dead Pacman animation. </br>
+References: https://stackoverflow.com/questions/3969475/javascript-pause-settimeout
+
+

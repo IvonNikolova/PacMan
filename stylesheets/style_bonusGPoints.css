@@ -1,0 +1,28 @@
+/* Bonus points: 200, 400, 800, 1600 */
+
+.bonus_200,.bonus_400,.bonus_800,.bonus_1600
+{
+    background-image: url("../assets/images/game/spritesheet.png");
+    
+    width: 16px; 
+    height: 16px; 
+    
+    position: absolute;
+    z-index: 10;
+}
+
+.bonus_200{
+    background-position: -229px -129px; 
+}
+
+.bonus_400{
+    background-position: -245px -129px; 
+}
+
+.bonus_800{
+    background-position: -261px -129px; 
+}
+
+.bonus_1600{
+    background-position: -277px -129px; 
+}

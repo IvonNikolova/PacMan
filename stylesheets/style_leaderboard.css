@@ -1,0 +1,77 @@
+/* the image of the menu - "Hamburger" icon, that shows the leaderboard */
+.menu{
+  width: 35px;
+  height: 35px;
+  background-image: url("../assets/images/game/menu.png");  
+
+  left: 0px;
+  top: 2px;
+  position: absolute;
+  display: inline-block;
+  z-index: 99999;
+  cursor:pointer;
+}
+
+.sidenav 
+{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 100000;
+    top: 0;
+    right: 0;
+    background-color:#FFFF00;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav a 
+  {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #000000;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover 
+  {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn 
+  {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  #highScoresList 
+  {
+    list-style: none;
+    padding-left: 20px; 
+    padding-bottom: 20px; 
+    margin-bottom: 150px;
+  }
+
+  #highScoresList li 
+  {
+    font-size: 12px; 
+    margin-top: 25px;
+  }
+
+  #highScoresList li::before 
+  {
+    content: attr(data-place) ". "; /* Display the place before the player's name */
+    font-weight: bold;
+    color: rgb(255, 21, 0); /* Red color for ranking numbers */
+  }

@@ -1,363 +1,82 @@
 <!DOCTYPE html>
 <html lang ="en">
-    <head>
+<head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="HTML, CSS, JavaScript">
         <title>PacMan - Ivon's Project</title>
         <!-- A favicon image is displayed to the left of the page title in the browser tab. -->
         <link rel="icon" type="image/png" href="./assets/images/favicon/favicon.ico">
-       
-    <style>
-        
-        @font-face {
-            font-family: pacMac;
-            src: url(../PacMan/assets/emulogic/emulogic.ttf);
-        }
-
-        *{
-            font-family: pacMac;
-        }
-
-        html,body{
-            background-color: rgb(0, 0, 0);
-            margin: 0;
-            padding: 0;
-            /* Improve the overall displaying quality of the used sprites */
-            image-rendering: pixelated;
-        }
-
-      
-
-        img{
-            left: 50%;
-            top: 15%;
-            transform: translate(-50%, -50%) ;
-            position: absolute;
-            width: auto;
-            height: 100px;
-        }
-
-        h1{
-            /* left: 50%;
-            top: 23%;
-            transform: translate(-50%, -50%) ;
-            position: absolute;
-position: absolute; */
-left: 50%;
-transform: translate(-50%, -50%) ;
-            position: absolute;
-top: 170px;
-            color: rgb(255, 255, 255);
-            /* position: absolute; */
-            /* text-align: left; */
-            font-size: 17px;
-            /* margin-top: 200px; */
-            /* padding: 0px; */
-            z-index: 15;
-        }
-
-        /*
-        https://www.w3schools.com/css/css3_buttons.asp
-
-        https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_buttons_all 
-
-        https://www.w3schools.com/w3css/w3css_buttons.asp
-        */
-        .button {
-        top: 85%;
-        position: absolute;
-        padding: 15px 25px;
-        font-size: 24px;
-        text-align: center;
-        cursor: pointer;
-        outline: none;
-        color: #fff;
-        background-color: #fcc73f;;
-        border: 5px solid #231f20;
-        border-radius: 15px;
-        box-shadow: 0 9px  #ee2a29;
-        }
-
-        .button:hover {
-            background-color:#91ebda;
-        }
-
-
-        pre{
-            left: 50%;
-            font-size: 13px;
-            font-family: pacMac;
-            position: absolute;
-            transform: translate(-50%, -50%);
-        }
-
-        #red{
-            top: 30%;
-        }
-
-        #pink{
-            top: 35%;
-        }
-
-        #blue{
-            top: 40%;
-        }
-
-        #orange{
-            top: 45%;
-        }
-
-
-        a{
-            left: 50%;
-            top: 80%;
-            transform: translate(-50%, -50%) ;
-            position: absolute;
-        }
-
-        a:link {
-        text-decoration: none;
-        }
-
-        a:visited {
-        text-decoration: none;
-        }
-
-        a:hover > h2{
-        text-decoration: underline;
-        color: rgb(255, 217, 0);
-        }
-
-        a:active {
-        text-decoration: none;
-        }
-
-     
-
-        a::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: -20px;
-            transform: translateY(-50%);
-
-            /* option 1-  Adjust the size and color of the arrow */
-            /* border-top: 10px solid transparent; 
-            border-bottom: 10px solid transparent;
-            border-left: 10px solid rgb(255, 217, 0); */
-            /* option 2 - Image */
-            /* 
-            background-image: url('./assets/images/gazer.png'); 
-            width: 8px;
-            height: 8px;
-            background-size: contain; 
-            background-repeat: no-repeat;  
-            */
-
-            opacity: 0; /* Initially hide the image */
-            transition: opacity 0.3s ease; /* Add a smooth transition effect */
-        }
-        
-        a:hover::before {
-            opacity: 1; /* Show the image on hover */
-        }
-
-        h2{
-            color: white;
-            /* position: absolute; */
-            text-align: center;
-            font-size: 20px;
-            /* margin-top: 200px; */
-            padding: 0px;
-            z-index: 10;
-        }
-
-        #dot, #gazer{
-            left: 50%;
-           
-            transform: translate(-50%, -50%) ;
-            position: absolute;
-            color: white;
-            /* position: absolute; */
-            text-align: center;
-            font-size: 10px;
-            /* margin-top: 200px; */
-            padding: 0px;
-        }
-
-        #dot{
-            top: 400px;
-            margin: 0px;
-        }
-
-        #gazer{
-            top: 420px;
-            margin: 0px;
-        }
-
-        #gif{
-            position: absolute;
-            left: 50%;
-            top: 70%;
-         
-            transform: translate(-50%, -50%)  scale(2.0);  /* Adjust the scale value as needed */
-            transform-origin: center;
-            z-index: -3;
-     
-        }
-
-  
-
-        .redG::before {
-            background-image: url("./assets/images/game/spritesheet.png");
-            width: 15px; 
-            height: 15px; 
-            background-repeat: no-repeat;
-            content: "";
-            position: absolute;
-             /* top: 0%; */
-             left: -30px; 
-            transform: translateY(-50%) scale(2.0); 
-            background-position: -229px -64px; 
-        }
-
-        .pinkG::before {
-            background-image: url("./assets/images/game/spritesheet.png");
-            width: 15px; 
-            height: 15px; 
-            background-repeat: no-repeat;
-            content: "";
-            position: absolute;
-             /* top: 35%; */
-             left: -30px; 
-            transform: translateY(-50%) scale(2.0); 
-            background-position: -229px -80px; 
-        }
-
-        .blueG::before {
-            background-image: url("./assets/images/game/spritesheet.png");
-            width: 15px; 
-            height: 15px; 
-            background-repeat: no-repeat;
-            content: "";
-            position: absolute;
-            /* top: 70%; */
-            left: -30px;
-            transform: translateY(-50%) scale(2.0); 
-            background-position: -229px -96px; 
-        }
-
-        .orangeG::before {
-            background-image: url("./assets/images/game/spritesheet.png");
-            width: 15px; 
-            height: 15px; 
-            background-repeat: no-repeat;
-            content: "";
-            position: absolute;
-            /* top: 105%; */
-            left: -30px; 
-            transform: translateY(-50%) scale(2.0); 
-            background-position: -229px -112px; 
-        }
-
-
-        .dot_image::before {
-            content: "";
-            position: absolute;
-            top: 70%;
-            left: -10px;
-            transform: translateY(-50%) scale(2.0); 
-            background-image: url("./assets/images/game/spritesheet.png"); 
-            background-position: -225px -241px;
-            background-repeat: no-repeat;
-            width: 8px;
-            height: 8px;
-        }
-
-
-        .gazer_image::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: -12px;
-            transform: translateY(-50%) scale(1.25); 
-            background-image: url("./assets/images/game/spritesheet.png"); 
-            background-position: -233px -240px; 
-            background-repeat: no-repeat;
-            width: 8px;
-            height: 8px;
-        }
-  
-        
-
-        td{
-            height: 40px;
-        }
-
-        table{
-            top: 300px;
-            left: 52%;
-            position: absolute;
-            transform: translate(-50%, -50%);
-            border-collapse: collapse;
-        }
-</style>
- 
+        <!-- The intro page design -->
+        <link rel="stylesheet" href="./style_index.css"> 
 </head>
-      
 <body>
-    <div class="intro-page-container">
-        <img src="./assets/images/intro-page/pacman_logo.png" > 
+    <!-- The container -->
+    <div class="flex-container">
+        <img class="top-image" src="./assets/images/intro-page/pacman_logo.png" style="height: 100px;">
         
-        
-
-        <!-- <pre id="red" class="redG" style="color: red;">-SHADOW     "BLINKY"</pre> -->
-        <!-- <pre id="pink" class="pinkG" style="color: rgb(226, 165, 215);">-SPEEDY      "PINKY"</pre>
-        <pre id="blue" class="blueG" style="color: rgb(81, 245, 245);">-BASHFUL      "INKY"</pre>
-        <pre id="orange" class="orangeG" style="color: rgb(239, 155, 65);">-POKEY       "CLYDE"</pre> -->
-
-        <h1 style="color: white;text-align: left;">CHARACTER/NICKNAME</h1>
-        <table>
-            <tr>
-              <td id="red" class="redG" style="color: red;">-SPEEDY</td>
-              <td style="color: red;"> "BLINKY"</td>
-            </tr>
-            <tr>
-                <td  id="pink" class="pinkG" style="color:rgb(239, 166, 225);">-SPEEDY</td>
-                <td style="color: rgb(239, 166, 225);"> "PINKY"</td>
-              </tr>
-              <tr  >
-                <td id="blue" class="blueG"  style="color: rgb(81, 245, 245);">-SPEEDY</td>
-                <td style="color: rgb(81, 245, 245);"> "INKY"</td>
-              </tr>
-              <tr  >
-                <td  id="orange" class="orangeG" style="color: rgb(239, 155, 65);">-SPEEDY</td>
-                <td style="color: rgb(239, 155, 65);">"CLYDE"</td>
-              </tr>
-          </table>
+        <!-- The whole ghost data container -->
+        <div class="character-details">
+          <!-- The header -->
+          <div class="character-header">CHARACTER/NICKNAME</div>
           
+          <!-- Each ghost character information -->
+          <div class="character-row">
+            <!-- the ghost image in front of the ghost nickname and name-->
+            <div class="redG"></div>
+            <!-- the ghost nickname -->
+            <div class="character-nickname "style="color: #ff0000;">-SHADOW</div>
+            <!-- the ghost name -->
+            <div class="character-name">"BLINKY"</div>
+          </div>
+
+          <div class="character-row">
+            <!-- the ghost image in front of the ghost nickname and name-->
+            <div class="pinkG"> </div>
+            <!-- the ghost nickname -->
+            <div class="character-nickname" style="color: #ffc0e4;">-SPEEDY</div>
+            <!-- the ghost name -->
+            <div class="character-name">"PINKY"</div>
+          </div>
+
+          <div class="character-row">
+            <!-- the ghost image in front of the ghost nickname and name-->
+            <div class="blueG"> </div>
+            <!-- the ghost nickname -->
+            <div class="character-nickname" style="color: #00FFFF;">-BASHFUL</div>
+            <!-- the ghost name -->
+            <div class="character-name">"INKY"</div>
+          </div>
+
+          <div class="character-row">
+              <!-- the ghost image in front of the ghost nickname and name-->
+              <div class="orangeG"> </div>
+              <!-- the ghost nickname -->
+              <div class="character-nickname"  style="color:#FFA500;">-POKEY</div>
+              <!-- the ghost name -->
+              <div class="character-name">"CLYDE"</div>
+          </div>
+        </div> <!-- <div class="character-details"> -->
+    
+        <!-- Just a gif -->
+        <img style="margin-bottom:5%;" src="./assets/images/intro-page/initial_gif.gif" id="gif">
         
-        <a href="./game.html"> 
-            <!-- <h2>START THE GAME</h2>  -->
-        </a>
-        <p id="dot"  class="dot_image">  
+        <div class="spacing"></div>
+       
+        <!-- Some vital information about the pellets and the gazers -->
+        <div id="dot"  class="dot_image" style="z-index: 999;">  
             <span style="font-size: 10px;">10</span>
             <span style="font-size: 7px;">PTS</span>
-        </p>
-            
-        <p id="gazer" class="gazer_image"> 
+        </div>
+        <div  id="gazer" class="gazer_image" style="z-index: 999;"> 
             <span style="font-size: 10px;">50</span>
             <span style="font-size: 7px;">PTS</span>
-        </p>
-      
-        <img src="./assets/images/intro-page/initial_gif.gif" id="gif">
+        </div>
 
-      
-
+        <!-- The start button -->
         <a href="./game.html"  class="button">START GAME</a>
-    </div>
-
+    
+    </div><!--  <div class="flex-container"> -->
 </body>
 </html>
 
