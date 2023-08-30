@@ -17,6 +17,9 @@ const pellets = document.querySelectorAll(".dot-pellet");
 const gazers = document.querySelectorAll(".gazer-pellet"); 
   // console.log("All inserted Power pellets: " + gazers.length); // 4
 
+// Define a variable or an array to keep track of eaten gazers
+var countEatenGazers = 0;
+var countEatenPellets = 0;
 //--------------------------------- PACMAN ---------------------------------
 // See 'pacman.js', 'collisions.js' for more.
 

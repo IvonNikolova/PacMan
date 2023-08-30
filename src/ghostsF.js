@@ -1,253 +1,253 @@
 //--------------------------------- GHOSTS: AFRAID FROZEN STATE (after an eaten gazer) ---------------------------------
-
-// Define a variable or an array to keep track of eaten gazers
-var countEatenGazers = 0;
-var countEatenPellets = 0;
-
-// Original interval values for each ghost
+// Original interval speed values for each ghost
 const originalIntervals = {
-  redG: 160, // Adjust this value as needed
-  pinkG: 160, // Adjust this value as needed
-  blueG: 160, // Adjust this value as needed
+  redG: 160, 
+  pinkG: 160, 
+  blueG: 160,
   orangeG: 160 
 };
-const frozenSpeed = 250;
+// Slower than the usual interval speed values for each ghost
+const frozenSpeed = 250; 
 
 //-------------------------1 RED------------------------------
-// Flag to track if the ghost is freezed
+// Flags to keep track of the remaining time for the afraid frozen state
 var isGhostFreezed = false; 
 var isGhostFreezedComesToEnd = false;
+// Variable for the ID timeout of the afraid frozen state
+var freezeTimerId = null; 
 
-// Variable to keep track of the remaining time for the FREEZED state
-var remainingFreezeTime = 0; 
-let freezeTimerId = null; // To store the timer ID
-
-// Function to handle gazer eating
+// Function that is activated when a gazer is eaten
+  // it changes the ghost complete state 
+  // from normal angry state
+  // to frozen afraid state 
+  // which gives Pacman a chance to eat the ghosts and to collect more bonus points
 function isEatenGazer() 
 {
-
   // Reset the scared ghost multiplier
   scaredGhostMultiplier = 1;
   pointsAdded = 0;
 
-// Set the freeze time for the current gazer to 5 seconds
-const currentGazerFreezeTime = 6000;
+  // The afraid frozen time is set to 6 seconds = 6000 miliseconds
+  const currentGazerFreezeTime = 6000;
 
-// If the ghost is not already in the FREEZED state or a new gazer is eaten before the current timer ends
-if (!isGhostFreezed || isGhostFreezedComesToEnd) 
-{
-  // Clear the existing timer if it's still running
-  clearTimeout(freezeTimerId);
+  // If the ghost is not already in the FREEZED state or a new gazer is eaten before the current timer ends
+  if (!isGhostFreezed || isGhostFreezedComesToEnd) 
+  {
+    // Clear the existing timer 
+    // if it's still on
+    clearTimeout(freezeTimerId);
 
-  const originalInterval = originalIntervals.redG; // Change this based on the ghost
-  // Make the ghost move slower during the freeze time
-  clearInterval(moveRGtInterval);
-  moveRGtInterval = setInterval(moveRedGhostInMaze, frozenSpeed); // Adjust this interval value
+    // Set the original interval based on the ghost
+    const originalInterval = originalIntervals.redG; 
 
-  // Start a new timer with the current gazer freeze time
-  freezeTimerId = setTimeout(() => {
-    isGhostFreezed = false;
-    remainingFreezeTime = 0;
-
-    // Return the ghost movement to the original speed
+    // Clear the possible running interval(s)
     clearInterval(moveRGtInterval);
-    moveRGtInterval = setInterval(moveRedGhostInMaze, originalInterval);
-  }, currentGazerFreezeTime);
-  
-  // Reset the last 2 seconds flag
-  isGhostFreezedComesToEnd = false;
+    // The ghost has to move slower during the afraid state's time
+    moveRGtInterval = setInterval(moveRedGhostInMaze, frozenSpeed); 
 
-  // Set the flag isGhostFreezedComesToEnd to true for the last 2 seconds
-  setTimeout(() => {
-    isGhostFreezedComesToEnd = true;
-  }, currentGazerFreezeTime - 3000); // Set it 2 seconds before the timer ends
-}
+    // Start a new timer with the current gazer freeze time
+    freezeTimerId = setTimeout(() => {
+                                        isGhostFreezed = false;
 
-// Set the ghost to the FREEZED state
-isGhostFreezed = true;
+                                        clearInterval(moveRGtInterval);
+                                        // Back to the original speed of the ghost
+                                        moveRGtInterval = setInterval(moveRedGhostInMaze, originalInterval);
+                                      }, 
+                                currentGazerFreezeTime);
+                                        
+    // Reset the last seconds flag
+    isGhostFreezedComesToEnd = false;
 
-// Other actions you want to perform when a gazer is eaten
-}
+    // Set the flag isGhostFreezedComesToEnd to true for the last 3 seconds
+    setTimeout(() => {
+                        isGhostFreezedComesToEnd = true;
+                      }, 
+                    currentGazerFreezeTime - 3000); // Set the last 3 seconds before the timer ends
+  }
+
+  // Set the ghost to the frozen afraid state
+  isGhostFreezed = true;
+}// isEatenGazer() 
 
 
 
 
 //-------------------------2 PINK------------------------------
-// Flag to track if the ghost is freezed
+// Flags to keep track of the remaining time for the afraid frozen state
 var isGhostFreezed2 = false; 
 var isGhostFreezedComesToEnd2 = false;
+// Variable for the ID timeout of the afraid frozen state
+var freezeTimerId2 = null; 
 
-// Variable to keep track of the remaining time for the FREEZED state
-var remainingFreezeTime2 = 0; 
-let freezeTimerId2 = null; // To store the timer ID
-
-
-// Function to handle gazer eating
+// Function that is activated when a gazer is eaten
+  // it changes the ghost complete state 
+  // from normal angry state
+  // to frozen afraid state 
+  // which gives Pacman a chance to eat the ghosts and to collect more bonus points
 function isEatenGazer2() 
 {
+  // The afraid frozen time is set to 6 seconds = 6000 miliseconds
+  const currentGazerFreezeTime2 = 6000;
+
+  // If the ghost is not already in the FREEZED state or a new gazer is eaten before the current timer ends
+  if (!isGhostFreezed2 || isGhostFreezedComesToEnd2) 
+  {
+    // Clear the existing timer 
+    // if it's still on
+    clearTimeout(freezeTimerId2);
+
+    // Set the original interval based on the ghost
+    const originalInterval2 = originalIntervals.pinkG; 
+
+    // Clear the possible running interval(s)
+    clearInterval(moveGsInterval);
+    clearInterval(movePGInterval);
+    // The ghost has to move slower during the afraid state's time
+    movePGInterval = setInterval(movePinkGhostInHouse, frozenSpeed); 
+
+    // Start a new timer with the current gazer freeze time
+    freezeTimerId2 = setTimeout(() => {
+                                        isGhostFreezed2 = false;
+
+                                        clearInterval(moveGsInterval);
+                                        clearInterval(movePGInterval);
+                                        // Back to the original speed of the ghost
+                                        movePGInterval = setInterval(movePinkGhostInHouse, originalInterval2); 
+                                      }, 
+                                currentGazerFreezeTime2);
+    
+    // Reset the last seconds flag
+    isGhostFreezedComesToEnd2 = false;
+
+    // Set the flag isGhostFreezedComesToEnd2 to true for the last 3 seconds
+    setTimeout(() => {
+                        isGhostFreezedComesToEnd2 = true;
+                      }, 
+              currentGazerFreezeTime2 - 3000); // Set the last 3 seconds before the timer ends
+  }
+
+  // Set the ghost to the frozen afraid state
+  isGhostFreezed2 = true;
+}// isEatenGazer2() 
 
 
-// Set the freeze time for the current gazer to 5 seconds
-const currentGazerFreezeTime2 = 6000;
-
-// If the ghost is not already in the FREEZED state or a new gazer is eaten before the current timer ends
-if (!isGhostFreezed2 || isGhostFreezedComesToEnd2) 
-{
-  // Clear the existing timer if it's still running
-  clearTimeout(freezeTimerId2);
-//+++++++++++++++++++++++
-  const originalInterval2 = originalIntervals.pinkG; // Change this based on the ghost
-  // Make the ghost move slower during the freeze time
-  clearInterval(moveGsInterval);
-  clearInterval(movePGInterval);
-  movePGInterval = setInterval(movePinkGhostInHouse, frozenSpeed); 
-
-
-  // Start a new timer with the current gazer freeze time
-  freezeTimerId2 = setTimeout(() => {
-    isGhostFreezed2 = false;
-    remainingFreezeTime2 = 0;
-
-//+++++++++++++++++++++++
-    // Return the ghost movement to the original speed
-clearInterval(moveGsInterval);
-clearInterval(movePGInterval);
-movePGInterval = setInterval(movePinkGhostInHouse, originalInterval2); 
-  }, currentGazerFreezeTime2);
-  
-  // Reset the last 2 seconds flag
-  isGhostFreezedComesToEnd2 = false;
-
-  // Set the flag isGhostFreezedComesToEnd to true for the last 2 seconds
-  setTimeout(() => {
-    isGhostFreezedComesToEnd2 = true;
-  }, currentGazerFreezeTime2 - 3000); // Set it 2 seconds before the timer ends
-}
-
-// Set the ghost to the FREEZED state
-isGhostFreezed2 = true;
-
-// Other actions you want to perform when a gazer is eaten
-}
 
 //----------------------------------3 BLUE--------------------------------
-// Flag to track if the ghost is freezed
+// Flags to keep track of the remaining time for the afraid frozen state
 var isGhostFreezed3 = false; 
 var isGhostFreezedComesToEnd3 = false;
-
-// Variable to keep track of the remaining time for the FREEZED state
-var remainingFreezeTime3 = 0; 
-let freezeTimerId3 = null; // To store the timer ID
+// Variable for the ID timeout of the afraid frozen state
+var freezeTimerId3 = null; 
 
 
-// Function to handle gazer eating
+// Function that is activated when a gazer is eaten
+  // it changes the ghost complete state 
+  // from normal angry state
+  // to frozen afraid state 
+  // which gives Pacman a chance to eat the ghosts and to collect more bonus points
 function isEatenGazer3() 
 {
-// Your logic to detect gazer eating goes here
-// Set the freeze time for the current gazer to 5 seconds
-const currentGazerFreezeTime3 = 6000;
+ // The afraid frozen time is set to 6 seconds = 6000 miliseconds
+  const currentGazerFreezeTime3 = 6000;
 
 
-// If the ghost is not already in the FREEZED state or a new gazer is eaten before the current timer ends
-if (!isGhostFreezed3 || isGhostFreezedComesToEnd3) 
-{
-  // Clear the existing timer if it's still running
-  clearTimeout(freezeTimerId3);
+  // If the ghost is not already in the FREEZED state or a new gazer is eaten before the current timer ends
+  if (!isGhostFreezed3 || isGhostFreezedComesToEnd3) 
+  {
+    // Clear the existing timer 
+    // if it's still on
+    clearTimeout(freezeTimerId3);
 
-//+++++++++++++++++++++++
-  const originalInterval3 = originalIntervals.blueG; // Change this based on the ghost
-  // Make the ghost move slower during the freeze time
-  clearInterval(moveGsInterval);
-  clearInterval(moveBGInterval);
-  moveBGInterval = setInterval(moveBlueGhostInHouse, frozenSpeed); 
-
-
-  // Start a new timer with the current gazer freeze time
-  freezeTimerId3 = setTimeout(() => {
-    isGhostFreezed3 = false;
-    remainingFreezeTime3 = 0;
-//+++++++++++++++++++++++
-    // Return the ghost movement to the original speed
+    // Set the original interval based on the ghost
+    const originalInterval3 = originalIntervals.blueG;
+    
+    // Clear the possible running interval(s)
     clearInterval(moveGsInterval);
     clearInterval(moveBGInterval);
-    moveBGInterval = setInterval(moveBlueGhostInHouse, originalInterval3); 
+    // The ghost has to move slower during the afraid state's time
+    moveBGInterval = setInterval(moveBlueGhostInHouse, frozenSpeed); 
 
-  }, currentGazerFreezeTime3);
-  
-  // Reset the last 2 seconds flag
-  isGhostFreezedComesToEnd3 = false;
+    // Start a new timer with the current gazer freeze time
+    freezeTimerId3 = setTimeout(() => {
+                                        isGhostFreezed3 = false;
 
-  // Set the flag isGhostFreezedComesToEnd to true for the last 2 seconds
-  setTimeout(() => {
-    isGhostFreezedComesToEnd3 = true;
-  }, currentGazerFreezeTime3 - 3000); // Set it 2 seconds before the timer ends
-}
+                                        clearInterval(moveGsInterval);
+                                        clearInterval(moveBGInterval);
+                                        // Back to the original speed of the ghost
+                                        moveBGInterval = setInterval(moveBlueGhostInHouse, originalInterval3); 
+                                      }, 
+                                currentGazerFreezeTime3);
+    
+    // Reset the last seconds flag
+    isGhostFreezedComesToEnd3 = false;
 
-// Set the ghost to the FREEZED state
-isGhostFreezed3 = true;
+    // Set the flag isGhostFreezedComesToEnd2 to true for the last 3 seconds
+    setTimeout(() => {
+                        isGhostFreezedComesToEnd3 = true;
+                      }, 
+              currentGazerFreezeTime3 - 3000); // Set the last 3 seconds before the timer ends
+  }
 
-// Other actions you want to perform when a gazer is eaten
-}
+  // Set the ghost to the frozen afraid state
+  isGhostFreezed3 = true;
+}//isEatenGazer3() 
 
 //------------------------------------4 ORANGE--------------------------------
-// Flag to track if the ghost is freezed
+// Flags to keep track of the remaining time for the afraid frozen state
 var isGhostFreezed4 = false; 
 var isGhostFreezedComesToEnd4 = false;
+// Variable for the ID timeout of the afraid frozen state
+let freezeTimerId4 = null; 
 
-// Variable to keep track of the remaining time for the FREEZED state
-var remainingFreezeTime4 = 0; 
-let freezeTimerId4 = null; // To store the timer ID
-
-
-// Function to handle gazer eating
+// Function that is activated when a gazer is eaten
+  // it changes the ghost complete state 
+  // from normal angry state
+  // to frozen afraid state 
+  // which gives Pacman a chance to eat the ghosts and to collect more bonus points
 function isEatenGazer4() 
 {
-// Your logic to detect gazer eating goes here
+  // The afraid frozen time is set to 6 seconds = 6000 miliseconds
+  const currentGazerFreezeTime4 = 6000;
 
+  // If the ghost is not already in the FREEZED state or a new gazer is eaten before the current timer ends
+  if (!isGhostFreezed4 || isGhostFreezedComesToEnd4) 
+  {
+    // Clear the existing timer if it's still running
+    clearTimeout(freezeTimerId4);
 
-// Set the freeze time for the current gazer to 5 seconds
-const currentGazerFreezeTime4 = 6000;
+    // Clear the existing timer 
+    // if it's still on
+    const originalInterval4 = originalIntervals.orangeG; 
 
-// If the ghost is not already in the FREEZED state or a new gazer is eaten before the current timer ends
-if (!isGhostFreezed4 || isGhostFreezedComesToEnd4) 
-{
-  // Clear the existing timer if it's still running
-  clearTimeout(freezeTimerId4);
-//+++++++++++++++++++++++
-const originalInterval4 = originalIntervals.orangeG; // Change this based on the ghost
-// Make the ghost move slower during the freeze time
-clearInterval(moveGsInterval);
-clearInterval(moveOGInterval);
-moveOGInterval = setInterval(moveOrangeGhostInHouse, frozenSpeed); 
-
-  // Start a new timer with the current gazer freeze time
-  freezeTimerId4 = setTimeout(() => {
-    isGhostFreezed4 = false;
-    remainingFreezeTime4 = 0;
-
-//+++++++++++++++++++++++
-    // Return the ghost movement to the original speed
+    // Clear the possible running interval(s)
     clearInterval(moveGsInterval);
     clearInterval(moveOGInterval);
-    moveOGInterval = setInterval(moveOrangeGhostInHouse, originalInterval4); 
+    // The ghost has to move slower during the afraid state's time
+    moveOGInterval = setInterval(moveOrangeGhostInHouse, frozenSpeed); 
 
+    // Start a new timer with the current gazer freeze time
+    freezeTimerId4 = setTimeout(() => {
+                                        isGhostFreezed4 = false;
 
-  }, currentGazerFreezeTime4);
+                                        clearInterval(moveGsInterval);
+                                        clearInterval(moveOGInterval);
+                                        // Back to the original speed of the ghost
+                                        moveOGInterval = setInterval(moveOrangeGhostInHouse, originalInterval4); 
+                                      }, 
+                                currentGazerFreezeTime4);
   
-  // Reset the last 2 seconds flag
-  isGhostFreezedComesToEnd4 = false;
+  // Reset the last seconds flag
+    isGhostFreezedComesToEnd4 = false;
 
-  // Set the flag isGhostFreezedComesToEnd to true for the last 2 seconds
-  setTimeout(() => {
-    isGhostFreezedComesToEnd4 = true;
-  }, currentGazerFreezeTime4 - 3000); // Set it 2 seconds before the timer ends
-}
-
-// Set the ghost to the FREEZED state
-isGhostFreezed4 = true;
-
-// Other actions you want to perform when a gazer is eaten
-}
+    // Set the flag isGhostFreezedComesToEnd2 to true for the last 3 seconds
+    setTimeout(() => {
+                        isGhostFreezedComesToEnd4 = true;
+                      }, 
+              currentGazerFreezeTime4 - 3000); // Set the last 3 seconds before the timer ends
+  }
+  // Set the ghost to the frozen afraid state
+  isGhostFreezed4 = true;
+}// isEatenGazer4() 
 
 
 
