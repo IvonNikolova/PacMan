@@ -79,8 +79,8 @@ h2{
 	left: 90px;
     top: 137px;
     z-index: 3;
+    animation: blink 1s infinite;
 
-    /* animation: blink 0.5s infinite; */
 }
 
 .label-gameover{

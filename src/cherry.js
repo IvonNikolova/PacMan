@@ -2,7 +2,7 @@
 // The cherry object
 var cherry = null;
 // Set the positions, where the object would appear
-var fruitPos = { x: 13.5, y: 23 };
+var fruitPos = { x: 13.5, y: 17.125 }; // { x: 13.5, y: 23 };
 // A tracking flag: if a cherry object is displayed currently
 var cherryDisplayed = false; 
  // The timeout ID's variable that hides the cherry object from the maze 

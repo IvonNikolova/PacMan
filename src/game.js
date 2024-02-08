@@ -82,9 +82,9 @@ function endGame()
                                                 clearInterval(mazesInterval);
                                                 window.location.href = "game.html";
                                             }, 
-                                    2900);
+                                    3900);
                       }, 
-               3000);
+               4000);
   }
   else if(pacmanWinner == true)
   {

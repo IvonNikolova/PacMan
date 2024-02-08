@@ -139,14 +139,8 @@ function moveRedGhostInMaze()
           {
               redGhost.left += cellSize;
           }
-
           // Update the last movement direction
           lastRedGhostDirection = redGDirection;
-
-          // Update the position of the red ghost in the maze
-          updateMazeGPos(redGhost, redGhostElement);
-          // Change the style of red ghost's face 
-          ghostFaces(redGhostElement,redGDirection,isGhostFreezed,isGhostFreezedComesToEnd, changeRGhostMood,changeRGFreeze,changeRGGrayFreeze);
         } 
         else 
         {
@@ -154,6 +148,11 @@ function moveRedGhostInMaze()
           // randomly generate a new direction
           redGDirection = getRandomDirection();
         }// else if no valid moves are available, randomly choose a new direction
+
+        // Update the position of the red ghost in the maze
+          updateMazeGPos(redGhost, redGhostElement);
+          // Change the style of red ghost's face 
+          ghostFaces(redGhostElement,redGDirection,isGhostFreezed,isGhostFreezedComesToEnd, changeRGhostMood,changeRGFreeze,changeRGGrayFreeze);
       }// else if its not a tunnel corridor
     }//if (!isPaused) 
   }//if (!isRedGhostStopped)
@@ -221,7 +220,7 @@ function isValidMove(row, col)
           return false; // The move is outside the maze boundaries
       }
 // for testing only
-        // return (GPS_arr[row][col] !== 0  && GPS_arr[row][col] !== 1  && GPS_arr[row][col] !== 2  && GPS_arr[row][col] !== 4);
+         //return (GPS_arr[row][col] !== 0  && GPS_arr[row][col] !== 1  && GPS_arr[row][col] !== 2  && GPS_arr[row][col] !== 4);
 //original logic, not for
       return (GPS_arr[row][col] !== 0 && GPS_arr[row][col] !== 4);
 }// isValidMove(row, col) 

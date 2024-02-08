@@ -6,7 +6,7 @@ const PELLET_VALUE = 1;
 const POWER_PELLET_VALUE = 2;
 const NOTHING_VALUE = 3;
 const GHOST_NEST_VALUE = 4;
-
+const TUNNEL_VALUE = 5;
 
 // The container - 2d array which represents the objects as values 
     // Rows x Columns i.e. 28 x 31 = 868 VALUES
